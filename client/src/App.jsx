@@ -17,9 +17,9 @@ function App() {
   
 
   return (
-    <>
+    <div className="bg-[#DEF2F1] ">
       <RouterProvider router={router}/>
-    </>
+    </div>
   )
 }
 

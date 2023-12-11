@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function PageNotFound() {
     return (
         <>
-            <div class="container mx-auto my-auto">
+            <div class="container mx-auto my-auto h-screen">
                 <section class="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
                     <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
                         <div class="max-w-md text-center">
