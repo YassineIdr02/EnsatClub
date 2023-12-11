@@ -14,7 +14,7 @@ public class ServerApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(){
-        return args -> System.out.println("yay project");
+        return args -> System.out.println("yay ");
 
 
     }
