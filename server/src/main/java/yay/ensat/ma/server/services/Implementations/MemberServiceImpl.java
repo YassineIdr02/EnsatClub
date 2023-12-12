@@ -39,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
    public MemberDTO saveMember(MemberDTO memberDTO,String clubName) {
      Club club = clubRepository.findByName(clubName);
      if(club != null ){
-     Member member=memberMapper.fromMemberDTO(memberDTO);
+     //Member member=memberMapper.fromMemberDTO(memberDTO);
      member.setClub(club);
      Member savedmember = memberRepository.save(member);
      eventPublisher.publishEvent(new MemberSavedEvent(savedmember));
