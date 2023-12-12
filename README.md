@@ -33,6 +33,8 @@ This Spring project aims to provide a comprehensive solution for managing school
 - Java 11
 - Maven
 - MySQL (or another relational database of your choice)
+- Node js
+- React + Vite
 
 ## Getting Started
 
@@ -53,10 +55,14 @@ This Spring project aims to provide a comprehensive solution for managing school
 4. Build and run the project:
 
    ```bash
+   cd server
    mvn spring-boot:run
+   cd client
+   npm install
+   npm run dev
    ```
 
-5. Access the application at [http://localhost:8080](http://localhost:8080).
+5. Access the application at [http://localhost:5173/](http://localhost:5173/).
 
 ## Project Structure
 
@@ -72,12 +78,22 @@ The project follows a standard Spring project structure, organized into packages
 - `src/main/resources`
   - `application.properties`: Configuration file for database settings and other Spring configurations.
 
+- The frontend directory structure follows standard React application conventions:
+
+ - `src/components`: Contains reusable UI components used throughout the application, promoting code reusability and maintainability.
+ - `src/views`: Contains different views or pages of the application, each managing its components and interaction flow.
+ - `src/store`: Houses Redux-related files such as actions, reducers, and store configuration, facilitating global state management across the app. 
+
 ## Technologies Used
 
 - Spring Boot
 - Spring Data JPA
 - MySQL
 - Maven
+- React
+- React Redux
+- React router
+- TailwindCSS
 
 ## Contributing
 
