@@ -2,12 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 const initialState = {
-    user:{
-        id:'',
-        username: '',
-        password: '',
-    },
-    token: ''
+    username: '',
+    role: '',        
+    token: 'token',
+    status: 'idle' // idle loading succeed failed
 }
 
 export const handleLogin = createAsyncThunk('login/handleLogin', async (userInfo) => {
@@ -29,11 +27,13 @@ const userSlice = createSlice({
         }
     },extraReducers(builder){
         builder.addCase(handleLogin.fulfilled, (state, action) => {
-            state.user = action.payload.user
+            state.username = action.payload.username
             state.token = action.payload.token
-            
+            state.role = action.payload.role
+
         })
     }
 })
 
 export default userSlice.reducer
+export const getToken = (state) => state.user.token
