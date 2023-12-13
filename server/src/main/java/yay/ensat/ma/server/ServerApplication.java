@@ -37,7 +37,7 @@ public class ServerApplication {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordE passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
