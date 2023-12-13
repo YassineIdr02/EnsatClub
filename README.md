@@ -37,7 +37,7 @@ This Spring project aims to provide a comprehensive solution for managing school
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/school-club-management.git
+   git clone https://github.com/your-username/ensat-club-management.git
    ```
 
 2. Navigate to the project directory:
@@ -60,7 +60,7 @@ This Spring project aims to provide a comprehensive solution for managing school
 
 The project follows a standard Spring project structure, organized into packages for controllers, models, repositories, services, and configurations.
 
-- `src/main/java/com.example.schoolclubmanagement`
+- `src/main/java/com.example.ensatclubmanagement`
   - `controller`: RESTful API endpoints for club, activity, event, gallery, and member operations.
   - `model`: Entity classes representing clubs, activities, events, galleries, members, etc.
   - `repository`: Data access interfaces for CRUD operations.
