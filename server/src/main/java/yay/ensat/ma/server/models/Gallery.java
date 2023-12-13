@@ -1,25 +1,28 @@
-package yay.ensat.ma.server.entities;
+package yay.ensat.ma.server.models;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import yay.ensat.ma.server.security.AppUser;
+
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class Gallery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String role;// role inside the club
-    @ManyToOne
+
+    @OneToMany
+    private List<Activity> activities;
+
+    @OneToOne
     private Club club;
-    @OneToOne(mappedBy = "member")
-    private AppUser appUser;
 
 }

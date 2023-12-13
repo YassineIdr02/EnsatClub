@@ -1,10 +1,10 @@
-package yay.ensat.ma.server.security;
+package yay.ensat.ma.server.security.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import yay.ensat.ma.server.entities.Member;
+import yay.ensat.ma.server.models.Member;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor

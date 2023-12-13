@@ -1,0 +1,58 @@
+package yay.ensat.ma.server.web;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+@RestController
+public class AuthController {
+    private  JwtEncoder jwtEncoder;
+    private AuthenticationManager authenticationManager;
+
+
+    public AuthController(JwtEncoder jwtEncoder, AuthenticationManager authenticationManager) {
+        this.jwtEncoder = jwtEncoder;
+        this.authenticationManager = authenticationManager;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String,String>> jwtToken(String username, String password){
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(username, password));
+        String subject =authentication.getName();
+        String scope = authentication.getAuthorities().stream().map(aut -> aut.getAuthority()).collect(Collectors.joining(" "));
+
+        Map<String,String> idToken = new HashMap<>();
+        Instant instant = Instant.now();
+        JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
+                .subject(subject)
+                .issuedAt(instant)
+                .expiresAt(instant.plus( 90, ChronoUnit.MINUTES))
+                .issuer("ysf-security")
+                .claim("scope",scope)
+                .build();
+
+        String jwtAccessToken = jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
+        idToken.put("accessToken", jwtAccessToken);
+        idToken.put("role",scope);
+        idToken.put("username",subject);
+
+        return new ResponseEntity<>(idToken, HttpStatus.OK);
+    }
+}
+
+
