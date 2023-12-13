@@ -1,8 +1,6 @@
-# ProjetAgile
-Certainly! Here's a template for a README file for your Spring project managing school clubs, activities, events, galleries, and members:
 
-```markdown
-# School Club Management System
+
+# ENSAT Club Management System
 
 This Spring project aims to provide a comprehensive solution for managing school clubs, their activities, events, galleries, and members.
 
