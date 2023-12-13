@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faEye } from '@fortawesome/free-solid-svg-icons'
 import Popup from './Popup'
 
+
 const ListeDemande = () => {
     const [showPopup, setShowPopup] = useState(false);
 
@@ -12,7 +13,7 @@ const ListeDemande = () => {
 
     const handleClosePopup = () => {
         setShowPopup(false);
-      };
+    };
 
 
 
@@ -37,8 +38,9 @@ const ListeDemande = () => {
                             <FontAwesomeIcon
                                 icon={faEye}
                                 className="text-xl"
-                                onClick={() => togglePopup()}
+                                onClick={togglePopup}
                             />
+
                         </div>
                         <div className="lg:tooltip" data-tip="Accept">
                             <FontAwesomeIcon icon={faCheck} classNameName="text-xl" />
@@ -49,11 +51,13 @@ const ListeDemande = () => {
                     </div>
                 </div>
             </div>
-            {showPopup && (
-                <Popup onClose={handleClosePopup}/>
-            )}
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            {showPopup && <Popup onClose={handleClosePopup} />}
         </div>
     )
 }
 
 export default ListeDemande
+
+
+
