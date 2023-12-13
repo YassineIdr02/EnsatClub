@@ -2,6 +2,7 @@ package yay.ensat.ma.server.security.services;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import yay.ensat.ma.server.models.Member;
 import yay.ensat.ma.server.security.models.AppUser;
 import yay.ensat.ma.server.security.repositories.AppUserRepository;
@@ -9,18 +10,18 @@ import java.util.UUID;
 
 
 @Service
-
+@Transactional
 public class SecurityServiceImpl implements SecurityService {
     private AppUserRepository appUserRepository;
-    private PasswordEncoder passwordEncoder;
+    //private PasswordEncoder passwordEncoder;
     //private EmailSenderService emailSenderService;
 
 
 
 
-    public SecurityServiceImpl(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder ) {
+    public SecurityServiceImpl(AppUserRepository appUserRepository ) {
         this.appUserRepository = appUserRepository;
-        this.passwordEncoder = passwordEncoder;
+        //this.passwordEncoder = passwordEncoder;
        // this.emailSenderService = emailSenderService;
     }
 
@@ -46,8 +47,9 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     @Override
-    public AppUser saveNewUser(Member member) {
-        return null;
+    public AppUser saveNewUser(AppUser appUser) {
+
+        return appUserRepository.save(appUser);
     }
 
     @Override
