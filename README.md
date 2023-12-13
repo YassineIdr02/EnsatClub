@@ -28,7 +28,7 @@ This Spring project aims to provide a comprehensive solution for managing school
 
 ## Prerequisites
 
-- Java 11
+- Java 17
 - Maven
 - MySQL (or another relational database of your choice)
 
