@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark, faEye } from '@fortawesome/free-solid-svg-icons'
 import Popup from './Popup'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListeDemande = () => {
     const [showPopup, setShowPopup] = useState(false);
@@ -14,8 +15,6 @@ const ListeDemande = () => {
     const handleClosePopup = () => {
         setShowPopup(false);
     };
-
-
 
     return (
         <div>
@@ -45,7 +44,7 @@ const ListeDemande = () => {
                         <div className="lg:tooltip" data-tip="Accept">
                             <FontAwesomeIcon icon={faCheck} classNameName="text-xl" />
                         </div>
-                        <div className="lg:tooltip" data-tip="Reject">
+                        <div className="lg:tooltip" data-tip="Reject">  
                             <FontAwesomeIcon icon={faXmark} classNameName="text-xl" />
                         </div>
                     </div>
@@ -53,6 +52,8 @@ const ListeDemande = () => {
             </div>
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             {showPopup && <Popup onClose={handleClosePopup} />}
+            <ToastContainer />
+
         </div>
     )
 }
