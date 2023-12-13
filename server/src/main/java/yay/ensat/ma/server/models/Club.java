@@ -1,4 +1,4 @@
-package yay.ensat.ma.server.entities;
+package yay.ensat.ma.server.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
