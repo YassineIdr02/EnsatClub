@@ -12,25 +12,25 @@ const AddPost = () => {
     const canAdd = Boolean(caption.trim())
     return (    
         <div>
-            <hr class="w-full" />
-            <div class="flex flex-row p-5">
-                <div class="avatar w-1/6 flex justify-center items-center">
-                    <div class="w-14 rounded-full ">
+            <hr className="w-full" />
+            <div className="flex flex-row p-5">
+                <div className="avatar w-1/6 flex justify-center items-center">
+                    <div className="w-14 rounded-full ">
                         <img src="../assets/Profile.jpg" />
                     </div>
                 </div>
                 <textarea type="text"
                     placeholder="What's on your mind?"
-                    class="input input-lg w-full h-full min-h-16 max-h-40"
+                    className="input input-lg w-full h-full min-h-16 max-h-40"
                     value={caption}
                     onChange={captionInput}
                 ></textarea>
             </div>
-            <div class="flex flex-row items-center justify-between m-2" >
-                <div class="flex flex-row gap-3 justify-start">
-                    <input type="file" class="file-input file-input-ghost w-full max-w-xs" />
+            <div className="flex flex-row items-center justify-between m-2" >
+                <div className="flex flex-row gap-3 justify-start">
+                    <input type="file" className="file-input file-input-ghost w-full max-w-xs" />
                 </div>
-                <button class="btn btn-circle btn-ghost btn-outline" disabled={!canAdd} > 
+                <button className="btn btn-circle btn-ghost btn-outline" disabled={!canAdd} > 
                     <FontAwesomeIcon icon={faPlus} className="text-2xl"/>
                 </button>
             </div>

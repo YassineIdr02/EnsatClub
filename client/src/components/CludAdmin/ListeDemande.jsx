@@ -42,10 +42,10 @@ const ListeDemande = () => {
 
                         </div>
                         <div className="lg:tooltip" data-tip="Accept">
-                            <FontAwesomeIcon icon={faCheck} classNameName="text-xl" />
+                            <FontAwesomeIcon icon={faCheck} className="text-xl" />
                         </div>
                         <div className="lg:tooltip" data-tip="Reject">  
-                            <FontAwesomeIcon icon={faXmark} classNameName="text-xl" />
+                            <FontAwesomeIcon icon={faXmark} className="text-xl" />
                         </div>
                     </div>
                 </div>
