@@ -1,9 +1,8 @@
-import React from "react";
 import { useEffect, useState, useRef } from "react";
-import { handleLogin } from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
+import {getStatus, handleLogin} from "../features/user/userSlice";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../hooks/useAuth'
+
 import sampleImage from '../assets/EnsatClub.png';
 
 const LoginForm = () => {
@@ -17,17 +16,33 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const requestStatus = useSelector(getStatus);
 
     const handleUserInput = e => setUsername(e.target.value)
     const handlePasswordInput = e => setPassword(e.target.value)
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(handleLogin({ username, password }))
-        setPassword('')
-        setUsername('')
-        navigate('/')
-    }
+        try {
+            if (requestStatus === 'idle') {
+                dispatch(handleLogin({ username, password })).then((response) => {
+                    if (response.payload && response.payload.accessToken) {
+                        navigate('/presidant');
+                    } else {
+                        // Handle unsuccessful login here (if needed)
+                        console.error('Login failed:', response.error);
+                    }
+                });
+                setPassword('');
+                setUsername('');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
+    };
+
+
 
     return (
         <section className="h-screen flex flex-col md:flex-row justify-center items-center md:mx-0 md:my-0 space-y-10 md:space-y-0 md:space-x-16">
