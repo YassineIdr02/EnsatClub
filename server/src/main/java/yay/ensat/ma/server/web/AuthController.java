@@ -44,7 +44,7 @@ public class  AuthController {
         JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                 .subject(subject)
                 .issuedAt(instant)
-                .expiresAt(instant.plus( 90, ChronoUnit.MINUTES))
+                .expiresAt(instant.plus( 70, ChronoUnit.MINUTES))
                 .issuer("ysf-security")
                 .claim("scope",scope)
                 .build();
