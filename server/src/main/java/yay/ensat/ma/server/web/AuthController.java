@@ -8,8 +8,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import yay.ensat.ma.server.security.models.AppUser;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -18,7 +20,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-public class AuthController {
+public class  AuthController {
     private  JwtEncoder jwtEncoder;
     private AuthenticationManager authenticationManager;
 
@@ -28,11 +30,12 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> jwtToken(String username, String password){
+    public ResponseEntity<Map<String,String>> jwtToken(AppUser appUser){
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password));
+                new UsernamePasswordAuthenticationToken(appUser.getUsername(), appUser.getPassword()));
         String subject =authentication.getName();
         String scope = authentication.getAuthorities().stream().map(aut -> aut.getAuthority()).collect(Collectors.joining(" "));
 

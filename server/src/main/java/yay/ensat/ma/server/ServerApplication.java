@@ -28,7 +28,7 @@ public class ServerApplication {
     CommandLineRunner commandLineRunner(){
         return args ->{
             AppUser appUser = new AppUser();
-            appUser.setUsername("YassineIdr");
+            appUser.setUsername("Youssef");
             appUser.setPassword(passwordEncoder().encode("1234"));
             appUser.setAuthority("ADMIN");
             securityService.saveNewUser(appUser);
