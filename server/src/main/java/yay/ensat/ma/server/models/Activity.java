@@ -13,6 +13,7 @@ public class Activity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String photo; // url
     private String description;
     private String type;
@@ -21,6 +22,4 @@ public class Activity {
 
     @ManyToOne
     private Club club;
-
-
 }

@@ -17,8 +17,10 @@ public class Member {
     private Long id;
     private String name;
     private String role;// role inside the club
+
     @ManyToOne
     private Club club;
+
     @OneToOne(mappedBy = "member")
     private AppUser appUser;
 

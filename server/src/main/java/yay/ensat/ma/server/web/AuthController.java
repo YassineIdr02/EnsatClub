@@ -30,7 +30,7 @@ public class  AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
     @PostMapping("/login")
     public ResponseEntity<Map<String,String>> jwtToken(AppUser appUser){
 
