@@ -1,6 +1,5 @@
-
 import { useEffect, useState, useRef } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import sampleImage from '../assets/EnsatClub.png';
 
@@ -23,7 +22,7 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [login, {isLoading}] = useLoginMutation()
+    const [login, { isLoading }] = useLoginMutation()
 
     const handleUserInput = e => setUsername(e.target.value)
     const handlePasswordInput = e => setPassword(e.target.value)
@@ -35,25 +34,19 @@ const LoginForm = () => {
             const user = new FormData();
             user.append('username', username);
             user.append('password', password);
-            for (var pair of user.entries()) {
-                console.log(pair[0] + ', ' + pair[1]);
-            }
-
-            const userData  = await login(user).unwrap();
-            console.log(userData)
-
-            dispatch(setCredentials(userData)); // Assuming userData contains relevant user info
+            const userData = await login(user).unwrap();
+            dispatch(setCredentials(userData));
             setUsername('');
             setPassword('');
             navigate('/presidant');
 
         } catch (error) {
             console.error('Login failed:', error);
-            toast.error('Login failed. Please check your credentials.'); // Show an error message using toast
+            toast.error('Login failed. Please check your credentials.');
         }
     };
 
-
+    
 
     return (
         <section className="h-screen flex flex-col md:flex-row justify-center items-center md:mx-0 md:my-0 space-y-10 md:space-y-0 md:space-x-16">
