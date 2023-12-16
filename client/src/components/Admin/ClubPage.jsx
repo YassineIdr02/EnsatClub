@@ -1,16 +1,16 @@
 import React from 'react'
 import ClubPoster from './ClubPoster'
 import ActivityPreview from './ActivityPreview'
-import ClubPageFooter from './ClubPageFooter'
+import AboutClub from './AboutClub'
+import JoinClub from './JoinClub'
 
 const ClubPage = () => {
-
-
     return (
         <>
             <ClubPoster/>
             <ActivityPreview/>
-            <ClubPageFooter />
+            <AboutClub/>
+            <JoinClub/>
         </>
     )
 }

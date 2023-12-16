@@ -27,7 +27,8 @@ const ActivityCard = () => {
     const cardChunk = (arr) => {
         const chunckedCards = []
         for (let i = 0; i < 3; i++) {
-            chunckedCards.push(arr[i])
+            if (arr[i])
+                chunckedCards.push(arr[i])
         }
         return chunckedCards
     }
@@ -37,7 +38,7 @@ const ActivityCard = () => {
             <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{activity.title}</h2>
-                <p>{activity.content}</p>
+                <p>{activity.content}...</p>
                 <div className="card-actions justify-end">
                     <button className="btn btn-primary">View more</button>
                 </div>
