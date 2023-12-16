@@ -46,7 +46,7 @@ const LoginForm = () => {
         }
     };
 
-    
+
 
     return (
         <section className="h-screen flex flex-col md:flex-row justify-center items-center md:mx-0 md:my-0 space-y-10 md:space-y-0 md:space-x-16">
@@ -79,7 +79,7 @@ const LoginForm = () => {
                             onChange={handlePasswordInput}
                             placeholder="Enter password"
                             required
-                            className="peer placeholder-transparent w-full bg-transparent border-b border-[#ADADAD] my-2 px-1 focus:border-[#2B7A78] focus:outline-none"
+                            className="peer placeholder-transparent w-full bg-transparent border-b  border-[#ADADAD] my-2 px-1 focus:border-[#2B7A78] focus:outline-none"
                         />
                         <label
                             htmlFor="password"
@@ -96,7 +96,7 @@ const LoginForm = () => {
                     </div>
                     <div className="text-center md:text-left">
                         <div className="flex justify-center">
-                            <button className="btn btn-active btn-ghos bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
+                            <button className="btn btn-active  bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
                                 Sign in
                             </button>
                         </div>
@@ -108,6 +108,7 @@ const LoginForm = () => {
             </div>
             <ToastContainer theme="colored" />
         </section>
+
 
     );
 };

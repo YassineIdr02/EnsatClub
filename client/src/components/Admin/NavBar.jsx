@@ -25,6 +25,9 @@ const NavBar = () => {
                 <NavLink to="/" className="text-2xl"><h2>Dashboard</h2></NavLink>
                 <NavLink to="/" className="text-2xl"><h2>Clubs</h2></NavLink>
                 <NavLink to="/" className="text-2xl"><h2>Events</h2></NavLink>
+                <NavLink to="/" className="text-2xl"><h2>Add a new club</h2></NavLink>
+                <NavLink to="/" className="text-2xl"><h2>Join a club</h2></NavLink>
+
             </div>
             <div>
                 <input type="text" placeholder="Search" className="input input-bordered w-32 md:w-auto mx-3" />

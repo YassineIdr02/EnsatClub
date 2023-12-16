@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from './NavBar'
 import ClubCard from './ClubCards'
 import ClubPage from './ClubPage'
+import ClubPageFooter from './ClubPageFooter'
 
 const AdminHome = () => {
 
