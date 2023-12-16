@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -16,5 +16,5 @@ public class GalleryDTO {
     // we can do also ClubDTO but yassine want only the club_id,
     // so we need to create a mapper for that !!!!!!
     private Long clubId;
-    private List<ActivityDTO> activities;
+    private List<ActivityDTO> activities = new ArrayList<>() ;
 }
