@@ -2,9 +2,10 @@ package yay.ensat.ma.server.mappers;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import yay.ensat.ma.ensatclub.dtos.ClubDTO;
-import yay.ensat.ma.ensatclub.dtos.ClubDTO2;
-import yay.ensat.ma.ensatclub.entities.Club;
+import yay.ensat.ma.server.dtos.ClubDTO;
+import yay.ensat.ma.server.dtos.ClubDTO2;
+import yay.ensat.ma.server.models.Club;
+
 @Service
 public class ClubMapper {
     private MemberMapper memberMapper;
