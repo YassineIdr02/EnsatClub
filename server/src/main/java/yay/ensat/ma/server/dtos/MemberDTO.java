@@ -10,5 +10,7 @@ public class MemberDTO {
     private Long id;
     private String name;
     private String role;
-    private ClubDTO club;
+    private Long club_id;
+    // i should add the avatar of each member,
+    // we can also do a default
 }

@@ -7,17 +7,19 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import yay.ensat.ma.server.security.models.AppUser;
+
+import yay.ensat.ma.server.dtos.MemberDTO;
 import yay.ensat.ma.server.security.securityConfig.RsaKeysConfig;
 import yay.ensat.ma.server.security.services.SecurityService;
+import yay.ensat.ma.server.services.Interfaces.MemberService;
 
 @SpringBootApplication
 @EnableConfigurationProperties(RsaKeysConfig.class)
 public class ServerApplication {
-    private SecurityService securityService;
+    private MemberService memberService;
 
-    public ServerApplication(SecurityService securityService) {
-        this.securityService = securityService;
+    public ServerApplication(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     public static void main(String[] args) {
@@ -26,13 +28,11 @@ public class ServerApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(){
-        return args ->{
-            AppUser appUser = new AppUser();
-            appUser.setUsername("Youssef");
-            appUser.setPassword(passwordEncoder().encode("1234"));
-            appUser.setAuthority("ADMIN");
-            securityService.saveNewUser(appUser);
-
+        return args -> {
+            MemberDTO memberDTO = new MemberDTO();
+            memberDTO.setName("Yassine");
+            memberDTO.setRole("President");
+            memberService.saveMember(memberDTO,1L);
         };
     }
 
