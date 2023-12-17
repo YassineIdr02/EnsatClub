@@ -14,10 +14,13 @@ const AboutClub = () => {
             on developing and showcasing the skills of computer science students. We aim to provide an environment where students can learn, grow, and collaborate
             on developing and showcasing the skills of students in computer science, data analysis,
             software engineering, machine learning, artificial intelligence, web development, and more.
-            We aim to provide an environment where members can learn, collaborate, and grow together.</p>
+            We aim to provide an environment where members can learn, collaborate, and grow together.
+          </p>
         </div>
         <div className='flex flex-col gap-3 items-center'>
-          <h2 class="text-3xl font-extrabold ">Ayman Benamri</h2>
+          {/* Presidant name */}
+          <h2 class="text-3xl font-extrabold ">Ayman Benamri</h2> 
+          {/* Photo */}
           <div className="w-72 h-48 avatar rounded-full overflow-hidden mr-4">
             <img src={logo} alt="" className="object-cover w-full h-full" />
           </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ const NavBar = () => {
         navigate('/')
     }
     return (
-        <div className="navbar shadow-md justify-between flex px-10 bg-[#f3fffe] text-[#17252A] ">
+        <div className="navbar shadow-md justify-between fixed z-40 flex px-10 bg-[#f3fffe] text-[#17252A] ">
             <div className="flex items-center">
                 <div className="w-16 h-12 rounded-full overflow-hidden mr-4">
                     <img src={logo} alt="" className="object-cover w-full h-full" />

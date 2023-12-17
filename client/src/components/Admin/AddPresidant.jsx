@@ -1,8 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
 
-const JoinClub = () => {
+const AddPresidant = () => {
 
     const {clubId} = useParams()
     const [member, setMember] = useState({
@@ -26,7 +24,7 @@ const JoinClub = () => {
     return (
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
-                <h1 className="text-5xl text-center font-bold mt-5">Join CDH!</h1>
+                <h1 className="text-5xl text-center font-bold mt-5">Add a presidant</h1>
                 <form class="mx-auto w-[90%] items-center">
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="email"
@@ -117,9 +115,9 @@ const JoinClub = () => {
                     </div>
                     <button type="submit" class="btn btn-accent text-black w-[20%]">Submit</button>
                 </form>
-            </div>≤
+            </div>
         </>
-    )
+  )
 }
 
-export default JoinClub
+export default AddPresidant
