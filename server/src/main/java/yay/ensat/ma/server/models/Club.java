@@ -21,6 +21,7 @@ public class Club {
     private String name;
     private String description;
     private Date  createdAt;
+
     @OneToOne
     private Member president;
 

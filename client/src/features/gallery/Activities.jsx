@@ -12,6 +12,13 @@ const Posts = () => {
             content: 'This is a post content.',
             isLiked: false,
         },
+        {
+            id: 2,
+            author: 'Elon Musk',
+            time: 'Some time ago',
+            content: 'This is a post content.',
+            isLiked: false,
+        },
         // Add more post objects as needed
     ];
 
@@ -52,7 +59,6 @@ const Posts = () => {
                                 type="text"
                                 className="input input-lg w-full h-full min-h-16 max-h-40"
                                 value={post.content}
-                                onChange={(e) => {/* Handle textarea value change */ }}
                             ></textarea>
                         )}
                         
