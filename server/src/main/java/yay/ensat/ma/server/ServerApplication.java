@@ -8,26 +8,31 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import yay.ensat.ma.server.dtos.MemberDTO;
 import yay.ensat.ma.server.security.securityConfig.RsaKeysConfig;
 import yay.ensat.ma.server.security.services.SecurityService;
+import yay.ensat.ma.server.services.Interfaces.MemberService;
 
 @SpringBootApplication
 @EnableConfigurationProperties(RsaKeysConfig.class)
 public class ServerApplication {
-    private SecurityService securityService;
+    private MemberService memberService;
 
-    public ServerApplication(SecurityService securityService) {
-        this.securityService = securityService;
+    public ServerApplication(MemberService memberService) {
+        this.memberService = memberService;
     }
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
     }
 
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner(){
-        return args ->{
-
+        return args -> {
+            MemberDTO memberDTO = new MemberDTO();
+            memberDTO.setName("Yassine");
+            memberDTO.setRole("President");
+            memberService.saveMember(memberDTO,1L);
         };
     }
 

@@ -32,12 +32,12 @@ public class ClubController {
         return clubService.getClub(club_id);
     }
 
-    @GetMapping("/clubmemebers/{club_id}")
+    @GetMapping("/clubmembers/{club_id}")
     public List<MemberDTO> clubMembers(@PathVariable("club_id") Long club_id){
         return  clubService.getClubMembers(club_id);
     }
 
-    @PostMapping("/associatepres/{club_id}/hhhh")
+    @PostMapping("/associatepres/{club_id}/yay")
     public MemberDTO clubPresident( MemberDTO memberDTO, @PathVariable("club_id") Long club_id){
         return clubService.associatePresidentToAClub(memberDTO,club_id);
     }
