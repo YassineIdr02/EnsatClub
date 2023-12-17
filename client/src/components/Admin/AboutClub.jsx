@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../assets/EnsatClub.png'
 
-const AboutClub = () => {
+const AboutClub = ({clubId}) => {
   return (
     <section className=' h-[40%] p-10 '>
       <h2 className="text-5xl text-center font-bold mb-4">About CDH</h2>
