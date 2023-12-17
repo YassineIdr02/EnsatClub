@@ -1,37 +1,25 @@
 import React from 'react'
+import useFormContext from '../../hooks/useFormContext';
 
 const AddPresidant = () => {
 
-    const {clubId} = useParams()
-    const [member, setMember] = useState({
-        clubId,
-        firstName: "",
-        lastName: "",
-        email: "",
-        tel: "",
-        school: "",
-        motivation: ""
-    })
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setMember(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    const {data, handleChange} = useFormContext()
 
     return (
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
+                <div className='flex flex-col gap-4 items-center'>
                 <h1 className="text-5xl text-center font-bold mt-5">Add a presidant</h1>
+                <p className='text-gray'>(Optional)</p>
+
+                </div>
                 <form class="mx-auto w-[90%] items-center">
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="email"
                             name="email"
-                            value={member.email}
+                            value={data.email}
                             onChange={handleChange}
-                            id="floating_email"
+                            id="email"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             placeholder=" "
                             required />
@@ -45,7 +33,7 @@ const AddPresidant = () => {
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="text"
                                 name="firstName"
-                                value={member.firstName}
+                                value={data.firstName}
                                 onChange={handleChange}
                                 id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -60,7 +48,7 @@ const AddPresidant = () => {
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="tel"
                                 name="lastName"
-                                value={member.lastName}
+                                value={data.lastName}
                                 onChange={handleChange}
                                 id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -77,7 +65,7 @@ const AddPresidant = () => {
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="tel"
                                 name="tel"
-                                value={member.tel}
+                                value={data.tel}
                                 onChange={handleChange}
                                 id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -91,8 +79,8 @@ const AddPresidant = () => {
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="text"
-                                name="floating_phone"
-                                value={member.school}
+                                name="school"
+                                value={data.school}
                                 onChange={handleChange}
                                 id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -105,15 +93,7 @@ const AddPresidant = () => {
                             </label>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2 mb-5'>
-                        <label htmlFor="motivation" className='text-lg'>Motivation</label>
-                        <textarea placeholder="motivation"
-                            value={member.motivation}
-                            onChange={handleChange}
-                            id='motivation'
-                            className="textarea textarea-bordered textarea-lg w-full max-w-xs" />
-                    </div>
-                    <button type="submit" class="btn btn-accent text-black w-[20%]">Submit</button>
+                    
                 </form>
             </div>
         </>
