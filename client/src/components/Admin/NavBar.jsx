@@ -27,7 +27,7 @@ const NavBar = () => {
     };
 
     return (
-        <div className="navbar shadow-md justify-between fixed z-40 flex px-10 bg-[#f3fffe] text-[#17252A] ">
+        <div className="navbar shadow-md justify-between  flex px-10 bg-[#f3fffe] text-[#17252A] sticky top-0 z-10 ">
             <div className="flex items-center">
                 <div className="w-16 h-12 rounded-full overflow-hidden mr-4">
                     <img src={logo} alt="" className="object-cover w-full h-full" />

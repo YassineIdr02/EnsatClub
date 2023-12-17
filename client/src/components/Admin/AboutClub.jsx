@@ -3,7 +3,7 @@ import logo from '../../assets/EnsatClub.png'
 
 const AboutClub = () => {
   return (
-    <section className=' h-[40%] p-10'>
+    <section className=' h-[40%] p-10 '>
       <h2 className="text-5xl text-center font-bold mb-4">About CDH</h2>
       <div className=' flex flex-row justify-between items-center'>
         <div className='w-[75%] flex flex-wrap'>
@@ -27,6 +27,7 @@ const AboutClub = () => {
           <p class="my-4 text-lg text-gray-500">Club presidant</p>
         </div>
       </div>
+      <hr className="my-8 border-0 h-0.5 w-[60%] bg-slate-300 mx-auto " />
     </section>
   )
 }

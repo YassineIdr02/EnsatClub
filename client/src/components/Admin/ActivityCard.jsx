@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ActivityCard = () => {
+const ActivityCard = ({clubId}) => {
 
     const activities = [
         {
@@ -21,7 +21,6 @@ const ActivityCard = () => {
             title: "picnic",
             content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime fuga similique omnis "
         },
-
     ]
 
     const cardChunk = (arr) => {
