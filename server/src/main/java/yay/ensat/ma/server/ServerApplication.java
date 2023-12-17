@@ -24,14 +24,9 @@ public class ServerApplication {
         SpringApplication.run(ServerApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(){
         return args ->{
-            AppUser appUser = new AppUser();
-            appUser.setUsername("Youssef");
-            appUser.setPassword(passwordEncoder().encode("1234"));
-            appUser.setAuthority("ADMIN");
-            securityService.saveNewUser(appUser);
 
         };
     }

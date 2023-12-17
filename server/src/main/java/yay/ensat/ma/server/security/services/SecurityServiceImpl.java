@@ -2,31 +2,32 @@ package yay.ensat.ma.server.security.services;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import yay.ensat.ma.server.emailConfig.EmailSenderService;
 import yay.ensat.ma.server.models.Member;
 import yay.ensat.ma.server.security.models.AppUser;
 import yay.ensat.ma.server.security.repositories.AppUserRepository;
+
 import java.util.UUID;
 
 
 @Service
-@Transactional
+
 public class SecurityServiceImpl implements SecurityService {
     private AppUserRepository appUserRepository;
-    //private PasswordEncoder passwordEncoder;
-    //private EmailSenderService emailSenderService;
+    private PasswordEncoder passwordEncoder;
+    private EmailSenderService emailSenderService;
 
 
 
 
-    public SecurityServiceImpl(AppUserRepository appUserRepository ) {
+    public SecurityServiceImpl(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder, EmailSenderService emailSenderService) {
         this.appUserRepository = appUserRepository;
-        //this.passwordEncoder = passwordEncoder;
-       // this.emailSenderService = emailSenderService;
+        this.passwordEncoder = passwordEncoder;
+        this.emailSenderService = emailSenderService;
     }
 
 
-   /* @Override
+    @Override
     public AppUser saveNewUser(Member member) {
         String fullUUID = UUID.randomUUID().toString();
         String username = member.getName()+fullUUID.substring(0, 3);
@@ -38,19 +39,14 @@ public class SecurityServiceImpl implements SecurityService {
         appUser.setAuthority(authority);
         appUser.setPassword(passwordEncoder.encode(password));
         AppUser savedAppuser = appUserRepository.save(appUser);
-       emailSenderService.sendEmail("harrakyoussef18@gmail.com","Bienvenue au club CDH",
+       emailSenderService.sendEmail("yassine.idrissi1@etu.uae.ac.ma","Bienvenue au club CDH",
                 "Your Credentials are :\n"+"username: "+username+"\n"+"password: "+password);
         return savedAppuser;
 
 
-    }*/
-
-
-    @Override
-    public AppUser saveNewUser(AppUser appUser) {
-
-        return appUserRepository.save(appUser);
     }
+
+
 
     @Override
     public AppUser loadUserByUserName(String username) {
