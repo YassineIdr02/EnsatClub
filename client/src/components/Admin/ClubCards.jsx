@@ -1,8 +1,9 @@
 import React from 'react';
-import userSlice from '../../features/user/userSlice';
+import { Link } from 'react-router-dom';
+
 
 const ClubCard = () => {
-    const clubs = [
+        const clubs = [
         {
             id: 1,
             name: "CDH",
@@ -49,7 +50,7 @@ const ClubCard = () => {
                 <div className="card-actions justify-end">
                     <div className="badge badge-outline hover:cursor-pointer">Activités</div>
                     <div className="badge badge-outline hover:cursor-pointer">Bureau</div>
-                    <div className="badge badge-outline hover:cursor-pointer">More details</div>
+                    <Link to={"clubs/"+club.id.toString()} key={club.id}><div className="badge badge-outline hover:cursor-pointer">More details</div></Link>
                 </div>
             </div>
         </div>
