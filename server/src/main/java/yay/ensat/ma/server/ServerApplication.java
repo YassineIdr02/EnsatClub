@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import yay.ensat.ma.server.security.models.AppUser;
+
 import yay.ensat.ma.server.security.securityConfig.RsaKeysConfig;
 import yay.ensat.ma.server.security.services.SecurityService;
 

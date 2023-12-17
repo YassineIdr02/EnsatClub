@@ -11,7 +11,6 @@ import yay.ensat.ma.server.models.Club;
 import yay.ensat.ma.server.models.Member;
 import yay.ensat.ma.server.repositories.ClubRepository;
 import yay.ensat.ma.server.repositories.MemberRepository;
-import yay.ensat.ma.server.security.repositories.AppUserRepository;
 import yay.ensat.ma.server.services.Interfaces.MemberService;
 
 @Service
