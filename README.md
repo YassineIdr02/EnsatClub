@@ -12,7 +12,7 @@ This Spring project aims to provide a comprehensive solution for managing school
 - [Project Structure](#project-structure)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -97,9 +97,3 @@ The project follows a standard Spring project structure, organized into packages
 
 Contributions are welcome! Feel free to open issues or submit pull requests to help improve this project.
 
-## License
-
-This project is licensed under the YAYCooperation(LICENSE).
-```
-
-This README template provides a basic structure with sections for features, prerequisites, getting started instructions, project structure, technologies used, contributing guidelines, and licensing information. Customize it further based on your project's specific details and requirements.
