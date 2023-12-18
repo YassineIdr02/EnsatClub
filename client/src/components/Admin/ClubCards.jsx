@@ -19,7 +19,7 @@ const ClubCard = () => {
             <div className="card-body">
                 <h2 className="card-title">
                     {club.name}
-                    {  (club.id === 2 || club.id === 4) && (
+                    {  (club.president_id == null) && (
                         <div className="badge badge-warning">No presidant</div>
                     )}
                 </h2>

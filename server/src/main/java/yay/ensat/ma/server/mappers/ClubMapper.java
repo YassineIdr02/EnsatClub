@@ -35,6 +35,8 @@ public class ClubMapper {
     public ClubDTO2 fromClubs(Club club){
         ClubDTO2 clubDTO2 = new ClubDTO2();
         BeanUtils.copyProperties(club,clubDTO2);
+        if(club.getPresident() != null)
+            clubDTO2.setPresident_id(club.getPresident().getId());
         return clubDTO2;
     }
 

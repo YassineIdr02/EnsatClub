@@ -11,7 +11,7 @@ const RequireAuth = ({allowedRoles}) => {
     if (Cookies.get('token')) {
         if(role ==='ADMIN' )
              return  <AdminLayout />
-        else if(role === 'PRESIDANT')
+        else if(role === 'ADMINCLUB')
             return <PresLayout /> 
         return <Navigate to="/" state={{from:location}} replace/>;
     }

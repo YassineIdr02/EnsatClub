@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { assocPersidant } from '../../features/Clubs/ClubSlice'
 
 const JoinClub = () => {
+    const dispatch = useDispatch()
 
     const {clubId} = useParams()
     const [member, setMember] = useState({
@@ -23,11 +26,16 @@ const JoinClub = () => {
         }));
     };
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        dispatch(assocPersidant(member))
+    }
+
     return (
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
                 <h1 className="text-5xl text-center font-bold mt-5">Join CDH!</h1>
-                <form className="mx-auto w-[90%] items-center">
+                <form className="mx-auto w-[90%] items-center" onSubmit={handleSubmit}>
                     <div className="relative z-0 w-full mb-5 group">
                         <input type="email"
                             name="email"
@@ -93,7 +101,7 @@ const JoinClub = () => {
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <input type="text"
-                                name="floating_phone"
+                                name="school"
                                 value={member.school}
                                 onChange={handleChange}
                                 id="floating_phone"

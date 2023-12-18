@@ -38,6 +38,31 @@ export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
   }
 });
 
+export const assocPersidant = createAsyncThunk(
+  "associatepres/assocPersidant",
+  async (payload) => {
+    try {
+      const { clubId } = payload;
+      const formData = new FormData();
+      formData.append("role", "president");
+      formData.append("name", payload.firstName + " " + payload.lastName);
+      const response = await axios.post(
+        `http://localhost:8082/associatepres/${clubId}/yay`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const ClubSlice = createSlice({
   name: "club",
   initialState: [],
