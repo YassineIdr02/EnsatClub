@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class ClubDTO2 {
     private Long id;
     private String name;
+    private String description;
     private String logo;
 }

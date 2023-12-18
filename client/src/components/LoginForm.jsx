@@ -8,9 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useLoginMutation } from "../features/user/authApiSlice";
 import { setCredentials } from "../features/user/userSlice";
 
-
-
-
 const LoginForm = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -36,9 +33,18 @@ const LoginForm = () => {
             user.append('password', password);
             const userData = await login(user).unwrap();
             dispatch(setCredentials(userData));
+            console.log(userData);
             setUsername('');
             setPassword('');
-            navigate('/presidant');
+
+            if (userData.role === 'PRESIDANT') {
+                navigate('/presidant');
+            } else if (userData.role === 'ADMIN') {
+                navigate('/admin');
+            } else {
+                // Redirect to a default page or handle as per your application's logic
+                navigate('/');
+            }
 
         } catch (error) {
             console.error('Login failed:', error);
@@ -96,7 +102,7 @@ const LoginForm = () => {
                     </div>
                     <div className="text-center md:text-left">
                         <div className="flex justify-center">
-                            <button className="btn btn-active  bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
+                            <button className="btn btn-active text-lg bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
                                 Sign in
                             </button>
                         </div>

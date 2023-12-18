@@ -36,7 +36,7 @@ const NavBar = () => {
             </div>
             <div className="flex flex-row gap-6">
                 <NavLink to="/" className="text-2xl"><h2>Dashboard</h2></NavLink>
-                <NavLink to="/" className="text-2xl"><h2>Clubs</h2></NavLink>
+                <NavLink to="/admin" className="text-2xl"><h2>Clubs</h2></NavLink>
                 <NavLink to="/" className="text-2xl"><h2>Events</h2></NavLink>
                 <h2 className="text-2xl" onClick={togglePopup}>Add a new club</h2>
                 <NavLink to="/" className="text-2xl"><h2>Join a club</h2></NavLink>

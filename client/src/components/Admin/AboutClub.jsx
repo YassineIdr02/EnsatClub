@@ -19,12 +19,12 @@ const AboutClub = ({clubId}) => {
         </div>
         <div className='flex flex-col gap-3 items-center'>
           {/* Presidant name */}
-          <h2 class="text-3xl font-extrabold ">Ayman Benamri</h2> 
+          <h2 className="text-3xl font-extrabold ">Ayman Benamri</h2> 
           {/* Photo */}
           <div className="w-72 h-48 avatar rounded-full overflow-hidden mr-4">
             <img src={logo} alt="" className="object-cover w-full h-full" />
           </div>
-          <p class="my-4 text-lg text-gray-500">Club presidant</p>
+          <p className="my-4 text-lg text-gray-500">Club presidant</p>
         </div>
       </div>
       <hr className="my-8 border-0 h-0.5 w-[60%] bg-slate-300 mx-auto " />
