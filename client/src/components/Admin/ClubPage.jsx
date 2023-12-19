@@ -1,21 +1,44 @@
-import React from 'react'
-import ClubPoster from './ClubPoster'
-import ActivityPreview from './ActivityPreview'
-import AboutClub from './AboutClub'
-import JoinClub from './JoinClub'
-import { useParams } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import ClubPoster from './ClubPoster';
+import ActivityPreview from './ActivityPreview';
+import AboutClub from './AboutClub';
+import JoinClub from './JoinClub';
+import { getPresidentByClubId, getClubs, getAllClubs } from '../../features/Clubs/ClubSlice';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import NoPresident from './NoPresident';
 
 const ClubPage = () => {
-    const {clubId} = useParams()
+  const dispatch = useDispatch();
+  const { clubId } = useParams();
+  const clubs = useSelector(getAllClubs);
+  const club = useSelector(state => getPresidentByClubId(state, clubId));
+  const isDataLoading = !clubs.length; // Checking if clubs data is not yet loaded
 
-    return (
-        <>
-            <ClubPoster clubId={clubId} />
-            <ActivityPreview clubId={clubId} />
-            <AboutClub clubId={clubId} />
-            <JoinClub clubId={clubId} />
-        </>
-    )
-}
+  useEffect(() => {
+    dispatch(getClubs());
+  }, [dispatch]);
 
-export default ClubPage
+  // If data is still loading, display a loading message or spinner
+  if (isDataLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Once the data is loaded, check if the club president exists or not
+  const content = club.president_id ?
+    (
+      <div>
+        <ClubPoster clubId={clubId} />
+        <ActivityPreview clubId={clubId} />
+        <AboutClub clubId={clubId} />
+        <JoinClub clubId={clubId} />
+      </div>
+    ) :
+    (
+      <NoPresident />
+    );
+
+    return <>{content}</>;
+};
+
+export default ClubPage;

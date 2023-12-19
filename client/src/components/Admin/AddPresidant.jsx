@@ -16,7 +16,7 @@ const AddPresidant = () => {
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
                 <div className='flex flex-col gap-4 items-center'>
-                    <h1 className="text-5xl text-center font-bold mt-5">Add a presidant</h1>
+                    <h1 className="text-5xl text-center font-bold mt-5">Add a president</h1>
                     <p className='text-gray'>(Optional)</p>
 
                 </div>

@@ -8,7 +8,7 @@ import { getClubs } from '../../features/Clubs/ClubSlice';
 const ClubCard = () => {
     const dispatch = useDispatch()
     const clubs = useSelector(getAllClubs);
-
+    console.log(clubs);
     useEffect(() => {
         dispatch(getClubs());
     }, [dispatch]);

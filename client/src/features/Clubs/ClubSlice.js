@@ -65,18 +65,25 @@ export const assocPersidant = createAsyncThunk(
 
 export const ClubSlice = createSlice({
   name: "club",
-  initialState: [],
+  initialState: {
+    clubs: [],
+  },
   reducers: {
     setClubs: (state, action) => {
+
       state.clubs = action.payload;
     },
   },
   extraReducers(builder) {
     builder.addCase(getClubs.fulfilled, (state, action) => {
-      return action.payload;
+      state.clubs = [...action.payload];
     });
   },
 });
 
 export default ClubSlice.reducer;
-export const getAllClubs = (state) => state.club;
+export const getAllClubs = (state) => state.club.clubs;
+export const getPresidentByClubId = (state, clubId) => {
+  return state.club.clubs.find((c) => c.id == clubId);
+};
+

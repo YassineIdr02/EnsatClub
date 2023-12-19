@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import ClubForm from './ClubForm';
 import { FormProvider } from '../../context/FormContext';
 
 const NavBar = () => {
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleLogout = () => {
@@ -16,6 +17,7 @@ const NavBar = () => {
         navigate('/')
     }
 
+  
     const [showPopup, setShowPopup] = useState(false);
 
     const togglePopup = () => {
