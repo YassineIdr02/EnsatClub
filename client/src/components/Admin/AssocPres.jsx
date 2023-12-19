@@ -61,11 +61,13 @@ const AssocPres = ({ onClose }) => {
     }));
   };
 
+  const canSave = [president.email, president.firstName, president.lastName, president.school, president.tel].every(Boolean);
+
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-2/4  h-  bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
-        <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
+      <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[40%]   bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
+        <div className='w-[90%] item-center flex flex-col mx-auto z-50'>
           <div className='flex flex-col gap-4 items-center'>
             <h1 className="text-5xl text-center font-bold mt-5">Add a president</h1>
             <p className='text-gray'>(Optional)</p>
@@ -121,7 +123,7 @@ const AssocPres = ({ onClose }) => {
             </div>
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
-                <input type="tel"
+                <input type="number"
                   name="tel"
                   value={president.tel}
                   onChange={handleChange}
@@ -158,7 +160,7 @@ const AssocPres = ({ onClose }) => {
         {/* Buttons */}
         <div className="flex flex-row gap-5 items-center justify-end">
           <button className="btn btn-error" onClick={onClose}>Cancel</button>
-          <button className="btn btn-success" onClick={handleSubmit}>Associer</button>
+          <button className="btn btn-success" onClick={handleSubmit} disabled={!canSave}>Associer</button>
         </div>
       </div>
     </div>
