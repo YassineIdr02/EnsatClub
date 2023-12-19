@@ -1,23 +1,21 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import PresLayout from '../layouts/PresLayout';
+import AdminLayout from '../layouts/AdminLayout';
 
-const RequireAuth = () => {
+const RequireAuth = ({allowedRoles}) => {
     const location = useLocation();
+    const role = localStorage.getItem('role')?.toString().toUpperCase()
 
-    if (!Cookies.get('token')) {
-        return (
-            <>
-                <ToastContainer />
-                <Navigate to="/" state={{ from: location }} replace={()=>toast.error("Please login first")} />
-            </>
-        );
+    
+    if (Cookies.get('token')) {
+        if(role ==='ADMIN' )
+             return  <AdminLayout />
+        else if(role === 'ADMINCLUB')
+            return <PresLayout /> 
+        return <Navigate to="/" state={{from:location}} replace/>;
     }
-
-    return <Outlet />;
-
-
+    return <Navigate to="/" state={{ from: location }} replace />
 };
 
 export default RequireAuth;

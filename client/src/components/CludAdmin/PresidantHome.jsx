@@ -3,7 +3,7 @@ import AddPost from './AddPost'
 import ListeDemande from './ListeDemande'
 import SideBar from '../SideBar'
 
-const AdminHome = () => {
+const PresidantHome = () => {
   const username = localStorage.getItem("username")
   return (
     <div className="grid grid-cols-6 flex-1 w-full">
@@ -30,4 +30,4 @@ const AdminHome = () => {
   )
 }
 
-export default AdminHome
+export default PresidantHome

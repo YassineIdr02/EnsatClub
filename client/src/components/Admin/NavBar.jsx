@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import ClubForm from './ClubForm';
 import { FormProvider } from '../../context/FormContext';
 
 const NavBar = () => {
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleLogout = () => {
@@ -16,6 +17,7 @@ const NavBar = () => {
         navigate('/')
     }
 
+  
     const [showPopup, setShowPopup] = useState(false);
 
     const togglePopup = () => {
@@ -36,7 +38,7 @@ const NavBar = () => {
             </div>
             <div className="flex flex-row gap-6">
                 <NavLink to="/" className="text-2xl"><h2>Dashboard</h2></NavLink>
-                <NavLink to="/" className="text-2xl"><h2>Clubs</h2></NavLink>
+                <NavLink to="/admin" className="text-2xl"><h2>Clubs</h2></NavLink>
                 <NavLink to="/" className="text-2xl"><h2>Events</h2></NavLink>
                 <h2 className="text-2xl" onClick={togglePopup}>Add a new club</h2>
                 <NavLink to="/" className="text-2xl"><h2>Join a club</h2></NavLink>

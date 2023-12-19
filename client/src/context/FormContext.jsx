@@ -11,7 +11,7 @@ export const FormProvider = ({ children }) => {
     const [page, setPage] = useState(0);
 
     const [data, setData] = useState({
-        clubId: 1,
+        clubId: '',
         clubName: '',
         clubDescription: '',
         firstName: '',
@@ -19,7 +19,6 @@ export const FormProvider = ({ children }) => {
         email: '',
         tel: '',
         school: '',
-        motivation: ''
     });
 
     const handleChange = e => {
