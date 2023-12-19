@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import yay.ensat.ma.server.security.models.AppUser;
@@ -30,7 +31,7 @@ public class  AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
     @PostMapping("/login")
     public ResponseEntity<Map<String,String>> jwtToken(AppUser appUser){
 
@@ -55,6 +56,11 @@ public class  AuthController {
         idToken.put("username",subject);
 
         return new ResponseEntity<>(idToken, HttpStatus.OK);
+    }
+
+    @GetMapping("/hh")
+    public String test(){
+        return "hhhhhhhh";
     }
 }
 

@@ -1,8 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../features/user/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate('/')
+  }
   return (
     <div className="flex justify-left min-h-screen px-5">
       <div className="flex flex-col gap-10 items-center">
@@ -34,7 +44,7 @@ const SideBar = () => {
           </label>
         </div>
 
-        <div className="lg:tooltip" data-tip="Logout">
+        <div className="lg:tooltip" data-tip="Logout" onClick={handleLogout} >
           <label className="btn btn-ghost btn-circle avatar">
             <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-2xl" />
           </label>
@@ -44,12 +54,6 @@ const SideBar = () => {
         <div className="lg:tooltip" data-tip="Profile">
           <label tabIndex="0" className="btn btn-ghost btn-circle">
             <div className="w-10 rounded-full my-1 text-2xl">YI</div>
-          </label>
-        </div>
-
-        <div>
-          <label className="btn btn-neutral">
-            <p>Add Post</p>
           </label>
         </div>
       </div>

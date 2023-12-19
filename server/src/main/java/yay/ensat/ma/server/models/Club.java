@@ -1,5 +1,6 @@
 package yay.ensat.ma.server.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Club {
     private String name;
     private String description;
     private Date  createdAt;
+
     @OneToOne
     private Member president;
 

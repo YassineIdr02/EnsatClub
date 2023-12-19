@@ -1,9 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import {getStatus, handleLogin} from "../features/user/userSlice";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import sampleImage from '../assets/EnsatClub.png';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useLoginMutation } from "../features/user/authApiSlice";
+import { setCredentials } from "../features/user/userSlice";
 
 const LoginForm = () => {
     const dispatch = useDispatch()
@@ -16,7 +19,7 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const requestStatus = useSelector(getStatus);
+    const [login, { isLoading }] = useLoginMutation()
 
     const handleUserInput = e => setUsername(e.target.value)
     const handlePasswordInput = e => setPassword(e.target.value)
@@ -25,20 +28,27 @@ const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            if (requestStatus === 'idle') {
-                dispatch(handleLogin({ username, password })).then((response) => {
-                    if (response.payload && response.payload.accessToken) {
-                        navigate('/presidant');
-                    } else {
-                        // Handle unsuccessful login here (if needed)
-                        console.error('Login failed:', response.error);
-                    }
-                });
-                setPassword('');
-                setUsername('');
+            const user = new FormData();
+            user.append('username', username);
+            user.append('password', password);
+            const userData = await login(user).unwrap();
+            dispatch(setCredentials(userData));
+            console.log(userData);
+            setUsername('');
+            setPassword('');
+
+            if (userData.role === 'PRESIDANT') {
+                navigate('/presidant');
+            } else if (userData.role === 'ADMIN') {
+                navigate('/admin');
+            } else {
+                // Redirect to a default page or handle as per your application's logic
+                navigate('/');
             }
+
         } catch (error) {
             console.error('Login failed:', error);
+            toast.error('Login failed. Please check your credentials.');
         }
     };
 
@@ -75,7 +85,7 @@ const LoginForm = () => {
                             onChange={handlePasswordInput}
                             placeholder="Enter password"
                             required
-                            className="peer placeholder-transparent w-full bg-transparent border-b border-[#ADADAD] my-2 px-1 focus:border-[#2B7A78] focus:outline-none"
+                            className="peer placeholder-transparent w-full bg-transparent border-b  border-[#ADADAD] my-2 px-1 focus:border-[#2B7A78] focus:outline-none"
                         />
                         <label
                             htmlFor="password"
@@ -92,7 +102,7 @@ const LoginForm = () => {
                     </div>
                     <div className="text-center md:text-left">
                         <div className="flex justify-center">
-                            <button className="btn btn-active btn-ghos bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
+                            <button className="btn btn-active text-lg bg-[#3AAFA9] mt-5 w-full md:w-2/3 px-1" onClick={handleSubmit}>
                                 Sign in
                             </button>
                         </div>
@@ -102,7 +112,9 @@ const LoginForm = () => {
             <div className="md:w-1/2 lg:w-2/3 max-w-xl">
                 <img src={sampleImage} alt="Sample image" className="w-full" />
             </div>
+            <ToastContainer theme="colored" />
         </section>
+
 
     );
 };

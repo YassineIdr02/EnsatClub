@@ -1,13 +1,21 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getToken } from '../features/user/userSlice';
-import { useEffect, useState } from "react";
+import { Navigate, useLocation } from 'react-router-dom';
+import Cookies from "js-cookie";
+import PresLayout from '../layouts/PresLayout';
+import AdminLayout from '../layouts/AdminLayout';
 
-const RequireAuth = () => {
+const RequireAuth = ({allowedRoles}) => {
     const location = useLocation();
-    const tokenFromRedux = useSelector(getToken); // Get token from Redux state
+    const role = localStorage.getItem('role')?.toString().toUpperCase()
 
-    return localStorage.getItem("token") ? <Outlet /> : <Navigate to="/" state={{ from: location }} replace />;
+    
+    if (Cookies.get('token')) {
+        if(role ==='ADMIN' )
+             return  <AdminLayout />
+        else if(role === 'ADMINCLUB')
+            return <PresLayout /> 
+        return <Navigate to="/" state={{from:location}} replace/>;
+    }
+    return <Navigate to="/" state={{ from: location }} replace />
 };
 
 export default RequireAuth;
