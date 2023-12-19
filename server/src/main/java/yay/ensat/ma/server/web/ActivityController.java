@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 public class ActivityController {
     private ActivityService activityService;
-    private String uploadDir = "src/main/resources/uploads";
+    private String uploadDir = "server/src/main/resources/uploads";
 
     public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
@@ -26,7 +26,7 @@ public class ActivityController {
 
     @PostMapping("/newActivity")
     public ActivityDTO saveActivity(ActivityDTO activityDTO, @RequestParam(name = "file")@Nullable MultipartFile file) throws IOException {
-        if (file != null){
+        if (file != null & !file.isEmpty() ){
            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
            Path uploadPath = Paths.get(uploadDir);
            if (!Files.exists(uploadPath)) {
@@ -38,11 +38,10 @@ public class ActivityController {
 
                return activityService.saveActivity(activityDTO, uploadDir + "/" + fileName);
            }
-       }
-       else {
-           return activityService.saveActivity(activityDTO, null);
+       } else{
+               return activityService.saveActivity(activityDTO, null);
+        }
 
-       }
 
     }
 
