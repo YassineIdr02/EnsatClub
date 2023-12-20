@@ -1,5 +1,6 @@
 package yay.ensat.ma.server.services.Implementations;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import yay.ensat.ma.server.dtos.ActivityDTO;
