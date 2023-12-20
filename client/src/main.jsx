@@ -4,9 +4,10 @@ import App from './App.jsx'
 import './index.css'
 import {store} from './app/store'
 import {Provider} from 'react-redux'
-import {getClubs} from './features/Clubs/ClubSlice'
+import {getClubs, getMembers} from './features/Clubs/ClubSlice'
 
 store.dispatch(getClubs)
+store.dispatch(getMembers)
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

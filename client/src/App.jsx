@@ -5,6 +5,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import RootLayout from "./layouts/RootLayout"
 import PresLayout from "./layouts/PresLayout"
 import AdminLayout from "./layouts/AdminLayout"
+import Unauthorized from "./components/Unauthorized"
 
 
 //Pages
@@ -13,7 +14,7 @@ import RequireAuth from "./components/RequireAuth"
 import PresidentHome from "./components/CludAdmin/PresidentHome"
 import ClubCard from "./components/Admin/ClubCards"
 import ClubPage from "./components/Admin/ClubPage"
-import Unauthorized from "./components/Unauthorized"
+import Members from "./components/Admin/Members"
 
 
 const router = createBrowserRouter(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="admin" element={<AdminLayout />}>
           <Route index  element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />
+          <Route path="clubs/:clubId/members" element={<Members />} />
         </Route>
       </Route>
 
