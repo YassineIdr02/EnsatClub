@@ -11,6 +11,5 @@ public class ClubDTO {
     private String name;
     private String description;
     private Date createdAt;
-    private MemberDTO president;//we need a method to associate a president to a club !!!
-
+    private MemberDTO president;
 }

@@ -1,11 +1,10 @@
 package yay.ensat.ma.server.services.Interfaces;
 
 
-import yay.ensat.ma.server.models.Member;
+import yay.ensat.ma.server.dtos.MemberDTO;
+
 
 public interface MemberService {
-    Member saveMember(Member member);
+  MemberDTO saveMember(MemberDTO memberDTO, Long club_id);
 
-    //MemberDTO saveMember(MemberDTO memberDTO,String clubName);
-  void associatePresidentToClub(Long memberId,String clubName);
 }
