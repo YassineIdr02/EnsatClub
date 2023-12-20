@@ -33,16 +33,14 @@ const LoginForm = () => {
             user.append('password', password);
             const userData = await login(user).unwrap();
             dispatch(setCredentials(userData));
-            console.log(userData);
             setUsername('');
             setPassword('');
 
-            if (userData.role === 'PRESIDANT') {
-                navigate('/presidant');
+            if ( userData.role === 'ADMINCLUB') {
+                navigate('/president');
             } else if (userData.role === 'ADMIN') {
                 navigate('/admin');
             } else {
-                // Redirect to a default page or handle as per your application's logic
                 navigate('/');
             }
 

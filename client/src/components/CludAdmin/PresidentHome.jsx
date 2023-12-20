@@ -1,9 +1,9 @@
-import Posts from '../../features/gallery/Activities'
+import Posts from '../../features/Activities/Activities'
 import AddPost from './AddPost'
 import ListeDemande from './ListeDemande'
 import SideBar from '../SideBar'
 
-const PresidantHome = () => {
+const PresidentHome = () => {
   const username = localStorage.getItem("username")
   return (
     <div className="grid grid-cols-6 flex-1 w-full">
@@ -30,4 +30,4 @@ const PresidantHome = () => {
   )
 }
 
-export default PresidantHome
+export default PresidentHome
