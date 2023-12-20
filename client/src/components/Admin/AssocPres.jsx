@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { assocPersidant } from '../../features/Clubs/ClubSlice';
@@ -40,9 +38,7 @@ const AssocPres = ({ onClose }) => {
   }, [onClose]);
 
   const handleSubmit = e => {
-
     e.preventDefault()
-    
     try {
       dispatch(assocPersidant(president))
       navigate('/admin')
@@ -65,7 +61,7 @@ const AssocPres = ({ onClose }) => {
 
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-lg">
       <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[40%]   bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
         <div className='w-[90%] item-center flex flex-col mx-auto z-50'>
           <div className='flex flex-col gap-4 items-center'>

@@ -1,21 +1,17 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
-import PresLayout from '../layouts/PresLayout';
-import AdminLayout from '../layouts/AdminLayout';
 
 const RequireAuth = ({allowedRoles}) => {
     const location = useLocation();
-    const role = localStorage.getItem('role')?.toString().toUpperCase()
+    const role = localStorage.getItem("role")?.toString().toUpperCase()
 
-    
     if (Cookies.get('token')) {
-        if(role ==='ADMIN' )
-             return  <AdminLayout />
-        else if(role === 'ADMINCLUB')
-            return <PresLayout /> 
-        return <Navigate to="/" state={{from:location}} replace/>;
-    }
-    return <Navigate to="/" state={{ from: location }} replace />
+        if(allowedRoles.includes(role))
+            return <Outlet />
+        else 
+            return <Navigate to="/unauthorized" state={{ from: location }} replace />
+
+    } else return <Navigate to="/" state={{ from: location }} replace />
 };
 
 export default RequireAuth;

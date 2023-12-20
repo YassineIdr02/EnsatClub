@@ -10,7 +10,6 @@ const ClubForm = ({ onClose }) => {
     const dispatch = useDispatch()
 
     const {
-        page,
         setPage,
         data,
         canSubmit,
@@ -48,7 +47,7 @@ const ClubForm = ({ onClose }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 ">
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm  ">
                 <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[70%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
                     <section>
                         <FormInputs />

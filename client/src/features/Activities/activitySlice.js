@@ -5,11 +5,10 @@ const initialState = {
     content: null,
     clubName: null ,
     date: null,
-
     status: 'idle' // Possible values: idle, loading, succeeded, failed
 };
 
-export const fetchPosts = createAsyncThunk('activity/fetchPosts', async (userInfo) => {
+export const fetchPosts = createAsyncThunk('activity/fetchPosts', async (activityData) => {
     try {
         const formData = new FormData();
         formData.append('content', userInfo.username);
@@ -31,12 +30,7 @@ const activitySlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(handleLogin.fulfilled, (state, action) => {
-            // Update state with payload data after successful login
-            const { username, accessToken, role } = action.payload;
-            state.username = username;
-            state.accessToken = accessToken;
-            state.role = role;
-            state.status = 'succeeded'; // Update status after successful login
+            state.status = 'succeeded'; 
         });
         builder.addCase(handleLogin.pending, (state) => {
             state.role = null;

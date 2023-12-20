@@ -10,29 +10,26 @@ import AdminLayout from "./layouts/AdminLayout"
 //Pages
 import PageNotFound from "./layouts/PageNotFound"
 import RequireAuth from "./components/RequireAuth"
-import PresidantHome from "./components/CludAdmin/PresidantHome"
+import PresidentHome from "./components/CludAdmin/PresidentHome"
 import ClubCard from "./components/Admin/ClubCards"
 import ClubPage from "./components/Admin/ClubPage"
+import Unauthorized from "./components/Unauthorized"
 
-const ROLES = {
-  adm: 'ADMIN',
-  pres: 'PRESIDANT',
-  us: 'USER'
-}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<LoginForm />} />
+      <Route path="unauthorized" element={<Unauthorized />} />
 
-      <Route element={<RequireAuth />} allowedRoles={['PRESIDANT']}>
-        <Route path="presidant" element={<PresLayout />}>
-          <Route index element={<PresidantHome />} />
+      <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
+        <Route path="president" element={<PresLayout />}>
+          <Route index element={<PresidentHome />} />
         </Route>
       </Route>
 
       {/* This route should be protected */}
-      <Route element={<RequireAuth />} allowedRoles={['ADMIN']}>
+      <Route element={<RequireAuth allowedRoles={["ADMIN"]} />} >
         <Route path="admin" element={<AdminLayout />}>
           <Route index  element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />
