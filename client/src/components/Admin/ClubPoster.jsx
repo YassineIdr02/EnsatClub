@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const ClubPoster = ({clubId}) => {
     return (
         <section className="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply shadow-lg">
@@ -12,7 +14,7 @@ const ClubPoster = ({clubId}) => {
                         </svg>
                     </a>
                     <a href="#" className="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-                        Learn more
+                        <Link to="members">View members</Link> 
                     </a>
                 </div>
                 <a href="#" className="inline-flex justify-center mt-3 hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-green-300  focus:ring-4 focus:ring-gray-400">
