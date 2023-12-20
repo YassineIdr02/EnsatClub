@@ -35,7 +35,7 @@ public class ActivityMapper {
     {
         Activity activity = new Activity();
         Club club = clubRepository.findById(activityDTO.getClub_id()).orElseThrow(()->new RuntimeException("Club Not Found"));
-        Gallery gallery = galleryRepository.findById(activityDTO.getGallery_id()).orElseThrow(()->new RuntimeException("Gallery Not Found"));
+        Gallery gallery = galleryRepository.findByClub_Id(activityDTO.getClub_id());
         BeanUtils.copyProperties(activityDTO,activity);
         activity.setCreatedAt(new Date());
         activity.setClub(club);

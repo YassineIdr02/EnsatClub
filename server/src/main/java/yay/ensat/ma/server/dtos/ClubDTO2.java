@@ -13,4 +13,5 @@ public class ClubDTO2 {
     private String description;
     private Long president_id;
     private String logo;
+
 }

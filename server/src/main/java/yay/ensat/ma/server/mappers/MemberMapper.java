@@ -23,6 +23,7 @@ public class MemberMapper {
     {
         Member member = new Member();
         BeanUtils.copyProperties(memberDTO,member);
+
         return member;
     }
 
