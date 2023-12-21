@@ -4,42 +4,28 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 import { useEffect } from 'react';
+import TimeAgo from './TimeAgo';
 
 const Activities = () => {
-    const dispatch = useDispatch()
-    const posts = [
-        // Replace this with your actual data for posts
-        {
-            id: 1,
-            author: 'Elon Musk',
-            time: 'Some time ago',
-            content: 'This is a post content.',
-            isLiked: false,
-        },
-        {
-            id: 2,
-            author: 'Elon Musk',
-            time: 'Some time ago',
-            content: 'This is a post content.',
-            isLiked: false,
-        },
-        // Add more post objects as needed
-    ];
-
+    const dispatch = useDispatch();
     const Activities = useSelector(getAllActivities);
 
-    useEffect(()=>{
-        dispatch(getActivities({clubId: "1"}))
-    }, [dispatch])
+    useEffect(() => {
+        dispatch(getActivities({ clubId: "1" }));
+    }, [dispatch]);
+
+    const sortedActivities = Activities.slice().sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
     return (
         <>
-            {Activities.map((activity) => (
+            {sortedActivities.map((activity) => (
                 <div key={activity.id}>
                     <hr className="w-full" />
                     <div className="flex flex-col gap-4 w-full my-2 p-3">
                         <div className="flex flex-row items-center justify-between">
-                            <div className="flex flex-row gap-4">
+                            <div className="flex flex-row gap-4 items-center">
                                 <div className="avatar cursor-pointer">
                                     <div className="w-14 rounded-full">
                                         <img src="../assets/Profile.jpg" alt="Profile" />
@@ -47,7 +33,10 @@ const Activities = () => {
                                 </div>
                                 <div className="flex flex-col">
                                     <p className="text-xl">{activity.clubName}</p>
-                                    <p className="text-sm text-slate-300">{activity.descrption}</p>
+                                    <div className="flex flex-row items-center">
+                                        <p className="text-sm text-slate-300">{activity.descrption}</p>
+                                        <TimeAgo date={activity.createdAt} />
+                                    </div>
                                 </div>
                             </div>
                             <div className="dropdown dropdown-bottom hover:cursor-pointer">
@@ -64,7 +53,10 @@ const Activities = () => {
                                 </ul>
                             </div>
                         </div>
-                        <p>{activity.content}</p>
+                        <div className='flex flex-col'>
+                            <p>{activity.content}</p>
+                            <img src={`/Users/yassineidrissi/EnsatClub/${activity.photo}`} alt="" />
+                        </div>
                     </div>
                 </div>
             ))}
