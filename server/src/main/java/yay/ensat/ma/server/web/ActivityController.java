@@ -16,6 +16,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 public class ActivityController {
     private ActivityService activityService;
     private String uploadDir = "server/src/main/resources/uploads";

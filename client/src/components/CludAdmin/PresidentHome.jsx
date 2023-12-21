@@ -1,4 +1,4 @@
-import Posts from '../../features/Activities/Activities'
+import Posts from './Activities'
 import AddPost from './AddPost'
 import ListeDemande from './ListeDemande'
 import SideBar from '../SideBar'

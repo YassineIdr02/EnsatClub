@@ -1,26 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import Cookies from "js-cookie";
+
+const BASE_URL = "http://localhost:8080";
+const config = {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  }
 
 const initialState = {
-    content: null,
-    clubName: null ,
-    date: null,
+    activities: [],
     status: 'idle' // Possible values: idle, loading, succeeded, failed
 };
 
-export const fetchPosts = createAsyncThunk('activity/fetchPosts', async (activityData) => {
+export const addActivity = createAsyncThunk('newActivity/addActivity', async (activityData) => {
     try {
         const formData = new FormData();
-        formData.append('content', userInfo.username);
-        formData.append('description', userInfo.password);
+        formData.append('club_id', activityData.clubId)
+        formData.append('content', activityData.content);
+        formData.append('file', activityData.file);
 
-        const response = await axios.post('http://localhost:8082/activity', formData);
+        const response = await axios.post(`${BASE_URL}/newActivity`, formData, config);
+        console.log(response.data);
         return response.data;
     } catch (error) {
-        toast.error("Oops, something went wrong!")
         console.error("Error:", error);
     }
 });
+
+export const getActivities = createAsyncThunk(
+    "clubactivities/getActivities",
+    async (activityData) => {
+        try {
+            const {clubId} = activityData
+
+            const response = await axios.get(`${BASE_URL}/clubactivities/${clubId}`, config)
+            console.log(response.data);
+            return response.data
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
 
 const activitySlice = createSlice({
     name: 'activity',
@@ -29,20 +51,20 @@ const activitySlice = createSlice({
         // Other reducers if needed
     },
     extraReducers: (builder) => {
-        builder.addCase(handleLogin.fulfilled, (state, action) => {
-            state.status = 'succeeded'; 
-        });
-        builder.addCase(handleLogin.pending, (state) => {
-            state.role = null;
-            state.username= null;
-            state.status = 'loading'; // Update status while login request is pending
-        });
-        builder.addCase(handleLogin.rejected, (state) => {
-            state.status = 'failed'; // Update status if login request fails
+        builder.addCase(getActivities.pending, (state)=> {
+            state.status = 'loading'
+        })
+        .addCase(getActivities.fulfilled, (state,action) => {
+            state.activities = [...action.payload]
+            state.status = 'succeeded'
+        })
+        .addCase(getActivities.rejected, (state) => {
+            state.status = 'failed';
         });
     }
 });
 
-export default userSlice.reducer;
-export const getToken = () => localStorage.getItem("token");
-export const getStatus = (state) => state.user.status;
+export default activitySlice.reducer;
+export const getStatus = (state) => state.activity.status;
+export const getAllActivities = (state) => state.activity.activities;
+

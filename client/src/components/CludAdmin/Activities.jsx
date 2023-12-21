@@ -1,8 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
+import { useEffect } from 'react';
 
-const Posts = () => {
+const Activities = () => {
+    const dispatch = useDispatch()
     const posts = [
         // Replace this with your actual data for posts
         {
@@ -22,10 +26,16 @@ const Posts = () => {
         // Add more post objects as needed
     ];
 
+    const Activities = useSelector(getAllActivities);
+
+    useEffect(()=>{
+        dispatch(getActivities({clubId: "1"}))
+    }, [dispatch])
+
     return (
         <>
-            {posts.map((post, index) => (
-                <div key={index}>
+            {Activities.map((activity) => (
+                <div key={activity.id}>
                     <hr className="w-full" />
                     <div className="flex flex-col gap-4 w-full my-2 p-3">
                         <div className="flex flex-row items-center justify-between">
@@ -36,8 +46,8 @@ const Posts = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
-                                    <p className="text-xl">{post.author}</p>
-                                    <p className="text-sm text-slate-300">{post.time}</p>
+                                    <p className="text-xl">{activity.clubName}</p>
+                                    <p className="text-sm text-slate-300">{activity.descrption}</p>
                                 </div>
                             </div>
                             <div className="dropdown dropdown-bottom hover:cursor-pointer">
@@ -54,14 +64,7 @@ const Posts = () => {
                                 </ul>
                             </div>
                         </div>
-                        {post.content ? (<p>{post.content}</p>) : (
-                            <textarea
-                                type="text"
-                                className="input input-lg w-full h-full min-h-16 max-h-40"
-                                value={post.content}
-                            ></textarea>
-                        )}
-                        
+                        <p>{activity.content}</p>
                     </div>
                 </div>
             ))}
@@ -69,4 +72,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default Activities;
