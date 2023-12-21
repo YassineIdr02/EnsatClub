@@ -1,5 +1,7 @@
 package yay.ensat.ma.server.services.Implementations;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 
  @Override
    public MemberDTO saveMember(MemberDTO memberDTO, Long clubName) {
-     Club club = clubRepository.findById(clubName).orElse(null);
+         Club club = clubRepository.findById(clubName).orElse(null);
          Member member = memberMapper.fromMemberDTO(memberDTO);
          member.setClub(club);
          Member savedmember = memberRepository.save(member);
