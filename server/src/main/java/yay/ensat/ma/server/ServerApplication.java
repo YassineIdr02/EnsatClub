@@ -18,21 +18,21 @@ import yay.ensat.ma.server.services.Interfaces.MemberService;
 public class ServerApplication {
     private MemberService memberService;
 
-    public ServerApplication(MemberService memberService) {
+   /*public ServerApplication(MemberService memberService) {
         this.memberService = memberService;
-    }
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(){
         return args -> {
             MemberDTO memberDTO = new MemberDTO();
             memberDTO.setName("Yassine");
             memberDTO.setRole("President");
-            memberService.saveMember(memberDTO,1L);
+            memberService.saveMember(memberDTO,2L);
         };
     }
 

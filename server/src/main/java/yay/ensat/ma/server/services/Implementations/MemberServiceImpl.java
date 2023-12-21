@@ -12,6 +12,8 @@ import yay.ensat.ma.server.models.Club;
 import yay.ensat.ma.server.models.Member;
 import yay.ensat.ma.server.repositories.ClubRepository;
 import yay.ensat.ma.server.repositories.MemberRepository;
+import yay.ensat.ma.server.security.models.AppUser;
+import yay.ensat.ma.server.security.services.SecurityService;
 import yay.ensat.ma.server.services.Interfaces.MemberService;
 
 @Service
@@ -20,17 +22,19 @@ public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
     private MemberMapper memberMapper;
     private ClubMapper clubMapper;
+    private SecurityService securityService;
     private ApplicationEventPublisher eventPublisher;
     private ClubRepository clubRepository;
 
     public MemberServiceImpl(MemberRepository memberRepository,
                              MemberMapper memberMapper,
                              ClubMapper clubMapper,
-                             ApplicationEventPublisher eventPublisher,
+                             SecurityService securityService, ApplicationEventPublisher eventPublisher,
                              ClubRepository clubRepository) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
         this.clubMapper = clubMapper;
+        this.securityService = securityService;
         this.eventPublisher = eventPublisher;
         this.clubRepository = clubRepository;
     }
@@ -56,6 +60,14 @@ public class MemberServiceImpl implements MemberService {
          MemberDTO memberDTO1 = memberMapper.fromMember(savedmember);
          return memberDTO1;
 
+ }
+
+ @Override
+    public String clubId(String username){
+     AppUser appUser = securityService.loadUserByUserName(username);
+     Member member = memberRepository.findById(appUser.getMember().getId()).orElse(null);
+     String clubid = String.valueOf(member.getClub().getId());
+     return clubid;
  }
 
 
