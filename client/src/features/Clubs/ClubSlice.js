@@ -9,12 +9,14 @@ const config = {
   },
 }
 
+const BASE_URL = "http://localhost:8080";
+
 export const addClub = createAsyncThunk("newclub/addClub", async (payload) => {
   try {
     const formData = new FormData();
     formData.append("name", payload.clubName);
     formData.append("description", payload.clubDescription);
-    const response = await axios.post("http://localhost:8082/newclub",formData,config);
+    const response = await axios.post(`${BASE_URL}/newclub`,formData,config);
     return response.data;
   } catch (err) {
     console.log(err);
@@ -24,7 +26,7 @@ export const addClub = createAsyncThunk("newclub/addClub", async (payload) => {
 
 export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
   try {
-    const response = await axios.get("http://localhost:8082/allclubs", config);
+    const response = await axios.get(`${BASE_URL}/allclub`, config);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -41,7 +43,7 @@ export const assocPersidant = createAsyncThunk(
       formData.append("role", "president");
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
-        `http://localhost:8082/associatepres/${clubId}/yay`,
+        `${BASE_URL}/associatepres/${clubId}/yay`,
         formData,
         config
       );
@@ -57,7 +59,7 @@ export const getMembers = createAsyncThunk(
   async (payload) => {
     const { clubId } = payload;
     try {
-      const response = await axios.get(`http://localhost:8082/clubmembers/${clubId}`,config);
+      const response = await axios.get(`${BASE_URL}/clubmembers/${clubId}`,config);
       return response.data;
     } catch (error) {
       console.log(error);

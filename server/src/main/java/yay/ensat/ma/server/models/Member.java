@@ -18,10 +18,10 @@ public class Member {
     private String name;
     private String role;// role inside the club
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Club club;
 
-    @OneToOne(mappedBy = "member")
+    @OneToOne(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
     private AppUser appUser;
 
 }

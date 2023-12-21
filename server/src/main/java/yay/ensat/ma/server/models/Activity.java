@@ -26,6 +26,6 @@ public class Activity {
     private Gallery gallery;
 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Club club;
 }
