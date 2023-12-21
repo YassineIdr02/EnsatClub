@@ -100,5 +100,13 @@ public class ClubServiceImpl implements ClubService {
         return savedmember;
     }
 
+    @Override
+    public MemberDTO getPresident(Long club_id)
+    {
+        Club club = clubRepository.findById(club_id).orElse(null);
+        Member member = club.getPresident();
+        return memberMapper.fromMember(member);
+    }
+
 
 }

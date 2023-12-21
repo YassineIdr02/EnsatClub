@@ -46,4 +46,9 @@ public class ClubController {
         return clubService.associatePresidentToAClub(memberDTO,club_id);
     }
 
+    @GetMapping("/clubpresident/{club_id}")
+    public MemberDTO thePresident(@PathVariable("club_id") Long club_id){
+        return clubService.getPresident(club_id);
+    }
+
 }
