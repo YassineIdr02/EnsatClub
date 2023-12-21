@@ -1,7 +1,6 @@
 package yay.ensat.ma.server.services.Implementations;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,5 +57,7 @@ public class MemberServiceImpl implements MemberService {
          return memberDTO1;
 
  }
+
+
 
 }
