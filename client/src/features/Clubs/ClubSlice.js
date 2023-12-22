@@ -9,26 +9,28 @@ const config = {
   },
 }
 
+const BASE_URL = "http://localhost:8080";
+
 export const addClub = createAsyncThunk("newclub/addClub", async (payload) => {
   try {
     const formData = new FormData();
     formData.append("name", payload.clubName);
     formData.append("description", payload.clubDescription);
-    const response = await axios.post("http://localhost:8082/newclub",formData,config);
+    const response = await axios.post(`${BASE_URL}/newclub`,formData,config);
     return response.data;
   } catch (err) {
     console.log(err);
-    throw err; // Propagate error
+    throw err; 
   }
 });
 
 export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
   try {
-    const response = await axios.get("http://localhost:8082/allclubs", config);
+    const response = await axios.get(`${BASE_URL}/allclubs`, config);
     return response.data;
   } catch (error) {
     console.log(error);
-    throw error; // Propagate error
+    throw error; 
   }
 });
 
@@ -41,7 +43,7 @@ export const assocPersidant = createAsyncThunk(
       formData.append("role", "president");
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
-        `http://localhost:8082/associatepres/${clubId}/yay`,
+        `${BASE_URL}/associatepres/${clubId}/yay`,
         formData,
         config
       );
@@ -57,7 +59,7 @@ export const getMembers = createAsyncThunk(
   async (payload) => {
     const { clubId } = payload;
     try {
-      const response = await axios.get(`http://localhost:8082/clubmembers/${clubId}`,config);
+      const response = await axios.get(`${BASE_URL}/clubmembers/${clubId}`,config);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -70,6 +72,8 @@ export const ClubSlice = createSlice({
   initialState: {
     clubs: [],
     members: [],
+    clubStatus: "idle",
+    memberStatus: "idle",
   },
   reducers: {
     setClubs: (state, action) => {
@@ -78,9 +82,17 @@ export const ClubSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(getClubs.fulfilled, (state, action) => {
+      state.clubStatus = "success";
       state.clubs = [...action.payload];
     })
+    .addCase(getClubs.pending, (state, action) => {
+      state.clubStatus = "loading";
+    })
+    .addCase(getMembers.pending, (state, action) => {
+      state.memberStatus = "loading";
+    } )
     .addCase(getMembers.fulfilled, (state, action)=> {
+      state.memberStatus = "success";
       state.members = [...action.payload];
     })
   },
@@ -90,6 +102,9 @@ export default ClubSlice.reducer;
 
 export const getAllClubs = (state) => state.club.clubs;
 export const getAllMembers = (state) => state.club.members;
+
+export const getClubStatus = (state) => state.club.clubStatus;
+export const getMemberStatus = (state) => state.club.memberStatus;
 
 export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);

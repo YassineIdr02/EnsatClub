@@ -19,7 +19,7 @@ public class Gallery {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "gallery")
+    @OneToMany(mappedBy = "gallery",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Activity> activities;
 
     @OneToOne

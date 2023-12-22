@@ -26,13 +26,13 @@ public class Club {
     @OneToOne
     private Member president;
 
-    @OneToMany(mappedBy = "club",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "club",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Member> members;
 
-    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Activity> activities;
 
-    @OneToOne(mappedBy = "club")
+    @OneToOne(mappedBy = "club",cascade = CascadeType.ALL, orphanRemoval = true)
     private Gallery gallery;
 
 }
