@@ -9,10 +9,10 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import yay.ensat.ma.server.security.models.AppUser;
+import yay.ensat.ma.server.services.Interfaces.MemberService;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -24,11 +24,13 @@ import java.util.stream.Collectors;
 public class  AuthController {
     private  JwtEncoder jwtEncoder;
     private AuthenticationManager authenticationManager;
+    private MemberService memberService;
 
 
-    public AuthController(JwtEncoder jwtEncoder, AuthenticationManager authenticationManager) {
+    public AuthController(JwtEncoder jwtEncoder, AuthenticationManager authenticationManager, MemberService memberService) {
         this.jwtEncoder = jwtEncoder;
         this.authenticationManager = authenticationManager;
+        this.memberService = memberService;
     }
 
     @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
@@ -54,14 +56,13 @@ public class  AuthController {
         idToken.put("accessToken", jwtAccessToken);
         idToken.put("role",scope);
         idToken.put("username",subject);
-
+        // before this we should check if this user is a sysadmin (not president)
+        // hadi gha provisoire
+        idToken.put("clubId",memberService.clubId(subject));
         return new ResponseEntity<>(idToken, HttpStatus.OK);
     }
 
-    @GetMapping("/hh")
-    public String test(){
-        return "hhhhhhhh";
-    }
+
 }
 
 

@@ -15,4 +15,6 @@ public interface ClubService {
     List<MemberDTO> getClubMembers(Long club_id);
 
     MemberDTO associatePresidentToAClub(MemberDTO memberDTO, Long club_id);
+
+    MemberDTO getPresident(Long club_id);
 }
