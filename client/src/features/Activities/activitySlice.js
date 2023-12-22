@@ -34,9 +34,7 @@ export const getActivities = createAsyncThunk(
     async (activityData) => {
         try {
             const {clubId} = activityData
-
             const response = await axios.get(`${BASE_URL}/clubactivities/${clubId}`, config)
-            console.log(response.data);
             return response.data
         } catch (error) {
             console.log(error);
