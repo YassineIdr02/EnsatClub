@@ -18,7 +18,11 @@ const Activities = () => {
         return new Date(b.createdAt) - new Date(a.createdAt);
     });
 
-   
+    const post = {
+        id: 1,
+        image: '../../public/asyncGetWeatherData.png'
+    }
+
 
     return (
         <>
@@ -57,7 +61,7 @@ const Activities = () => {
                         </div>
                         <div className='flex flex-col'>
                             <p>{activity.content}</p>
-
+                            <img src={`${activity.photo}`} alt="" />
                         </div>
                     </div>
                 </div>
