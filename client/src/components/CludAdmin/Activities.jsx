@@ -17,18 +17,12 @@ const Activities = () => {
     const sortedActivities = activities.slice().sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
     });
-
-    const post = {
-        id: 1,
-        image: '../../public/asyncGetWeatherData.png'
-    }
-
-
+    
     return (
         <>
             {sortedActivities.map((activity) => (
                 <div key={activity.id}>
-                    <hr className="w-full" />
+                    <hr className="w-full bg-black" />
                     <div className="flex flex-col gap-4 w-full my-2 p-3">
                         <div className="flex flex-row items-center justify-between">
                             <div className="flex flex-row gap-4 items-center">
@@ -59,9 +53,10 @@ const Activities = () => {
                                 </ul>
                             </div>
                         </div>
+
                         <div className='flex flex-col'>
                             <p>{activity.content}</p>
-                            <img src={`${activity.photo}`} alt="" />
+                            <img src={`${activity.photo}`} alt="" className="h-96 w-[200%] object-contain" />
                         </div>
                     </div>
                 </div>
