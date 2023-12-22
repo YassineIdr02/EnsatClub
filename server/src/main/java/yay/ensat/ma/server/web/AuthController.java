@@ -57,7 +57,7 @@ public class  AuthController {
         idToken.put("role",scope);
         idToken.put("username",subject);
         // before this we should check if this user is a sysadmin (not president)
-        //hadi gha provisoire
+        // hadi gha provisoire
         idToken.put("clubId",memberService.clubId(subject));
         return new ResponseEntity<>(idToken, HttpStatus.OK);
     }
