@@ -4,6 +4,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addActivity } from '../../features/Activities/activitySlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AddPost = () => {
@@ -29,6 +31,7 @@ const AddPost = () => {
             dispatch(addActivity({ clubId: "1" , content, file }))
             setContent('')
             setFile(null)
+            toast.success("Activity added succesfully")
 
         }
     }
@@ -58,6 +61,8 @@ const AddPost = () => {
                     <FontAwesomeIcon icon={faPlus} className="text-2xl" />
                 </button>
             </div>
+
+            <ToastContainer theme='colored' />
 
         </div>
     )

@@ -27,11 +27,11 @@ const ClubPage = () => {
   // Once the data is loaded, check if the club president exists or not
   const content = club.president_id ?
     (
-      <div>
-        <ClubPoster clubId={clubId} />
-        <ActivityPreview clubId={clubId} />
-        <AboutClub clubId={clubId} />
-        <JoinClub clubId={clubId} />
+      <div className='snap-y snap-mandatory overflow-scroll h-screen '>
+        <ClubPoster clubId={clubId} className='snap-start'/>
+        <ActivityPreview clubId={clubId} className='snap-start' />
+        <AboutClub clubId={clubId} className='snap-start' />
+        <JoinClub clubId={clubId} className='snap-start' />
       </div>
     ) :
     (

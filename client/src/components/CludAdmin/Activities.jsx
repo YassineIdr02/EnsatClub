@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
-import { useEffect } from 'react';
 import TimeAgo from './TimeAgo';
 
 const Activities = () => {
     const dispatch = useDispatch();
-    const Activities = useSelector(getAllActivities);
+    const activities = useSelector(getAllActivities);
+    const [imageSrc, setImageSrc] = useState('');
 
     useEffect(() => {
         dispatch(getActivities({ clubId: "1" }));
     }, [dispatch]);
 
-    const sortedActivities = Activities.slice().sort((a, b) => {
+    const sortedActivities = activities.slice().sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
     });
+
+   
 
     return (
         <>
@@ -55,7 +57,7 @@ const Activities = () => {
                         </div>
                         <div className='flex flex-col'>
                             <p>{activity.content}</p>
-                            <img src={`/Users/yassineidrissi/EnsatClub/${activity.photo}`} alt="" />
+
                         </div>
                     </div>
                 </div>
