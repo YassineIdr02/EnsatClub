@@ -41,6 +41,9 @@ public class ActivityServiceImpl implements ActivityService {
     public List<ActivityDTO> getActivitiesOfClub(Long club_Id) {
         Club club = clubRepository.findById(club_Id).orElseThrow(()->new RuntimeException("Club Not Found"));
           List<Activity> activities = activityRepository.findByClubId(club.getId());
+          for(Activity activ : activities){
+              activ.setPhoto(activ.getPhoto().replaceFirst("client/public",""));
+          }
           List<ActivityDTO> activityDTOList = activities.stream().map(act->activityMapper.fromActivity(act)).collect(Collectors.toList());
           return activityDTOList;
 
