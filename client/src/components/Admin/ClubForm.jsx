@@ -3,11 +3,11 @@ import React, { useRef, useEffect } from 'react';
 import useFormContext from '../../hooks/useFormContext';
 import FormInputs from './FormInputs';
 import { useDispatch } from "react-redux"
-import { addClub, assocPersidant } from '../../features/Clubs/ClubSlice';
+import { addClub, assocPresident } from '../../features/Clubs/ClubSlice'; // Corrected action name
 
 const ClubForm = ({ onClose }) => {
     const modalRef = useRef(null);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const {
         setPage,
@@ -40,14 +40,15 @@ const ClubForm = ({ onClose }) => {
     const handleNext = () => setPage(prev => prev + 1);
 
     const handleSubmit = e => {
-        e.preventDefault()
-        dispatch(addClub(data))
-        dispatch(assocPersidant(data))
-    }
+        e.preventDefault();
+        dispatch(addClub(data));
+        // Assuming assocPresident action creator expects 'data' as a payload
+        dispatch(assocPresident(data)); // Fixed action creator name
+    };
 
     return (
         <form onSubmit={handleSubmit} className='flex flex-shrink-0'>
-            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm  ">
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm">
                 <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[70%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
                     <section>
                         <FormInputs />
@@ -69,7 +70,5 @@ const ClubForm = ({ onClose }) => {
         </form>
     );
 };
-
-
 
 export default ClubForm;

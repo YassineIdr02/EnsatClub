@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { assocPersidant } from '../../features/Clubs/ClubSlice';
+import { assocPresident } from '../../features/Clubs/ClubSlice';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const AssocPres = ({ onClose }) => {
@@ -40,7 +40,7 @@ const AssocPres = ({ onClose }) => {
   const handleSubmit = e => {
     e.preventDefault()
     try {
-      dispatch(assocPersidant(president))
+      dispatch(assocPresident(president))
       navigate('/admin')
     } catch (error) {
       console.log(error);
@@ -156,7 +156,7 @@ const AssocPres = ({ onClose }) => {
         {/* Buttons */}
         <div className="flex flex-row gap-5 items-center justify-end">
           <button className="btn btn-error" onClick={onClose}>Cancel</button>
-          <button className="btn btn-success" onClick={handleSubmit} disabled={!canSave}>Associer</button>
+          <button className="btn btn-success" onClick={handleSubmit} >Associer</button>
         </div>
       </div>
     </div>

@@ -34,8 +34,8 @@ export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
   }
 });
 
-export const assocPersidant = createAsyncThunk(
-  "associatepres/assocPersidant",
+export const assocPresident = createAsyncThunk(
+  "associatepres/assocPresident",
   async (payload) => {
     try {
       const { clubId } = payload;
