@@ -7,6 +7,7 @@ import { logout } from '../../features/user/userSlice';
 import logo from "../../assets/EnsatClub.png"
 import ClubForm from './ClubForm';
 import { FormProvider } from '../../context/FormContext';
+import AddClub from './AddClub';
 
 const NavBar = () => {
 
@@ -49,7 +50,7 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-2xl hover:cursor-pointer" onClick={handleLogout} />
             </div>
             <FormProvider>
-                {showPopup && <ClubForm onClose={handleClosePopup} />}
+                {showPopup && <AddClub onClose={handleClosePopup} />}
             </FormProvider>
         </div>
     )

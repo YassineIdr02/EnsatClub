@@ -10,7 +10,7 @@ const ClubCard = () => {
     const dispatch = useDispatch()
     const clubs = useSelector(getAllClubs);
     const clubStatus = useSelector(getClubStatus)
-    console.log(clubs);
+
     useEffect(() => {
         dispatch(getClubs());
     }, [dispatch]);

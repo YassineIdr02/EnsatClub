@@ -32,7 +32,9 @@ const LoginForm = () => {
             user.append('username', username);
             user.append('password', password);
             const userData = await login(user).unwrap();
+            
             dispatch(setCredentials(userData));
+            console.log(userData)
             setUsername('');
             setPassword('');
 

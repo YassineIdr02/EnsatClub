@@ -20,7 +20,7 @@ const userSlice = createSlice({
 
             // storing data in localstorage
             localStorage.setItem('username',username)
-            localStorage.setItem('role',"ADMINCLUB")
+            localStorage.setItem('role',role)
             Cookies.set('token',accessToken)
         },
 

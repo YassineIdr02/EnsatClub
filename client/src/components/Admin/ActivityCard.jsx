@@ -1,55 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 
-const ActivityCard = ({clubId}) => {
+const ActivityCard = ({ clubId }) => {
+    const dispatch = useDispatch();
+    const activities = useSelector(getAllActivities);
 
-    const activities = [
-        {
-            id: 1,
-            image: null,
-            title: "Running",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime fuga similique omnis "
-        },
-        {
-            id: 2,
-            image: null,
-            title: "charity",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime fuga similique omnis "
-        },
-        {
-            id: 3,
-            image: null,
-            title: "picnic",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime fuga similique omnis "
-        },
-    ]
+    useEffect(() => {
+        dispatch(getActivities({ clubId }));
+    }, [dispatch, clubId]);
 
-    const cardChunk = (arr) => {
-        const chunckedCards = []
-        for (let i = 0; i < 3; i++) {
-            if (arr[i])
-                chunckedCards.push(arr[i])
+    const renderCards = () => {
+        const sortedActivities = activities
+            .slice()
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        if (sortedActivities.length === 0) {
+            return <h1 className='text-5xl font-bold'>No activities available</h1>;
         }
-        return chunckedCards
-    }
 
-    const renderCards = cardChunk(activities).map(activity => (
-        <div className="card w-[30%] glass" key={activity.id}>
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" /></figure>
-            <div className="card-body">
-                <h2 className="card-title">{activity.title}</h2>
-                <p>{activity.content}...</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">View more</button>
+        const limitedActivities = sortedActivities.slice(0, 3);
+
+        return limitedActivities.map(activity => (
+            <div className="card w-[30%] glass " key={activity.id}>
+                <figure><img src={activity.photo} alt="activity photo" /></figure>
+                <div className="card-body">
+                    <h2 className="card-title">...</h2>
+                    <p>{activity.content.substring(0, 20)}...</p>
+                    <div className="card-actions justify-end">
+                        <button className="btn btn-primary">View more</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    ));
+        ));
+    };
 
     return (
-        <section className='flex flex-row justify-between'>
-            {renderCards}
+        <section className='flex flex-row justify-between h-[70%] items-center'>
+            {renderCards()}
         </section>
-    )
-}
+    );
+};
 
-export default ActivityCard
+export default ActivityCard;
