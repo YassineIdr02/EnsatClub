@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function PageNotFound() {
+    const navigate = useNavigate()
+    const goBack = () => navigate(-1);
     return (
         <>
             <div className="container mx-auto my-auto h-screen">
@@ -12,7 +15,7 @@ export default function PageNotFound() {
                             </h2>
                             <p className="text-2xl font-semibold md:text-3xl">Sorry, we couldn't find this page.</p>
                             <p className="mt-4 mb-8 dark:text-red">But don't worry, you can find plenty of other things on our homepage.</p>
-                            <Link path="/" ><button className="btn btn-accent">Go back to the home page</button></Link>
+                            <button className="btn btn-accent" onClick={goBack}>Go back</button>
                         </div>
                     </div>
                 </section>

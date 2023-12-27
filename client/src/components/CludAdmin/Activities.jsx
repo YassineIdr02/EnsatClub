@@ -58,9 +58,9 @@ const Activities = () => {
                                     </div>
                                 </div>
 
-                                <div className='flex flex-col'>
+                                <div className='flex flex-col border-s-gray-400'>
                                     <p>{activity.content}</p>
-                                    <img src={`${activity.photo}`} className="h-96 w-full object-contain" />
+                                    <img src={`${activity.photo}`} className="h-96 w-full object-contain  " />
                                 </div>
                             </div>
 

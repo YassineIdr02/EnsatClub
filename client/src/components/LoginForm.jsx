@@ -38,9 +38,9 @@ const LoginForm = () => {
             setUsername('');
             setPassword('');
 
-            if ( userData.role === 'ADMINCLUB') {
+            if ( userData.role.toString().toUpperCase() === "ADMINCLUB" ) {
                 navigate('/president');
-            } else if (userData.role === 'ADMIN') {
+            } else if (userData.role.toString().toUpperCase() === "ADMIN") {
                 navigate('/admin');
             } else {
                 navigate('/');

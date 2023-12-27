@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 public class ActivityController {
     private ActivityService activityService;
-    private String uploadDir = "/client/public";
+    private String uploadDir = "client/public";
 
     public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
