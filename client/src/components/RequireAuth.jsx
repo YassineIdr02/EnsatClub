@@ -6,10 +6,9 @@ const RequireAuth = ({ allowedRoles }) => {
     const role = localStorage.getItem("role")?.toString().toUpperCase()
 
     if (Cookies.get('token')) {
-        if (allowedRoles.includes(role))
+       
             return <Outlet />
-        else
-            return <Navigate to="/unauthorized" state={{ from: location }} />
+       
 
 
     } else return <Navigate to="/" state={{ from: location }} replace />

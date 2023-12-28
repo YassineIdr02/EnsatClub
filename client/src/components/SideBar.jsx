@@ -5,14 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const SideBar = () => {
+const SideBar = ({toggleDemandeList, toggleMembreList}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  
   const handleLogout = () => {
     dispatch(logout())
     navigate('/')
   }
+
+ 
   return (
     <div className="flex justify-left min-h-screen px-5">
       <div className="flex flex-col gap-10 items-center">
@@ -26,8 +28,8 @@ const SideBar = () => {
           </label>
         </div>
 
-        <div className="lg:tooltip" data-tip="Demandes">
-          <label className="btn btn-ghost btn-circle">
+        <div className="lg:tooltip" data-tip="Demandes" >
+          <label className="btn btn-ghost btn-circle" onClick={toggleDemandeList}>
             <div className="indicator">
               <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />
               <span className="badge badge-sm indicator-item">812</span>
@@ -36,7 +38,7 @@ const SideBar = () => {
         </div>
 
         <div className="lg:tooltip" data-tip="Membres">
-          <label tabIndex="0" className="btn btn-ghost btn-circle">
+          <label tabIndex="0" className="btn btn-ghost btn-circle" onClick={toggleMembreList}>
             <div className="indicator">
               <FontAwesomeIcon icon={faUsers} className="text-2xl" />
               <span className="badge badge-sm indicator-item">9</span>

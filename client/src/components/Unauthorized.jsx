@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Unauthorized = () => {
     const navigate = useNavigate()
-    const goBack = () => navigate(-2);
+    const goBack = () => navigate(-1);
     return (
         <>
             <div className="container mx-auto my-auto h-screen">
@@ -14,9 +14,7 @@ const Unauthorized = () => {
                                 Access denied
                             </h2>
                             <p className="text-lg font-semibold md:text-lg">You do not have access to this page</p>
-
                                 <button className="btn btn-error w-[50%] " onClick={goBack}>Go back</button>
-
                         </div>
                     </div>
                 </section>
