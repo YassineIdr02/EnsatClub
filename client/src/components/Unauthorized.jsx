@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Unauthorized = () => {
     const navigate = useNavigate()
     const goBack = () => navigate(-1);
+
+    useEffect(() => {
+      document.title = 'Unauthorized'
+    }, [])
+    
     return (
         <>
             <div className="container mx-auto my-auto h-screen">

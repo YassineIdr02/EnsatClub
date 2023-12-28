@@ -17,6 +17,10 @@ const LoginForm = () => {
         userRef.current?.focus()
     }, [])
 
+    useEffect(()=> {
+        document.title = 'Login'
+    }, [])
+    
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [login, { isLoading }] = useLoginMutation()

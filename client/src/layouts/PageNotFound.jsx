@@ -1,9 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export default function PageNotFound() {
+    
     const navigate = useNavigate()
     const goBack = () => navigate(-1);
+    useEffect(() => {
+      document.title = 'Page not found'
+    
+     
+    }, [])
+    
     return (
         <>
             <div className="container mx-auto my-auto h-screen">

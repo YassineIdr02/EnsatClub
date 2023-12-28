@@ -75,8 +75,9 @@ const styles = `
   transform: translateX(0%);
 }
 .slide-exit-active {
-  transform: translateX(100%);
-  transition: transform 200ms ease-in-out;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
 }
 `;
 
