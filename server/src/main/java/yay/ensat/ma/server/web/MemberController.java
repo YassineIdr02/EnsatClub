@@ -1,5 +1,6 @@
 package yay.ensat.ma.server.web;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import yay.ensat.ma.server.dtos.MemberDTO;
 import yay.ensat.ma.server.services.Interfaces.MemberService;
@@ -12,6 +13,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @PostMapping("/newmember")
     public MemberDTO newMember(MemberDTO memberDTO){
         return memberService.saveMember(memberDTO,memberDTO.getClub_id());
     }

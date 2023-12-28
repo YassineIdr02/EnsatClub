@@ -21,7 +21,6 @@ import yay.ensat.ma.server.services.Interfaces.MemberService;
 public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
     private MemberMapper memberMapper;
-    private ClubMapper clubMapper;
     private SecurityService securityService;
     private ApplicationEventPublisher eventPublisher;
     private ClubRepository clubRepository;
@@ -33,7 +32,6 @@ public class MemberServiceImpl implements MemberService {
                              ClubRepository clubRepository) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
-        this.clubMapper = clubMapper;
         this.securityService = securityService;
         this.eventPublisher = eventPublisher;
         this.clubRepository = clubRepository;
