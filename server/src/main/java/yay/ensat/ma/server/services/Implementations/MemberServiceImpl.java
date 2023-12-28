@@ -51,8 +51,8 @@ public class MemberServiceImpl implements MemberService {
     }*/
 
  @Override
-   public MemberDTO saveMember(MemberDTO memberDTO, Long clubName) {
-         Club club = clubRepository.findById(clubName).orElse(null);
+   public MemberDTO saveMember(MemberDTO memberDTO, Long clubId) {
+         Club club = clubRepository.findById(clubId).orElse(null);
          Member member = memberMapper.fromMemberDTO(memberDTO);
          member.setClub(club);
          Member savedmember = memberRepository.save(member);
