@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
 public class  AuthController {
     private  JwtEncoder jwtEncoder;
     private AuthenticationManager authenticationManager;
-    private MemberService memberService;
+   private MemberService memberService;
 
 
-    public AuthController(JwtEncoder jwtEncoder, AuthenticationManager authenticationManager, MemberService memberService) {
+    public AuthController(JwtEncoder jwtEncoder,MemberService memberService, AuthenticationManager authenticationManager) {
         this.jwtEncoder = jwtEncoder;
         this.authenticationManager = authenticationManager;
+
         this.memberService = memberService;
     }
 
@@ -58,7 +59,7 @@ public class  AuthController {
         idToken.put("username",subject);
         // before this we should check if this user is a sysadmin (not president)
         // hadi gha provisoire
-        idToken.put("clubId",memberService.clubId(subject));
+       idToken.put("clubId",memberService.clubId(subject));
         return new ResponseEntity<>(idToken, HttpStatus.OK);
     }
 

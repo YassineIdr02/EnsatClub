@@ -23,14 +23,14 @@ const router = createBrowserRouter(
       <Route index element={<LoginForm />} />
       <Route path="unauthorized" element={<Unauthorized />} />
 
-      <Route element={<RequireAuth allowedRoles={["ADMINCLUB", "ADMIN"]} />} >
+      <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
         <Route path="president" element={<PresLayout />}>
           <Route index element={<PresidentHome />} />
         </Route>
       </Route>
 
       {/* This route should be protected */}
-      <Route element={<RequireAuth allowedRoles={["ADMIN, ADMINCLUB"]} />} >
+      <Route element={<RequireAuth allowedRoles={["ADMIN"]} />} >
         <Route path="admin" element={<AdminLayout />}>
           <Route index  element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />

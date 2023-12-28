@@ -40,7 +40,7 @@ export const assocPresident = createAsyncThunk(
     try {
       const { clubId } = payload;
       const formData = new FormData();
-      formData.append("role", "president");
+      formData.append("role", "President");
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
         `${BASE_URL}/associatepres/${clubId}/yay`,

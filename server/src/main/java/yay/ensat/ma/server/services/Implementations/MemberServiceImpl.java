@@ -29,7 +29,8 @@ public class MemberServiceImpl implements MemberService {
     public MemberServiceImpl(MemberRepository memberRepository,
                              MemberMapper memberMapper,
                              ClubMapper clubMapper,
-                             SecurityService securityService, ApplicationEventPublisher eventPublisher,
+                             SecurityService securityService,
+                             ApplicationEventPublisher eventPublisher,
                              ClubRepository clubRepository) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
@@ -68,6 +69,7 @@ public class MemberServiceImpl implements MemberService {
      Member member = memberRepository.findById(appUser.getMember().getId()).orElse(null);
      String clubid = String.valueOf(member.getClub().getId());
      return clubid;
+
  }
 
 

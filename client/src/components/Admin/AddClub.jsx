@@ -43,12 +43,12 @@ const AddClub = ({ onClose }) => {
         onClose();
     }
 
-
     const canSave = [Club.clubName, Club.description].every(Boolean);
+    
     return (
         <>
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm">
-                <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[70%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
+                <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[40%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
                     <div className='w-fit h-fit item-center flex flex-col mx-auto'>
                         <h1 className="text-5xl text-center font-bold mt-5">Create a new club</h1>
                         <div className="mx-auto w-[90%] items-center mt-10 justify-center">
@@ -81,14 +81,14 @@ const AddClub = ({ onClose }) => {
                                 </label>
                             </div>
                         </div>
-                        <div className="flex flex-row gap-5 items-center justify-end">
-                            <button type='submit' className="btn btn-success" disabled={!canSave} onClick={handleSubmit}>Submit</button>
-                            <button type='button' className="btn btn-error" onClick={onClose}>Cancel</button>
-                        </div>
+
+                    </div>
+                    <div className="flex flex-row gap-5 items-center justify-end">
+                        <button type='submit' className="btn btn-success" disabled={!canSave} onClick={handleSubmit}>Submit</button>
+                        <button type='button' className="btn btn-error" onClick={onClose}>Cancel</button>
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

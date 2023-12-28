@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDoorOpen, faXmark, faEye } from '@fortawesome/free-solid-svg-icons'
-import Popup from './Popup'
+import MembreDetails from './MembreDetails'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllMembers, getMembers } from '../../features/Clubs/ClubSlice'
 import { ToastContainer, toast } from 'react-toastify';
@@ -67,7 +67,7 @@ const ListeMembres = () => {
                 {renderedMembers}
             </div>
 
-            {showPopup && <Popup onClose={handleClosePopup} className=' z-30'/>}
+            {showPopup && <MembreDetails onClose={handleClosePopup} className=' z-30'/>}
             <ToastContainer />
 
         </div>
