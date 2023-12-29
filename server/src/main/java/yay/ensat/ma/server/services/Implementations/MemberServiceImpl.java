@@ -21,7 +21,6 @@ import yay.ensat.ma.server.services.Interfaces.MemberService;
 public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
     private MemberMapper memberMapper;
-    private ClubMapper clubMapper;
     private SecurityService securityService;
     private ApplicationEventPublisher eventPublisher;
     private ClubRepository clubRepository;
@@ -34,7 +33,6 @@ public class MemberServiceImpl implements MemberService {
                              ClubRepository clubRepository) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
-        this.clubMapper = clubMapper;
         this.securityService = securityService;
         this.eventPublisher = eventPublisher;
         this.clubRepository = clubRepository;
@@ -52,8 +50,8 @@ public class MemberServiceImpl implements MemberService {
     }*/
 
  @Override
-   public MemberDTO saveMember(MemberDTO memberDTO, Long clubName) {
-         Club club = clubRepository.findById(clubName).orElse(null);
+   public MemberDTO saveMember(MemberDTO memberDTO, Long clubId) {
+         Club club = clubRepository.findById(clubId).orElse(null);
          Member member = memberMapper.fromMemberDTO(memberDTO);
          member.setClub(club);
          Member savedmember = memberRepository.save(member);
