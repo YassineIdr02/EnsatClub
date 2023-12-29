@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { assocPresident } from '../../features/Clubs/ClubSlice'
+import { newMember } from '../../features/Clubs/ClubSlice'
 
 const JoinClub = () => {
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ const JoinClub = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(assocPresident(member))
+        dispatch(newMember(member))
     }
 
     return (
