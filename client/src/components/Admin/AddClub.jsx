@@ -8,7 +8,7 @@ const AddClub = ({ onClose }) => {
     const dispatch = useDispatch()
     const [Club, setClub] = useState({
         clubName: '',
-        description: '',
+        clubDescription: '',
 
     });
 
@@ -44,7 +44,7 @@ const AddClub = ({ onClose }) => {
         onClose();
     }
 
-    const canSave = [Club.clubName, Club.description].every(Boolean);
+    const canSave = [Club.clubName, Club.clubDescription].every(Boolean);
 
     return (
         <>
@@ -69,8 +69,8 @@ const AddClub = ({ onClose }) => {
                                 </div>
                                 <div className="relative z-0 w-full mb-5 group">
                                     <input type="text"
-                                        name="description"
-                                        value={Club.description}
+                                        name="clubDescription"
+                                        value={Club.clubDescription}
                                         onChange={handleChange}
                                         id="description"
                                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+
 const config = {
   headers: {
     Authorization: `Bearer ${Cookies.get("token")}`,
@@ -84,6 +85,7 @@ export const getMembers = createAsyncThunk(
         `${BASE_URL}/clubmembers/${clubId}`,
         config
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -91,11 +93,29 @@ export const getMembers = createAsyncThunk(
   }
 );
 
+export const getPresident = createAsyncThunk(
+  "clubPresident/getPresident",
+  async (payload) => {
+    const { clubId } = payload;
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/clubpresident/${clubId}`,
+        config
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+
 export const ClubSlice = createSlice({
   name: "club",
   initialState: {
     clubs: [],
     members: [],
+    president: {},
     clubStatus: "idle",
     memberStatus: "idle",
   },
@@ -119,7 +139,10 @@ export const ClubSlice = createSlice({
       .addCase(getMembers.fulfilled, (state, action) => {
         state.memberStatus = "success";
         state.members = [...action.payload];
-      });
+      })
+      .addCase(getPresident.fulfilled, (state, action)=> {
+        state.president = action.payload;
+      })
   },
 });
 
@@ -130,7 +153,8 @@ export const getAllMembers = (state) => state.club.members;
 
 export const getClubStatus = (state) => state.club.clubStatus;
 export const getMemberStatus = (state) => state.club.memberStatus;
-export const getClubById = (state, clubId) => state.club.clubs.find((club)=> club.id == clubId)
+export const getClubById = (state, clubId) => state.club.clubs.find((club)=> club.id == clubId);
+export const getClubPresident = (state) => state.club.president;
 
 export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);

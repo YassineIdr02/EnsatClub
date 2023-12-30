@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import logo from '../../assets/EnsatClub.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllMembers, getMembers } from '../../features/Clubs/ClubSlice';
+import { getAllMembers, getClubById, getClubPresident, getClubs, getMembers, getPresident } from '../../features/Clubs/ClubSlice';
 
 const MemberRow = ({ member }) => {
   return (
@@ -31,21 +31,27 @@ const Members = () => {
   const dispatch = useDispatch();
   const { clubId } = useParams();
   const members = useSelector(getAllMembers);
+  const president = useSelector(getClubPresident)
+  let club = useSelector(state => getClubById(state,clubId));
 
   useEffect(() => {
     if (!members.length) {
       dispatch(getMembers({ clubId }));
     }
-  }, [dispatch, clubId]);
+  }, [clubId])
+
+  useEffect(() => {
+    dispatch(getPresident({ clubId }));
+  }, [clubId])
 
   const renderedMembers = members.map(member => <MemberRow key={member.id} member={member} />);
 
   return (
     <section className="container mx-auto pb-10">
       <div className="flex flex-row justify-between my-[2%] items-center">
-        <h1 className="text-5xl font-semibold">Members</h1>
+        <h1 className="text-5xl font-semibold">{club?.name} Members</h1>
         <div className="flex flex-col gap-2 items-center">
-          <h2 className="text-3xl font-extrabold">hhhh</h2>
+          <h2 className="text-3xl font-extrabold">{president.name}</h2>
           <div className="w-36 h-28 avatar rounded-full overflow-hidden">
             <img src={logo} alt="" className="object-cover w-full h-full" />
           </div>
@@ -54,15 +60,15 @@ const Members = () => {
       </div>
       <div>
         <table className="table table-zebra">
-          <thead>
-            <tr>
+          <thead >
+            <tr className='border-s-b border-[#d3d9d8]' >
               <th>Name</th>
               <th>Role</th>
               <th>Email</th>
               <th>Phone</th>
             </tr>
           </thead>
-          <tbody className='max-h-5   overflow-y-auto'>
+          <tbody className='max-h-5 overflow-y-auto'>
             {renderedMembers}
           </tbody>
         </table>

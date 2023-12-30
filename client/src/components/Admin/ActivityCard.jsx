@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 
-const ActivityCard = ({ clubId }) => {
+const ActivityCard = () => {
     const dispatch = useDispatch();
     const activities = useSelector(getAllActivities);
+    const {clubId} = useParams()
 
     useEffect(() => {
-        dispatch(getActivities({ clubId }));
+        dispatch(getActivities( {clubId} ));
     }, [dispatch, clubId]);
 
     const renderCards = () => {
