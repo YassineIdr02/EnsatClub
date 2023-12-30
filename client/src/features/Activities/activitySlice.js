@@ -5,9 +5,9 @@ import Cookies from "js-cookie";
 const BASE_URL = "http://localhost:8080";
 const config = {
     headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`,
+        Authorization: `Bearer ${Cookies.get("token")}`,
     },
-  }
+};
 
 const initialState = {
     activities: [],
@@ -22,10 +22,10 @@ export const addActivity = createAsyncThunk('newActivity/addActivity', async (ac
         formData.append('file', activityData.file);
 
         const response = await axios.post(`${BASE_URL}/newActivity`, formData, config);
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error("Error:", error);
+        throw error; // Propagate the error for handling in components or elsewhere
     }
 });
 
@@ -33,14 +33,15 @@ export const getActivities = createAsyncThunk(
     "clubactivities/getActivities",
     async (activityData) => {
         try {
-            const {clubId} = activityData
-            const response = await axios.get(`${BASE_URL}/clubactivities/${clubId}`, config)
-            return response.data
+            console.log(activityData)
+            const response = await axios.get(`${BASE_URL}/clubactivities/${activityData.clubId}`, config);
+            return response.data;
         } catch (error) {
             console.log(error);
+            throw error; // Propagate the error for handling in components or elsewhere
         }
     }
-)
+);
 
 const activitySlice = createSlice({
     name: 'activity',
@@ -49,20 +50,20 @@ const activitySlice = createSlice({
         // Other reducers if needed
     },
     extraReducers: (builder) => {
-        builder.addCase(getActivities.pending, (state)=> {
-            state.status = 'loading'
-        })
-        .addCase(getActivities.fulfilled, (state,action) => {
-            state.activities = [...action.payload]
-            state.status = 'succeeded'
-        })
-        .addCase(getActivities.rejected, (state) => {
-            state.status = 'failed';
-        });
+        builder
+            .addCase(getActivities.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(getActivities.fulfilled, (state, action) => {
+                state.activities = action.payload;
+                state.status = 'succeeded';
+            })
+            .addCase(getActivities.rejected, (state) => {
+                state.status = 'failed';
+            });
     }
 });
 
 export default activitySlice.reducer;
 export const getStatus = (state) => state.activity.status;
 export const getAllActivities = (state) => state.activity.activities;
-

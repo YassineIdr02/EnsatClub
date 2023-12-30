@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../assets/EnsatClub.png'
+import { getClubById, getClubPresident, getPresident } from '../../features/Clubs/ClubSlice'
 
 const AboutClub = ({clubId}) => {
+  const club = useSelector(state => getClubById(state, clubId))
+  const dispatch = useDispatch()
+  const President = useSelector(getClubPresident)
+
+  useEffect(() => {
+    dispatch(getPresident({clubId})); 
+  }, [clubId])
+  
   return (
     <section className=' h-[40%] p-10 '>
-      <h2 className="text-5xl text-center font-bold mb-4">About CDH</h2>
+      <h2 className="text-5xl text-center font-bold mb-4">About {club.name}</h2>
       <div className=' flex flex-row justify-between items-center'>
         <div className='w-[75%] flex flex-wrap'>
           <p className='text-lg text-gray-400'>CDH is a club that focuses
@@ -19,15 +29,15 @@ const AboutClub = ({clubId}) => {
         </div>
         <div className='flex flex-col gap-3 items-center'>
           {/* Presidant name */}
-          <h2 className="text-3xl font-extrabold ">Ayman Benamri</h2> 
+          <h2 className="text-3xl font-extrabold ">{President?.name}</h2> 
           {/* Photo */}
           <div className="w-72 h-48 avatar rounded-full overflow-hidden mr-4">
             <img src={logo} alt="" className="object-cover w-full h-full" />
           </div>
-          <p className="my-4 text-lg text-gray-500">Club presidant</p>
+          <p className="my-4 text-lg text-gray-500">Club president</p>
         </div>
       </div>
-      <hr className="my-8 border-0 h-0.5 w-[60%] bg-slate-300 mx-auto " />
+      <hr className="my-8 border-0 h-0.5 w-[60%] bg-slate-300 mx-auto" />
     </section>
   )
 }

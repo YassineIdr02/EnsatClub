@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { assocPresident } from '../../features/Clubs/ClubSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getClubById, newMember } from '../../features/Clubs/ClubSlice'
+import ClubCard from './ClubCards'
 
 const JoinClub = () => {
     const dispatch = useDispatch()
-
+    
     const {clubId} = useParams()
+    const club = useSelector(state => getClubById(state, clubId))
     const [member, setMember] = useState({
         clubId,
         firstName: "",
@@ -28,13 +30,13 @@ const JoinClub = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(assocPresident(member))
+        dispatch(newMember(member))
     }
 
     return (
         <>
-            <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50'>
-                <h1 className="text-5xl text-center font-bold mt-5">Join CDH!</h1>
+            <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50 p-10 '>
+                <h1 className="text-5xl text-center font-bold mt-5">Join {club.name}!</h1>
                 <form className="mx-auto w-[90%] items-center" onSubmit={handleSubmit}>
                     <div className="relative z-0 w-full mb-5 group">
                         <input type="email"
@@ -118,6 +120,7 @@ const JoinClub = () => {
                     <div className='flex flex-col gap-2 mb-5'>
                         <label htmlFor="motivation" className='text-lg'>Motivation</label>
                         <textarea placeholder="motivation"
+                        name="motivation"
                             value={member.motivation}
                             onChange={handleChange}
                             id='motivation'

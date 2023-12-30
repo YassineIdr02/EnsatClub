@@ -24,7 +24,7 @@ const ClubCard = () => {
                 <h2 className="card-title">
                     {club.name}
                     {(club.president_id == null) && (
-                        <div className="badge badge-warning">No presidant</div>
+                        <div className="badge badge-warning">No president</div>
                     )}
                 </h2>
                 <p>{club.description}</p>
@@ -41,9 +41,7 @@ const ClubCard = () => {
     switch (clubStatus) {
         case "loading":
             content = 
-            <div >
                 <Loading />
-            </div>
             break;
 
         case "success":
@@ -55,7 +53,7 @@ const ClubCard = () => {
             break;
 
         case "idle":
-            content = <h1>No clubs found</h1>
+            
             break;
 
         default:
