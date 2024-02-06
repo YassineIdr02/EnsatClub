@@ -33,6 +33,8 @@ const JoinClub = () => {
         dispatch(newMember(member))
     }
 
+
+
     return (
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50 p-10 '>

@@ -64,6 +64,14 @@ const activitySlice = createSlice({
     }
 });
 
+
+
 export default activitySlice.reducer;
 export const getStatus = (state) => state.activity.status;
 export const getAllActivities = (state) => state.activity.activities;
+export const getActivityById = (state, clubId, postId) => {
+    return state.activity.activities.find((activity) => {
+        return activity.id == postId && activity.club_id == clubId;
+    });
+};
+

@@ -1,12 +1,12 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllClubs } from '../features/Clubs/ClubSlice';
 import { useState } from 'react';
+import { getClubs } from '../features/Clubs/ClubSlice';
 
 const JoinClubPop = ({ onClose }) => {
+    const dispatch = useDispatch()
     const modalRef = useRef(null);
     const clubs = useSelector(getAllClubs)
     const [Info, setInfo] = useState({
@@ -37,7 +37,9 @@ const JoinClubPop = ({ onClose }) => {
 
     const [selectedClub, setSelectedClub] = useState('');
 
-    
+    useEffect(() => {
+        dispatch(getClubs());
+    }, [dispatch]);
 
 
     const handleSend = () => {
@@ -52,6 +54,7 @@ const JoinClubPop = ({ onClose }) => {
             [name]: value
         }));
     };
+    const canSave = [Info.club, Info.email, Info.etablissement, Info.firstName, Info.lastName, Info.motivation, Info.tel].every(Boolean)
 
     return (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm">
@@ -170,8 +173,8 @@ const JoinClubPop = ({ onClose }) => {
                 </div>
                 {/* Buttons */}
                 <div className="flex flex-row gap-5 items-center justify-end">
-                    <button className="btn btn-error" onClick={onClose}>Cancel</button>
-                    <button className="btn btn-success" onClick={onClose}>Join now</button>
+                    <button className="btn btn-error" onClick={onClose} >Cancel</button>
+                    <button className="btn btn-success" onClick={onClose} disabled={!canSave}>Join now</button>
                 </div>
             </div>
         </div>

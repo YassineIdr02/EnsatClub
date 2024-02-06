@@ -30,7 +30,7 @@ const ClubCard = () => {
                 <p>{club.description}</p>
                 <div className="card-actions justify-end">
                     <div className="badge badge-outline hover:cursor-pointer">Activités</div>
-                    <div className="badge badge-outline hover:cursor-pointer">Bureau</div>
+                    <Link to={`clubs/${club.id}/members`} className="flex items-center"><div className="badge badge-outline hover:cursor-pointer">Bureau</div></Link>
                     <Link to={"clubs/" + club.id.toString()} key={club.id} className="flex items-center"><div className="badge badge-outline hover:cursor-pointer">More details</div></Link>
                 </div>
             </div>

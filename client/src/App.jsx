@@ -15,6 +15,7 @@ import PresidentHome from "./components/CludAdmin/PresidentHome"
 import ClubCard from "./components/Admin/ClubCards"
 import ClubPage from "./components/Admin/ClubPage"
 import Members from "./components/Admin/Members"
+import SinglePostPage from "./components/Admin/SinglePostPage"
 
 
 const router = createBrowserRouter(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
           <Route index  element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />
           <Route path="clubs/:clubId/members" element={<Members />} />
+          <Route path="clubs/:clubId/:postId" element={<SinglePostPage />} />
         </Route>
       </Route>
 
