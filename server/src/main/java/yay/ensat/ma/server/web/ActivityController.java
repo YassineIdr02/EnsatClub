@@ -27,7 +27,7 @@ public class ActivityController {
 
     @PostMapping("/newActivity")
     public ActivityDTO saveActivity(ActivityDTO activityDTO, @RequestParam(name = "file")@Nullable MultipartFile file) throws IOException {
-        if (file != null & !file.isEmpty() ){
+        if (file != null && !file.isEmpty() ){
            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
            Path uploadPath = Paths.get(uploadDir);
            if (!Files.exists(uploadPath)) {

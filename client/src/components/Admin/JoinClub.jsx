@@ -7,8 +7,8 @@ import ClubCard from './ClubCards'
 
 const JoinClub = () => {
     const dispatch = useDispatch()
-    
-    const {clubId} = useParams()
+
+    const { clubId } = useParams()
     const club = useSelector(state => getClubById(state, clubId))
     const [member, setMember] = useState({
         clubId,
@@ -36,7 +36,7 @@ const JoinClub = () => {
     return (
         <>
             <div className='w-[70%] h-[50%] item-center flex flex-col mx-auto z-50 p-10 '>
-                <h1 className="text-5xl text-center font-bold mt-5">Join {club.name}!</h1>
+                <h1 className="text-4xl text-center font-bold mt-5">Join {club.name}!</h1>
                 <form className="mx-auto w-[90%] items-center" onSubmit={handleSubmit}>
                     <div className="relative z-0 w-full mb-5 group">
                         <input type="email"
@@ -117,14 +117,19 @@ const JoinClub = () => {
                             </label>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2 mb-5'>
-                        <label htmlFor="motivation" className='text-lg'>Motivation</label>
-                        <textarea placeholder="motivation"
-                        name="motivation"
+                    <div className="relative z-0 w-full mb-5 group">
+                        <textarea type="text"
+                            name="motivation"
                             value={member.motivation}
                             onChange={handleChange}
-                            id='motivation'
-                            className="textarea textarea-bordered textarea-lg w-full max-w-xs" />
+                            id="motivation"
+                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            placeholder=" "
+                            required > </textarea>
+                        <label htmlFor="motivation"
+                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                            Motivation*
+                        </label>
                     </div>
                     <button type="submit" className="btn btn-accent text-black w-[20%]">Submit</button>
                 </form>

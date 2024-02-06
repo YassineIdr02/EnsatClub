@@ -60,7 +60,7 @@ const Activities = () => {
 
                                 <div className='flex flex-col border-s-gray-400'>
                                     <p>{activity.content}</p>
-                                    <img src={`${activity.photo}`} className="h-96 w-full object-contain  " />
+                                    {activity.photo && <img src={`${activity.photo}`} className="h-96 w-full object-contain  " /> }
                                 </div>
                             </div>
 

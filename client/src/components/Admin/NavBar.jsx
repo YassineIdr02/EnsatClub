@@ -8,6 +8,7 @@ import logo from "../../assets/EnsatClub.png"
 import ClubForm from './ClubForm';
 import { FormProvider } from '../../context/FormContext';
 import AddClub from './AddClub';
+import JoinClubPop from '../JoinClub';
 
 const NavBar = () => {
 
@@ -19,14 +20,22 @@ const NavBar = () => {
     }
 
   
-    const [showPopup, setShowPopup] = useState(false);
+    const [showAdd, setShowAdd] = useState(false);
+    const [showJoin, setShowJoin] = useState(false);
 
-    const togglePopup = () => {
-        setShowPopup(true);
+    const toggleAddPopup = () => {
+        setShowAdd(true);
     };
 
-    const handleClosePopup = () => {
-        setShowPopup(false);
+    const handleCloseAddPopup = () => {
+        setShowAdd(false);
+    };
+    const toggleJoinPopup = () => {
+        setShowJoin(true);
+    };
+
+    const handleCloseJoinPopup = () => {
+        setShowJoin(false);
     };
 
     return (
@@ -41,8 +50,8 @@ const NavBar = () => {
                 <h2 className="text-2xl cursor-pointer">Dashboard</h2>
                 <NavLink to="/admin" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
                 <h2 className="text-2xl cursor-pointer">Events</h2>
-                <h2 className="text-2xl cursor-pointer" onClick={togglePopup}>Add a new club</h2>
-                <NavLink to="/" className="text-2xl cursor-pointer"><h2>Join a club</h2></NavLink>
+                <h2 className="text-2xl cursor-pointer" onClick={toggleAddPopup}>Add a new club</h2>
+                <h2 className="text-2xl cursor-pointer" onClick={toggleJoinPopup}>Join a club</h2>
 
             </div>
             <div>
@@ -50,7 +59,8 @@ const NavBar = () => {
                 <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-2xl hover:cursor-pointer" onClick={handleLogout} />
             </div>
             <FormProvider>
-                {showPopup && <AddClub onClose={handleClosePopup} />}
+                {showAdd && <AddClub onClose={handleCloseAddPopup} />}
+                {showJoin && <JoinClubPop onClose={handleCloseJoinPopup} />}
             </FormProvider>
         </div>
     )
