@@ -159,3 +159,4 @@ export const getClubPresident = (state) => state.club.president;
 export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);
 };
+export const getMembersCount = (state) => state.club.members.length

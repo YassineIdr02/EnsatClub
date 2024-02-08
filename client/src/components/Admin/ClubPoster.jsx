@@ -21,9 +21,6 @@ const ClubPoster = ({ clubId }) => {
                         View members
                     </Link>
                 </div>
-                <Link to="/join" className="inline-flex justify-center mt-3 hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-green-300  focus:ring-4 focus:ring-gray-400">
-                    Join now!
-                </Link>
             </div>
         </section>
     );

@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import ClubForm from './ClubForm';
 import { FormProvider } from '../../context/FormContext';
 import AddClub from './AddClub';
 import JoinClubPop from '../JoinClub';
+import Cookies from 'js-cookie';
 
 const NavBar = () => {
 
@@ -16,10 +17,11 @@ const NavBar = () => {
     const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout())
-        navigate('/')
+        navigate('/login')
     }
 
-  
+    const token = Cookies.get("token")
+
     const [showAdd, setShowAdd] = useState(false);
     const [showJoin, setShowJoin] = useState(false);
 
@@ -47,16 +49,15 @@ const NavBar = () => {
                 <h2 className="text-2xl font-bold ">Ensat Club</h2>
             </div>
             <div className="flex flex-row gap-6">
-                <h2 className="text-2xl cursor-pointer">Dashboard</h2>
-                <NavLink to="/admin" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
+                {token && <h2 className="text-2xl cursor-pointer">Dashboard</h2>}
+                <NavLink to="/" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
                 <h2 className="text-2xl cursor-pointer">Events</h2>
-                <h2 className="text-2xl cursor-pointer" onClick={toggleAddPopup}>Add a new club</h2>
+                {token && <h2 className="text-2xl cursor-pointer" onClick={toggleAddPopup}>Add a new club</h2>}
                 <h2 className="text-2xl cursor-pointer" onClick={toggleJoinPopup}>Join a club</h2>
-
             </div>
             <div>
                 <input type="text" placeholder="Search" className="input input-bordered w-32 md:w-auto mx-3" />
-                <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-2xl hover:cursor-pointer" onClick={handleLogout} />
+                {token && <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-2xl hover:cursor-pointer" onClick={handleLogout} />}
             </div>
             <FormProvider>
                 {showAdd && <AddClub onClose={handleCloseAddPopup} />}

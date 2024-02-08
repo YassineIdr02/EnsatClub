@@ -1,24 +1,35 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
-import { getActivityById } from '../../features/Activities/activitySlice';
+import TimeAgo from '../CludAdmin/TimeAgo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { getActivities, getActivityById } from '../../features/Activities/activitySlice';
+import ActivityPreview from './ActivityPreview';
+import { getAllMembers } from '../../features/Clubs/ClubSlice';
 
 
 const SinglePostPage = () => {
+  const dispatch = useDispatch()
   const { clubId } = useParams();
   const { postId } = useParams()
   const activity = useSelector(state => getActivityById(state, clubId, postId))
+
+  useEffect(()=> {
+    dispatch(getActivities({clubId}))
+  },[])
+
+  console.log(activity)
+
   return (
     <>
       {
-        sortedActivities.lenght === 0 ? (
-          <h1 className='text-5xl text-gray-600 text-center'>No posts available</h1>
+        activity == null ? (
+          <h1 className='text-5xl text-gray-600 text-center'>Something went wrong </h1>
         ) : (
-
-          sortedActivities.map((activity) => (
             <div key={activity.id}>
-              <hr className="w-full border-t border-gray-300  " />
-              <div className="flex flex-col gap-4 w-full my-2 p-3">
+              <div className="flex flex-col gap-4 w-[80%] mx-auto my-2 p-3">
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-row gap-4 items-center">
                     <div className="avatar cursor-pointer">
@@ -54,10 +65,12 @@ const SinglePostPage = () => {
                   {activity.photo && <img src={`${activity.photo}`} className="h-96 w-full object-contain  " />}
                 </div>
               </div>
-
             </div>
-          )
-          ))}
+          
+        )
+      }
+
+      <ActivityPreview fromSingle={true}/>
     </>
   )
 }

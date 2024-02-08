@@ -5,11 +5,13 @@ import { getAllClubs, getClubStatus } from '../../features/Clubs/ClubSlice';
 import { useEffect } from 'react';
 import { getClubs } from '../../features/Clubs/ClubSlice';
 import Loading from '../Loading';
+import Cookies from 'js-cookie';
 
 const ClubCard = () => {
     const dispatch = useDispatch()
     const clubs = useSelector(getAllClubs);
     const clubStatus = useSelector(getClubStatus)
+    const token = Cookies.get("token")
 
     useEffect(() => {
         dispatch(getClubs());
