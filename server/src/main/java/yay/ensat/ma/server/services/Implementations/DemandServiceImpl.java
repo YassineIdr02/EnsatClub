@@ -62,14 +62,12 @@ public class DemandServiceImpl implements DemandService {
     public List<Demand> declinedDemands(Long club_id){
         List<Demand> demands = demandRepository.findByClubIdAndAndStatus(club_id,"Declined");
         return demands;
-
     }
 
     @Override
     public List<Demand> waitingDemands (Long club_id){
        List<Demand> demands = demandRepository.findByClubIdAndAndStatus(club_id,"Waiting");
        return demands;
-
     }
 
 
