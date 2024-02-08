@@ -76,6 +76,7 @@ public class SecurityConfig {
                 .csrf(csrf-> csrf.disable())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/login/**").permitAll())
                 .authorizeHttpRequests(auth->auth.requestMatchers("/newActivity/**").permitAll())
+                .authorizeHttpRequests(auth->auth.requestMatchers("/allclubs").permitAll())
                 .authorizeHttpRequests(auth->auth.anyRequest().authenticated())
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oa->oa.jwt(Customizer.withDefaults()))

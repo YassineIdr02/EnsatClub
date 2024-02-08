@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllClubs } from '../features/Clubs/ClubSlice';
 import { useState } from 'react';
 import { getClubs } from '../features/Clubs/ClubSlice';
+import { sendDemande } from '../features/Clubs/ClubSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const JoinClubPop = ({ onClose }) => {
     const dispatch = useDispatch()
@@ -15,7 +18,7 @@ const JoinClubPop = ({ onClose }) => {
         email: '',
         etablissement: '',
         tel: '',
-        club: '',
+        clubId: '' ,
         motivation: ''
     })
 
@@ -42,8 +45,9 @@ const JoinClubPop = ({ onClose }) => {
     }, [dispatch]);
 
 
-    const handleSend = () => {
-
+    const handleSend = e => {
+        dispatch(sendDemande(Info));
+        toast.success('Demand submitted successfully');
     }
 
     const handleChange = (e) => {
@@ -54,7 +58,7 @@ const JoinClubPop = ({ onClose }) => {
             [name]: value
         }));
     };
-    const canSave = [Info.club, Info.email, Info.etablissement, Info.firstName, Info.lastName, Info.motivation, Info.tel].every(Boolean)
+    const canSave = [Info.clubId, Info.email, Info.etablissement, Info.firstName, Info.lastName, Info.motivation, Info.tel].every(Boolean)
 
     return (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm">
@@ -141,16 +145,16 @@ const JoinClubPop = ({ onClose }) => {
                     <div className="relative z-0 w-full mb-5 group">
 
                         <select
-                            id="club"
-                            name="club"
-                            value={Info.club}
+                            id="clubId"
+                            name="clubId"
+                            value={Info.clubId}
                             onChange={handleChange}
                             className="block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                             required
                         >
                             <option value="" disabled>Select a club</option>
                             {clubs.map((club) => (
-                                <option key={club.id} value={club.name}>
+                                <option key={club.id} value={club.id}>
                                     {club.name}
                                 </option>
                             ))}
@@ -174,7 +178,7 @@ const JoinClubPop = ({ onClose }) => {
                 {/* Buttons */}
                 <div className="flex flex-row gap-5 items-center justify-end">
                     <button className="btn btn-error" onClick={onClose} >Cancel</button>
-                    <button className="btn btn-success" onClick={onClose} disabled={!canSave}>Join now</button>
+                    <button className="btn btn-success" onClick={() => { onClose(); handleSend(); }} disabled={!canSave}>Join now</button>
                 </div>
             </div>
         </div>

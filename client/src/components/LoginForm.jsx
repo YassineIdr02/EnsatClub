@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLoginMutation } from "../features/user/authApiSlice";
 import { setCredentials } from "../features/user/userSlice";
+import Cookies from "js-cookie";
 
 const LoginForm = () => {
     const dispatch = useDispatch()

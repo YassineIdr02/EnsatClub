@@ -2,8 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getClubById, newMember } from '../../features/Clubs/ClubSlice'
+import { getClubById, sendDemande } from '../../features/Clubs/ClubSlice'
 import ClubCard from './ClubCards'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const JoinClub = () => {
     const dispatch = useDispatch()
@@ -29,11 +31,10 @@ const JoinClub = () => {
     };
 
     const handleSubmit = e => {
-        e.preventDefault()
-        dispatch(newMember(member))
+        e.preventDefault();
+        dispatch(sendDemande(member));
+        toast.success('Demand submitted successfully');
     }
-
-
 
     return (
         <>
@@ -135,7 +136,8 @@ const JoinClub = () => {
                     </div>
                     <button type="submit" className="btn btn-accent text-black w-[20%]">Submit</button>
                 </form>
-            </div>≤
+            </div>
+            <ToastContainer />
         </>
     )
 }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect } from 'react';
 
-const Popup = ({ onClose }) => {
+const Popup = ({ onClose, demandId }) => {
   const modalRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -23,6 +23,16 @@ const Popup = ({ onClose }) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [onClose]);
+
+  const handleAccept = () => {
+    dispatch(acceptDemand({demandId}))
+    toast.success('Demand accepted successfully');
+  };
+
+  const handleReject = () => {
+    dispatch(declineDemand({demandId}))
+    toast.error('Demand rejected');
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm z-20   ">
@@ -71,9 +81,10 @@ const Popup = ({ onClose }) => {
 
         {/* Buttons */}
         <div className="flex flex-row gap-5 items-center justify-end">
-          <button className="btn btn-error" onClick={onClose}>Decline</button>
-          <button className="btn btn-success" onClick={onClose}>Approuve</button>
+          <button className="btn btn-error" onClick={() => { onClose(); handleReject(); }}>Decline</button>
+          <button className="btn btn-success" onClick={() => { onClose(); handleAccept(); }}>Approuve</button>
         </div>
+
       </div>
     </div>
   );

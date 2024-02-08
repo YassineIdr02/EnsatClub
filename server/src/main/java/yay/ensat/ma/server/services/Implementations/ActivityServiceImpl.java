@@ -47,7 +47,6 @@ public class ActivityServiceImpl implements ActivityService {
           }
           List<ActivityDTO> activityDTOList = activities.stream().map(act->activityMapper.fromActivity(act)).collect(Collectors.toList());
           return activityDTOList;
-
     }
 
     @Override
@@ -60,7 +59,6 @@ public class ActivityServiceImpl implements ActivityService {
         }
         List<ActivityDTO> activityDTOS = top2Activities.stream().map(activity -> activityMapper.fromActivity(activity)).collect(Collectors.toList());
         return activityDTOS;
-
     }
 
 }

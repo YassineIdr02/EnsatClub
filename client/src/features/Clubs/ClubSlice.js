@@ -109,12 +109,82 @@ export const getPresident = createAsyncThunk(
   }
 );
 
+export const sendDemande = createAsyncThunk(
+  "newdemand/sendDemande",
+  async (payload) => {
+    try {
+      const { clubId } = payload;
+      const formData = new FormData();
+      formData.append("clubId", payload.clubId);
+      formData.append("role", "member");
+      formData.append("name", payload.firstName + " " + payload.lastName);
+      const response = await axios.post(
+        `${BASE_URL}/newdemand`,
+        formData,
+        config
+      );
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  )
+export const acceptDemand = createAsyncThunk(
+  "acceptdemand/acceptDemand",
+  async (payload) => {
+    try {
+      const { demandId } = payload;
+      const response = await axios.post(
+        `${BASE_URL}/acceptdemand/${demandId}`,
+        config
+      );
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+)
+export const declineDemand = createAsyncThunk(
+  "declinedemand/declineDemand",
+  async (payload) => {
+    try {
+      const { demandId } = payload;
+      const response = await axios.post(
+        `${BASE_URL}/declinedemand/${demandId}`,
+        config
+      );
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+)
+export const getDemandes = createAsyncThunk(
+  "waitingdemands/getDemandes",
+  async (payload) => {
+    try {
+      const { clubId } = payload;
+      const response = await axios.get(
+        `${BASE_URL}/waitingdemands/${clubId}`,
+        config
+      );
+      console.log(response.data)
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+)
 
 export const ClubSlice = createSlice({
   name: "club",
   initialState: {
     clubs: [],
     members: [],
+    demandes: [],
     president: {},
     clubStatus: "idle",
     memberStatus: "idle",
@@ -143,6 +213,9 @@ export const ClubSlice = createSlice({
       .addCase(getPresident.fulfilled, (state, action)=> {
         state.president = action.payload;
       })
+      .addCase(getDemandes.fulfilled, (state, action)=> {
+        state.demandes = action.payload
+      })
   },
 });
 
@@ -155,6 +228,7 @@ export const getClubStatus = (state) => state.club.clubStatus;
 export const getMemberStatus = (state) => state.club.memberStatus;
 export const getClubById = (state, clubId) => state.club.clubs.find((club)=> club.id == clubId);
 export const getClubPresident = (state) => state.club.president;
+export const getAllDemandes = (state) => state.club.demandes;
 
 export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);

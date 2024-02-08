@@ -46,7 +46,6 @@ const ListeMembres = () => {
                             className="text-xl"
                             onClick={togglePopup}
                         />
-
                     </div>
                     <div className="lg:tooltip" data-tip="Kick">
                         <FontAwesomeIcon icon={faDoorOpen} className='text-xl' />

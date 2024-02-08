@@ -7,6 +7,7 @@ import { getPresidentByClubId, getClubs, getAllClubs } from '../../features/Club
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NoPresident from './NoPresident';
+import Cookies from 'js-cookie';
 
 const ClubPage = () => {
   const dispatch = useDispatch();
