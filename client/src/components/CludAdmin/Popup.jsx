@@ -2,9 +2,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect } from 'react';
+import { acceptDemand, declineDemand } from '../../features/Clubs/ClubSlice';
+import { useDispatch } from 'react-redux';
 
 const Popup = ({ onClose, demandId }) => {
   const modalRef = useRef(null);
+  const dispatch = useDispatch()
 
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -81,8 +84,8 @@ const Popup = ({ onClose, demandId }) => {
 
         {/* Buttons */}
         <div className="flex flex-row gap-5 items-center justify-end">
-          <button className="btn btn-error" onClick={() => { onClose(); handleReject(); }}>Decline</button>
-          <button className="btn btn-success" onClick={() => { onClose(); handleAccept(); }}>Approuve</button>
+          <button className="btn btn-error" onClick={() => { onClose(); handleReject; }}>Decline</button>
+          <button className="btn btn-success" onClick={() => { onClose(); handleAccept; }}>Approuve</button>
         </div>
 
       </div>

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { getClubs } from '../../features/Clubs/ClubSlice';
 import Loading from '../Loading';
 import Cookies from 'js-cookie';
+import sampleImage from '../../assets/c.jpg';
 
 const ClubCard = () => {
     const dispatch = useDispatch()
@@ -21,7 +22,7 @@ const ClubCard = () => {
 
     const renderedClubs = clubs?.map(club => (
         <div className="card w-[83%] bg-base-100 shadow-xl mx-auto my-4" key={club.id}>
-            <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" /></figure>
+            <figure><img src={sampleImage} /></figure>
             <div className="card-body">
                 <h2 className="card-title">
                     {club.name}

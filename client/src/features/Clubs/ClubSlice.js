@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-
 const config = {
   headers: {
     Authorization: `Bearer ${Cookies.get("token")}`,
@@ -123,29 +122,29 @@ export const sendDemande = createAsyncThunk(
         formData,
         config
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
-  )
+);
 export const acceptDemand = createAsyncThunk(
   "acceptdemand/acceptDemand",
   async (payload) => {
     try {
       const { demandId } = payload;
       const response = await axios.post(
-        `${BASE_URL}/acceptdemand/${demandId}`,
+        `${BASE_URL}/acceptdemand/${demandId.toString()}`,
         config
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
-)
+);
 export const declineDemand = createAsyncThunk(
   "declinedemand/declineDemand",
   async (payload) => {
@@ -155,13 +154,13 @@ export const declineDemand = createAsyncThunk(
         `${BASE_URL}/declinedemand/${demandId}`,
         config
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
-)
+);
 export const getDemandes = createAsyncThunk(
   "waitingdemands/getDemandes",
   async (payload) => {
@@ -171,13 +170,13 @@ export const getDemandes = createAsyncThunk(
         `${BASE_URL}/waitingdemands/${clubId}`,
         config
       );
-      console.log(response.data)
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
-)
+);
 
 export const ClubSlice = createSlice({
   name: "club",
@@ -210,12 +209,12 @@ export const ClubSlice = createSlice({
         state.memberStatus = "success";
         state.members = [...action.payload];
       })
-      .addCase(getPresident.fulfilled, (state, action)=> {
+      .addCase(getPresident.fulfilled, (state, action) => {
         state.president = action.payload;
       })
-      .addCase(getDemandes.fulfilled, (state, action)=> {
-        state.demandes = action.payload
-      })
+      .addCase(getDemandes.fulfilled, (state, action) => {
+        state.demandes = action.payload;
+      });
   },
 });
 
@@ -226,11 +225,12 @@ export const getAllMembers = (state) => state.club.members;
 
 export const getClubStatus = (state) => state.club.clubStatus;
 export const getMemberStatus = (state) => state.club.memberStatus;
-export const getClubById = (state, clubId) => state.club.clubs.find((club)=> club.id == clubId);
+export const getClubById = (state, clubId) =>
+  state.club.clubs.find((club) => club.id == clubId);
 export const getClubPresident = (state) => state.club.president;
 export const getAllDemandes = (state) => state.club.demandes;
 
 export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);
 };
-export const getMembersCount = (state) => state.club.members.length
+export const getMembersCount = (state) => state.club.members.length;

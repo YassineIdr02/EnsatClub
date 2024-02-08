@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllMembers, getMembers } from '../../features/Clubs/ClubSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import sampleImage from '../../assets/profile.png';
 
 const ListeMembres = () => {
     const [showPopup, setShowPopup] = useState(false);
@@ -34,7 +35,7 @@ const ListeMembres = () => {
                 <div className="flex flex-row items-center gap-5">
                     <div className="avatar cursor-pointer lg:tooltip" data-tip="View Profile">
                         <div className="w-14 rounded-full">
-                            <img src="../assets/Profile.jpg" />
+                            <img src={sampleImage} />
                         </div>
                     </div>
                     <p className="text-xl">{member.name}</p>

@@ -4,6 +4,7 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 import TimeAgo from './TimeAgo';
+import sampleImage from '../../assets/profile.png';
 
 const Activities = () => {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Activities = () => {
                                     <div className="flex flex-row gap-4 items-center">
                                         <div className="avatar cursor-pointer">
                                             <div className="w-14 rounded-full">
-                                                <img src="../assets/Profile.jpg" alt="Profile" />
+                                                <img src={sampleImage} alt="Profile" />
                                             </div>
                                         </div>
                                         <div className="flex flex-col">

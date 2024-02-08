@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { acceptDemand, declineDemand, getAllDemandes, getDemandes } from '../../features/Clubs/ClubSlice';
 import { useParams } from 'react-router-dom';
+import sampleImage from '../../assets/profile.png';
 
 
 const ListeDemande = () => {
@@ -51,7 +52,7 @@ const ListeDemande = () => {
             <div className="flex flex-row items-center gap-5 ">
               <div className="avatar cursor-pointer lg:tooltip" data-tip="View Profile">
                 <div className="w-14 rounded-full">
-                  <img src="" alt="Profile" />
+                  <img src={sampleImage} alt="Profile" />
                 </div>
               </div>
               <p className="text-xl">{demand.name}</p>

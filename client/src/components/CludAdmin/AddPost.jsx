@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { addActivity } from '../../features/Activities/activitySlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import sampleImage from '../../assets/profile.png';
 
 
 const AddPost = () => {
@@ -42,7 +43,7 @@ const AddPost = () => {
             <div className="flex flex-row p-5">
                 <div className="avatar w-1/6 flex justify-center items-center">
                     <div className="w-14 rounded-full ">
-                        <img src="../assets/Profile.jpg" />
+                        <img src={sampleImage} />
                     </div>
                 </div>
                 <textarea type="text"
