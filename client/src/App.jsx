@@ -15,16 +15,17 @@ import PresidentHome from "./components/CludAdmin/PresidentHome"
 import ClubCard from "./components/Admin/ClubCards"
 import ClubPage from "./components/Admin/ClubPage"
 import Members from "./components/Admin/Members"
+import SinglePostPage from "./components/Admin/SinglePostPage"
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<LoginForm />} />
-      <Route path="unauthorized" element={<Unauthorized />} />
+      <Route index element={<AdminLayout />} />
+      <Route path="login" element={<LoginForm />} />
 
       <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
-        <Route path="president" element={<PresLayout />}>
+        <Route path="president/:clubId" element={<PresLayout />}>
           <Route index element={<PresidentHome />} />
         </Route>
       </Route>
@@ -35,9 +36,11 @@ const router = createBrowserRouter(
           <Route index  element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />
           <Route path="clubs/:clubId/members" element={<Members />} />
+          <Route path="clubs/:clubId/:postId" element={<SinglePostPage />} />
         </Route>
       </Route>
 
+      <Route path="unauthorized" element={<Unauthorized />} />
       <Route path='*' element={<PageNotFound />} />
     </Route>
   )

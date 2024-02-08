@@ -19,7 +19,7 @@ const Unauthorized = () => {
                                 Access denied
                             </h2>
                             <p className="text-lg font-semibold md:text-lg">You do not have access to this page</p>
-                                <button className="btn btn-error w-[50%] " onClick={goBack}>Go back</button>
+                                <button className="btn btn-error w-[50%]" onClick={goBack}>Go back</button>
                         </div>
                     </div>
                 </section>

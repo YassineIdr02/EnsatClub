@@ -1,20 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../features/user/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { getMembers, getMembersCount } from '../features/Clubs/ClubSlice';
 
 const SideBar = ({toggleDemandeList, toggleMembreList}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const memCount = useSelector(getMembersCount)
   
   const handleLogout = () => {
+    dispatch(getMembers())
     dispatch(logout())
     navigate('/')
   }
 
- 
   return (
     <div className="flex justify-left min-h-screen px-5">
       <div className="flex flex-col gap-10 items-center">
@@ -41,7 +44,7 @@ const SideBar = ({toggleDemandeList, toggleMembreList}) => {
           <label tabIndex="0" className="btn btn-ghost btn-circle" onClick={toggleMembreList}>
             <div className="indicator">
               <FontAwesomeIcon icon={faUsers} className="text-2xl" />
-              <span className="badge badge-sm indicator-item">9</span>
+              <span className="badge badge-sm indicator-item">{memCount}</span>
             </div>
           </label>
         </div>

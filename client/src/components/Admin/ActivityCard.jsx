@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 
 const ActivityCard = () => {
     const dispatch = useDispatch();
     const activities = useSelector(getAllActivities);
-    const {clubId} = useParams()
+    const { clubId } = useParams()
 
     useEffect(() => {
-        dispatch(getActivities( {clubId} ));
+        dispatch(getActivities({ clubId }));
     }, [dispatch, clubId]);
 
     const renderCards = () => {
@@ -30,7 +30,9 @@ const ActivityCard = () => {
                     <h2 className="card-title">...</h2>
                     <p>{activity.content.substring(0, 20)}...</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">View more</button>
+                        <Link to={`${activity.id}`}>
+                            <button className="btn btn-primary">View more</button>
+                        </Link>
                     </div>
                 </div>
             </div>

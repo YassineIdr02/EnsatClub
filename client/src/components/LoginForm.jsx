@@ -43,7 +43,7 @@ const LoginForm = () => {
             setPassword('');
 
             if ( userData.role.toString().toUpperCase() === "ADMINCLUB" ) {
-                navigate('/president');
+                navigate(`/president/${userData.clubId}`);
             } else if (userData.role.toString().toUpperCase() === "ADMIN") {
                 navigate('/admin');
             } else {

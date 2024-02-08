@@ -22,16 +22,21 @@ const NoPresident = () => {
                             <h2 className="mb-8 font-extrabold text-5xl dark:text-gray-600">
                                 This club has no president
                             </h2>
-                            <p className="text-lg font-semibold md:text-lg">To preform any further action a president must be associated</p>
+                            {
+                                token ?
+                                    <p className="text-lg font-semibold md:text-lg">To preform any further action a president must be associated</p>
+                                    : <p className="text-lg font-semibold md:text-lg">Np fruther actions can be preformed</p>
+                            }
                             <div className='flex flex-row gap-4'>
-                                <button className="btn btn-accent w-[50%]" onClick={togglePopup}>Associate a president</button>
+                                {token &&
+                                    <button className="btn btn-accent w-[50%]" onClick={togglePopup}>Associate a president</button>
+                                }
                                 <Link to="/admin" className='w-[50%]' ><button className="btn btn-error w-[100%] ">Go back</button></Link>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
-
             {showPopup && <AssocPres onClose={handleClosePopup} />}
         </>
     )
