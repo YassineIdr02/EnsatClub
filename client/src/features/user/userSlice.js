@@ -23,7 +23,7 @@ const userSlice = createSlice({
             localStorage.setItem('role',role.toString().toUpperCase())
             Cookies.set('token',accessToken)
         },
-
+        
         logout: (state) => {
             state.accessToken = null
             state.role= null

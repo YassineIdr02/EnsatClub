@@ -2,27 +2,25 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect } from 'react';
+import { acceptDemand, declineDemand } from '../../features/Clubs/ClubSlice';
+import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Popup = ({ onClose }) => {
+const Popup = ({ onClose, demand, member }) => {
   const modalRef = useRef(null);
+  const dispatch = useDispatch()
 
-  const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      onClose();
-    }
+  const handleAccept = () => {
+    dispatch(acceptDemand({demand_id: demand.id}))
+    toast.success('Demand accepted successfully');
   };
 
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      handleClickOutside(event);
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [onClose]);
+  const handleReject = () => {
+    dispatch(declineDemand({demand_id: demand.id}))
+    toast.error('Demand rejected');
+    onClose()
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm z-20   ">
@@ -46,24 +44,24 @@ const Popup = ({ onClose }) => {
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:col-gap-6 xl:grid-cols-4">
             <div className="text-base font-medium text-gray-900">
               <dt>Nom complet :</dt>
-              <dd className="mt-1 text-gray-500">John Doe</dd>
+              <dd className="mt-1 text-gray-500">{demand.name}</dd>
             </div>
             <div className="text-base font-medium text-gray-900">
               <dt>Email :</dt>
-              <dd className="mt-1 text-gray-500 break-words">john.doe@gmail.com</dd>
+              <dd className="mt-1 text-gray-500 break-words">Yassine.idrissi1@etu.uae.ac.ma</dd>
             </div>
             <div className="text-base font-medium text-gray-900">
               <dt>Etablissement :</dt>
-              <dd className="mt-1 text-gray-500 break-words">EMSI RABAT</dd>
+              <dd className="mt-1 text-gray-500 break-words">ENSAT</dd>
             </div>
             <div className="text-base font-medium text-gray-900">
               <dt>Telephone :</dt>
-              <dd className="mt-1 text-gray-500 break-words">06.10.09.88.17</dd>
+              <dd className="mt-1 text-gray-500 break-words">1234567890</dd>
             </div>
             <div className="text-base font-medium text-gray-900 col-start-1 col-end-3 mt-2">
               <dt>Motivation :</dt>
               <dd className="mt-1 text-gray-500 break-words">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. ...
+                Je suis motivé
               </dd>
             </div>
           </dl>
@@ -71,10 +69,12 @@ const Popup = ({ onClose }) => {
 
         {/* Buttons */}
         <div className="flex flex-row gap-5 items-center justify-end">
-          <button className="btn btn-error" onClick={onClose}>Decline</button>
-          <button className="btn btn-success" onClick={onClose}>Approuve</button>
+          <button className="btn btn-error" onClick={handleReject}>Decline</button>
+          <button className="btn btn-success" onClick={handleAccept}>Approuve</button>
         </div>
+
       </div>
+      <ToastContainer theme="colored"/>
     </div>
   );
 };

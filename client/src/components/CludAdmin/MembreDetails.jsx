@@ -4,7 +4,7 @@ import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useRef, useEffect, useState } from 'react';
 import Confirmation from './Confirmation';
 
-const MembreDetails = ({ onClose }) => {
+const MembreDetails = ({ onClose, member }) => {
 
   const modalRef = useRef(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -57,11 +57,11 @@ const MembreDetails = ({ onClose }) => {
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3 sm:col-gap-6 xl:grid-cols-4">
             <div className="text-base font-medium text-gray-900">
               <dt>Nom complet :</dt>
-              <dd className="mt-1 text-gray-500">John Doe</dd>
+              <dd className="mt-1 text-gray-500">{member.name}</dd>
             </div>
             <div className="text-base font-medium text-gray-900">
               <dt>Email :</dt>
-              <dd className="mt-1 text-gray-500 break-words">john.doe@gmail.com</dd>
+              <dd className="mt-1 text-gray-500 break-words">Yassine.idrissi1@etu.uae.ac.ma</dd>
             </div>
             <div className="text-base font-medium text-gray-900">
               <dt>Etablissement :</dt>
@@ -74,7 +74,7 @@ const MembreDetails = ({ onClose }) => {
             <div className="text-base font-medium text-gray-900 col-start-1 col-end-3 mt-2">
               <dt>Motivation :</dt>
               <dd className="mt-1 text-gray-500 break-words">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. ...
+                Je suis motivé...
               </dd>
             </div>
           </dl>

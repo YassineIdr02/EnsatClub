@@ -24,7 +24,6 @@ public class ActivityController {
     public ActivityController(ActivityService activityService) {
         this.activityService = activityService;
     }
-
     @PostMapping("/newActivity")
     public ActivityDTO saveActivity(ActivityDTO activityDTO, @RequestParam(name = "file")@Nullable MultipartFile file) throws IOException {
         if (file != null && !file.isEmpty() ){
@@ -45,13 +44,13 @@ public class ActivityController {
 
 
     }
-
+    @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
     @GetMapping("/clubactivities/{club_id}")
     public List<ActivityDTO> getClubActivities(@PathVariable(name = "club_id") Long club_id){
 
         return activityService.getActivitiesOfClub(club_id);
     }
-
+    @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
     @GetMapping("/ensat_club_activities")
     public List<ActivityDTO> guestView(){
         return activityService.displayActivitiesForGuests();

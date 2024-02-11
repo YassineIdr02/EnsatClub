@@ -50,7 +50,7 @@ const NavBar = () => {
             </div>
             <div className="flex flex-row gap-6">
                 {token && <h2 className="text-2xl cursor-pointer">Dashboard</h2>}
-                <NavLink to="/" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
+                <NavLink to="/admin" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
                 <h2 className="text-2xl cursor-pointer">Events</h2>
                 {token && <h2 className="text-2xl cursor-pointer" onClick={toggleAddPopup}>Add a new club</h2>}
                 <h2 className="text-2xl cursor-pointer" onClick={toggleJoinPopup}>Join a club</h2>

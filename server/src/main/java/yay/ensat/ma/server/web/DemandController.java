@@ -1,15 +1,13 @@
 package yay.ensat.ma.server.web;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import yay.ensat.ma.server.models.Demand;
 import yay.ensat.ma.server.services.Interfaces.DemandService;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 public class DemandController {
     private DemandService demandService;
 
