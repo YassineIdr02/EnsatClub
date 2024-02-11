@@ -9,7 +9,6 @@ import yay.ensat.ma.server.services.Interfaces.ClubService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 public class ClubController {
     private ClubService clubService;
 

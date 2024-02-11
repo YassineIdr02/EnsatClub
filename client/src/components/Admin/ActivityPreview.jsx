@@ -15,16 +15,12 @@ const ActivityPreview = ({fromSingle}) => {
         fromSingle == true ? 
         <h2 className="text-5xl text-center font-bold mb-4">See more</h2> 
         :
-        <h2 className="text-5xl text-center font-bold mb-4">Activity Preview</h2>
+        <h2 className="text-5xl text-center font-bold mb-[3%]  ">Activity Preview</h2>
       }
       
-      <ActivityCard />
-      <Link to="">
-        <button className='btn btn-accent w-[110%] h-[60%] my-5' disabled={!hasActivities}>
-          Check out more activities
-        </button>
-      </Link>
-      <hr className="my-8 border-0 h-0.5 w-[60%] bg-slate-300 mx-auto" />
+      <ActivityCard className="mb-[3%]" />
+      
+
     </section>
   );
 };

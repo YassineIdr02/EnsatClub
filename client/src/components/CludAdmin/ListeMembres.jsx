@@ -7,9 +7,11 @@ import { getAllMembers, getMembers } from '../../features/Clubs/ClubSlice'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import sampleImage from '../../assets/profile.png';
+import { useParams } from 'react-router-dom'
 
 const ListeMembres = () => {
     const [showPopup, setShowPopup] = useState(false);
+    const clubId = useParams()
 
     const togglePopup = () => {
         setShowPopup(true);
@@ -25,16 +27,16 @@ const ListeMembres = () => {
 
     useEffect(() => {
         if (!members.length) {
-            dispatch(getMembers({clubId: "1" }));
+            dispatch(getMembers(clubId));
         }
-    }, [dispatch]);
+    }, [dispatch, clubId]);
 
     const renderedMembers = members.map(member => {
         return (
-            <div className="flex flex-row justify-between items-center py-2 px-4 -z-0  " key={member.id}>
+            <div className="flex flex-row justify-between items-center py-2 px-4 -z-0 hover:bg-slate-200  duration-300   transition-background  hover:cursor-pointer" onClick={togglePopup} key={member.id}>
                 <div className="flex flex-row items-center gap-5">
                     <div className="avatar cursor-pointer lg:tooltip" data-tip="View Profile">
-                        <div className="w-14 rounded-full">
+                        <div className="w-14 rounded-full" onClick={togglePopup}>
                             <img src={sampleImage} />
                         </div>
                     </div>
@@ -52,6 +54,7 @@ const ListeMembres = () => {
                         <FontAwesomeIcon icon={faDoorOpen} className='text-xl' />
                     </div>
                 </div>
+                {showPopup && <MembreDetails onClose={handleClosePopup} className=' z-30' member={member} />}
             </div>
         )
     })
@@ -63,11 +66,9 @@ const ListeMembres = () => {
                 <div className="flex justify-center py-5 sticky z-10  top-0 bg-[#DEF2F1] w-full shadow-sm">
                     <h1 className="text-3xl font-medium text-center">Liste des membres</h1>
                 </div>
-                
-                {renderedMembers}
-            </div>
 
-            {showPopup && <MembreDetails onClose={handleClosePopup} className=' z-30'/>}
+                {members.length == 0 ? <h1 className='text-4xl text-gray-600 text-center my-[70%]'>No members available</h1> : renderedMembers}
+            </div>
             <ToastContainer />
 
         </div>

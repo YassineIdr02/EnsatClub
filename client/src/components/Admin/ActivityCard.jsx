@@ -24,11 +24,11 @@ const ActivityCard = () => {
         const limitedActivities = sortedActivities.slice(0, 3);
 
         return limitedActivities.map(activity => (
-            <div className="card w-[30%] glass " key={activity.id}>
+            <div className="card w-[30%] glass my-10 z-0" key={activity.id}>
                 <figure><img src={activity.photo} alt="activity photo" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">...</h2>
-                    <p>{activity.content.substring(0, 20)}...</p>
+                    <p>{activity.content.substring(0, 5)}...</p>
                     <div className="card-actions justify-end">
                         <Link to={`${activity.id}`}>
                             <button className="btn btn-primary">View more</button>

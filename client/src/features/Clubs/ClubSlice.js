@@ -26,7 +26,8 @@ export const addClub = createAsyncThunk("newclub/addClub", async (payload) => {
 
 export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/allclubs`, config);
+    const response = await axios.get(`${BASE_URL}/allclubs`);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.log(error);
@@ -112,7 +113,6 @@ export const sendDemande = createAsyncThunk(
   "newdemand/sendDemande",
   async (payload) => {
     try {
-      const { clubId } = payload;
       const formData = new FormData();
       formData.append("clubId", payload.clubId);
       formData.append("role", "member");
@@ -133,9 +133,10 @@ export const acceptDemand = createAsyncThunk(
   "acceptdemand/acceptDemand",
   async (payload) => {
     try {
-      const { demandId } = payload;
+      const { demand_id } = payload;
       const response = await axios.post(
-        `${BASE_URL}/acceptdemand/${demandId.toString()}`,
+        `${BASE_URL}/acceptdemand/${demand_id}`,
+        null,
         config
       );
       console.log(response.data);
@@ -149,9 +150,10 @@ export const declineDemand = createAsyncThunk(
   "declinedemand/declineDemand",
   async (payload) => {
     try {
-      const { demandId } = payload;
+      const { demand_id } = payload;
       const response = await axios.post(
-        `${BASE_URL}/declinedemand/${demandId}`,
+        `${BASE_URL}/declinedemand/${demand_id}`,
+        null,
         config
       );
       console.log(response.data);
@@ -193,16 +195,17 @@ export const ClubSlice = createSlice({
       state.clubs = action.payload;
     },
   },
+
   extraReducers(builder) {
     builder
       .addCase(getClubs.fulfilled, (state, action) => {
         state.clubStatus = "success";
         state.clubs = [...action.payload];
       })
-      .addCase(getClubs.pending, (state, action) => {
+      .addCase(getClubs.pending, (state) => {
         state.clubStatus = "loading";
       })
-      .addCase(getMembers.pending, (state, action) => {
+      .addCase(getMembers.pending, (state) => {
         state.memberStatus = "loading";
       })
       .addCase(getMembers.fulfilled, (state, action) => {
@@ -216,6 +219,7 @@ export const ClubSlice = createSlice({
         state.demandes = action.payload;
       });
   },
+
 });
 
 export default ClubSlice.reducer;
@@ -234,3 +238,4 @@ export const getPresidentByClubId = (state, clubId) => {
   return state.club.clubs.find((c) => c.id == clubId);
 };
 export const getMembersCount = (state) => state.club.members.length;
+export const getDemandsCount = (state) => state.club.demandes.length;

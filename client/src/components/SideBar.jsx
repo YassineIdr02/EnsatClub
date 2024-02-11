@@ -3,20 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../features/user/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faEnvelope, faUsers, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
-import { getMembers, getMembersCount } from '../features/Clubs/ClubSlice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getDemandes, getDemandsCount, getMembers, getMembersCount } from '../features/Clubs/ClubSlice';
+import { useEffect } from 'react';
 
 const SideBar = ({toggleDemandeList, toggleMembreList}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const params = useParams()
 
   const memCount = useSelector(getMembersCount)
+  const demCount = useSelector(getDemandsCount)
   
   const handleLogout = () => {
-    dispatch(getMembers())
     dispatch(logout())
-    navigate('/')
+    navigate('/login')
   }
+
+useEffect(() => {
+  dispatch(getMembers({clubId: params.clubId}))
+  dispatch(getDemandes({clubId: params.clubId}))
+
+  
+}, [params])
 
   return (
     <div className="flex justify-left min-h-screen px-5">
@@ -35,7 +44,7 @@ const SideBar = ({toggleDemandeList, toggleMembreList}) => {
           <label className="btn btn-ghost btn-circle" onClick={toggleDemandeList}>
             <div className="indicator">
               <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />
-              <span className="badge badge-sm indicator-item">812</span>
+              <span className="badge badge-sm indicator-item">{demCount}</span>
             </div>
           </label>
         </div>

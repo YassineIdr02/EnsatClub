@@ -5,13 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 import TimeAgo from './TimeAgo';
 import sampleImage from '../../assets/profile.png';
+import { useParams } from 'react-router-dom';
 
 const Activities = () => {
     const dispatch = useDispatch();
     const activities = useSelector(getAllActivities);
+    const clubId = useParams()
 
     useEffect(() => {
-        dispatch(getActivities({ clubId: "1" }));
+        dispatch(getActivities( clubId ));
     }, [dispatch]);
 
     const sortedActivities = activities.slice().sort((a, b) => {
@@ -21,10 +23,9 @@ const Activities = () => {
     return (
         <>
             {
-                sortedActivities.lenght === 0 ? (
+                sortedActivities.length == 0 ? (
                     <h1 className='text-5xl text-gray-600 text-center'>No posts available</h1>
                 ) : (
-
                     sortedActivities.map((activity) => (
                         <div key={activity.id}>
                             <hr className="w-full border-t border-gray-300  " />

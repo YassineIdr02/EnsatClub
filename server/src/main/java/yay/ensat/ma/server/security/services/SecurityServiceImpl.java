@@ -39,14 +39,10 @@ public class SecurityServiceImpl implements SecurityService {
         appUser.setAuthority(authority);
         appUser.setPassword(passwordEncoder.encode(password));
         AppUser savedAppuser = appUserRepository.save(appUser);
-       emailSenderService.sendEmail("yassine.idrissi1@uae.ac.ma","Bienvenue au club ORACLE",
+       emailSenderService.sendEmail("yassine.idrissi1@etu.uae.ac.ma","Bienvenue au club ORACLE",
                 "Your Credentials are :\n"+"username: "+username+"\n"+"password: "+password);
         return savedAppuser;
-
-
     }
-
-
 
 
 

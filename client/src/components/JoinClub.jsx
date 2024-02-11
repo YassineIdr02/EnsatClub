@@ -181,6 +181,7 @@ const JoinClubPop = ({ onClose }) => {
                     <button className="btn btn-success" onClick={() => { onClose(); handleSend(); }} disabled={!canSave}>Join now</button>
                 </div>
             </div>
+            <ToastContainer theme="colored" />
         </div>
     );
 };

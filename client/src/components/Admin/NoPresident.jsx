@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -5,6 +6,7 @@ import AssocPres from './AssocPres';
 
 const NoPresident = () => {
     const [showPopup, setShowPopup] = useState(false);
+    const token = Cookies.get("token")
 
     const togglePopup = () => {
         setShowPopup(true);

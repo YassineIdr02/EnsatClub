@@ -137,7 +137,7 @@ const JoinClub = () => {
                     <button type="submit" className="btn btn-accent text-black w-[20%]">Submit</button>
                 </form>
             </div>
-            <ToastContainer />
+            <ToastContainer theme="colored" />
         </>
     )
 }

@@ -21,7 +21,6 @@ import SinglePostPage from "./components/Admin/SinglePostPage"
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<AdminLayout />} />
       <Route path="login" element={<LoginForm />} />
 
       <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
