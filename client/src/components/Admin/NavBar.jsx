@@ -17,7 +17,7 @@ const NavBar = () => {
     const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout())
-        navigate('/login')
+        navigate('/')
     }
 
     const token = Cookies.get("token")
@@ -49,9 +49,8 @@ const NavBar = () => {
                 <h2 className="text-2xl font-bold ">Ensat Club</h2>
             </div>
             <div className="flex flex-row gap-6">
-                {token && <h2 className="text-2xl cursor-pointer">Dashboard</h2>}
+                {token && <NavLink className="text-2xl cursor-pointer" to="dashboard"> <h2 >Dashboard</h2> </NavLink> }
                 <NavLink to="/admin" className="text-2xl cursor-pointer"><h2>Clubs</h2></NavLink>
-                <h2 className="text-2xl cursor-pointer">Events</h2>
                 {token && <h2 className="text-2xl cursor-pointer" onClick={toggleAddPopup}>Add a new club</h2>}
                 <h2 className="text-2xl cursor-pointer" onClick={toggleJoinPopup}>Join a club</h2>
             </div>

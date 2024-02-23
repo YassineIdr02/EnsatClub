@@ -3,7 +3,7 @@ import logo from '../../assets/EnsatClub.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllMembers, getClubById, getClubPresident, getClubs, getMembers, getPresident } from '../../features/Clubs/ClubSlice';
-
+import profileImage from "../../assets/profile.png"
 const MemberRow = ({ member }) => {
   return (
     <tr key={member.id}>
@@ -11,7 +11,7 @@ const MemberRow = ({ member }) => {
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="mask mask-squircle w-12 h-12">
-              <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+              <img src={profileImage} alt="Avatar Tailwind CSS Component" />
             </div>
           </div>
           <div>
@@ -29,20 +29,21 @@ const MemberRow = ({ member }) => {
 
 const Members = () => {
   const dispatch = useDispatch();
-  const { clubId } = useParams();
+  const  params  = useParams();
   const members = useSelector(getAllMembers);
   const president = useSelector(getClubPresident)
-  let club = useSelector(state => getClubById(state,clubId));
+  let club = useSelector(state => getClubById(state,params.clubId));
 
   useEffect(() => {
     if (!members.length) {
-      dispatch(getMembers({ clubId }));
+      dispatch(getMembers({clubId: params.clubId }));
     }
-  }, [clubId])
+  }, [params])
 
   useEffect(() => {
-    dispatch(getPresident({ clubId }));
-  }, [clubId])
+    
+      dispatch(getPresident({ clubId: params.clubId }));
+  }, [params])
 
   const renderedMembers = members.map(member => <MemberRow key={member.id} member={member} />);
 

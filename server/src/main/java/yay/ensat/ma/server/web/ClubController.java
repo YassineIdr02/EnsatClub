@@ -47,6 +47,7 @@ public class ClubController {
     }
 
     @GetMapping("/clubpresident/{club_id}")
+    @CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
     public MemberDTO thePresident(@PathVariable("club_id") Long club_id){
         return clubService.getPresident(club_id);
     }

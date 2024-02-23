@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { addClub } from "../../features/Clubs/ClubSlice";
+
 const AddClub = ({ onClose }) => {
     const modalRef = useRef(null);
     const dispatch = useDispatch()

@@ -51,6 +51,7 @@ const ListeDemande = () => {
           <div
             className="avatar cursor-pointer lg:tooltip"
             data-tip="View Profile"
+            onClick={togglePopup}
           >
             <div className="w-14 rounded-full">
               <img src={sampleImage} alt="Profile" />
