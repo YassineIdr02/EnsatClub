@@ -179,6 +179,27 @@ export const getDemandes = createAsyncThunk(
     }
   }
 );
+export const sendReservation = createAsyncThunk(
+  "newreservation/sendReservation",
+  async (payload) => {
+    try {
+      const formData = new FormData();
+      formData.append("clubId", payload.clubId);
+      formData.append("date", payload.date);
+      formData.append("salle", payload.salle);
+      formData.append("motivation", payload.reason);
+      const response = await axios.post(
+        `${BASE_URL}/newreservation`,
+        formData,
+        config
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const ClubSlice = createSlice({
   name: "club",

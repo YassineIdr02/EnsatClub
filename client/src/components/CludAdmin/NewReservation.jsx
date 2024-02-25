@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getClubById, sendDemande } from '../../features/Clubs/ClubSlice';
+import { getClubById, sendDemande, sendReservation } from '../../features/Clubs/ClubSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,6 +26,17 @@ const NewReservation = ({ onClose }) => {
     }, [onClose]);
 
     const { clubId } = useParams();
+    const salles = [
+        "A1", "A2", "A3", "A4",
+        "A5", "A6", "A7", "A8",
+        "A9", "A10",
+
+        "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8",
+        "B9", "B10", "B11", "B12", "B13", "B14", "B15", "B16",
+        "B17", "B18", "B19", "B20", "B21", "B22",
+
+        "C1", "C2", "C3", "C4", "C5", "C6"
+    ];
     const club = useSelector((state) => getClubById(state, clubId));
     const [reservation, setReservation] = useState({
         clubId,
@@ -44,7 +55,7 @@ const NewReservation = ({ onClose }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(sendDemande(reservation));
+        dispatch(sendReservation(reservation));
         toast.success('Reservation sent successfully');
     };
 
@@ -73,11 +84,11 @@ const NewReservation = ({ onClose }) => {
                                         required
                                     >
                                         <option value="" disabled>Choisissez une salle*</option>
-                                        {/* {clubs.map((club) => ( */}
-                                        <option key={reservation.salle} value={reservation.salle}>
-                                            {reservation.salle}
-                                        </option>
-                                        {/* ))} */}
+                                        {salles.map((salle) => (
+                                            <option key={salle} value={salle}>
+                                                {salle}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className='relative z-0 w-full mb-10 group'>

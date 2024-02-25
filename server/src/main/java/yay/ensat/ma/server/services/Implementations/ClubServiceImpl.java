@@ -56,7 +56,7 @@ public class ClubServiceImpl implements ClubService {
      */
     @Override
     public List<ClubDTO2> getAllClubs() {
-        List<Club> clubs = clubRepository.findAll();
+        List<Club> clubs = clubRepository.all();
         List<ClubDTO2> clubDTO2s = clubs.stream().map(club ->clubMapper.fromClubs(club)).collect(Collectors.toList());
         return clubDTO2s;
     }

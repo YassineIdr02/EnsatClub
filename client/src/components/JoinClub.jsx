@@ -58,7 +58,16 @@ const JoinClubPop = ({ onClose }) => {
             [name]: value
         }));
     };
-    const canSave = [Info.clubId, Info.email, Info.etablissement, Info.firstName, Info.lastName, Info.motivation, Info.tel].every(Boolean)
+
+    const canSave = [
+        Info.clubId, 
+        Info.email, 
+        Info.etablissement, 
+        Info.firstName, 
+        Info.lastName, 
+        Info.motivation, 
+        Info.tel
+    ].every(Boolean)
 
     return (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm">
