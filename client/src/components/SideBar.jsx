@@ -19,7 +19,7 @@ const SideBar = ({ toggleDemandeList, toggleMembreList }) => {
 
   const handleLogout = () => {
     dispatch(logout())
-    navigate('/')
+    navigate('/login')
   }
   const handleCloseAddPopup = () => {
     setShowAdd(false);

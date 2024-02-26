@@ -23,14 +23,14 @@ import Dashboard from "./components/Admin/Dashboard"
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<LoginForm />} />
+      <Route path="/login" element={<LoginForm />} />
 
-      {/* <Route path="/" element={<GuestHome />}>
-        <Route path="clubs" element={<ClubCard />} />
-        <Route path="clubs/:clubId" element={<ClubPage />} />
-        <Route path="clubs/:clubId/members" element={<Members />} />
-        <Route path="clubs/:clubId/:postId" element={<SinglePostPage />} />
-      </Route> */}
+      <Route path="/" element={<GuestHome />}>
+        <Route index element={<ClubCard />} />
+        <Route path="/clubs/:clubId" element={<ClubPage />} />
+        <Route path="/clubs/:clubId/members" element={<Members />} />
+        <Route path="/clubs/:clubId/:postId" element={<SinglePostPage />} />
+      </Route>
       
       <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
         <Route path="president/:clubId" element={<PresLayout />}>

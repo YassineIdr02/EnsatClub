@@ -34,6 +34,16 @@ export const getClubs = createAsyncThunk("allclubs/getclubs", async () => {
     throw error;
   }
 });
+export const getGuestClubs = createAsyncThunk("allclubs/getGuestClubs", async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/allclubs`);
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+});
 
 export const assocPresident = createAsyncThunk(
   "associatepres/assocPresident",
@@ -99,8 +109,7 @@ export const getPresident = createAsyncThunk(
     const { clubId } = payload;
     try {
       const response = await axios.get(
-        `${BASE_URL}/clubpresident/${clubId}`,
-        config
+        `${BASE_URL}/clubpresident/${clubId}`
       );
       return response.data;
     } catch (error) {
@@ -119,8 +128,7 @@ export const sendDemande = createAsyncThunk(
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
         `${BASE_URL}/newdemand`,
-        formData,
-        config
+        formData
       );
       console.log(response.data);
       return response.data;
@@ -184,10 +192,11 @@ export const sendReservation = createAsyncThunk(
   async (payload) => {
     try {
       const formData = new FormData();
-      formData.append("clubId", payload.clubId);
+      formData.append("club_id", payload.clubId);
       formData.append("date", payload.date);
       formData.append("salle", payload.salle);
-      formData.append("motivation", payload.reason);
+      formData.append("EventName", payload.reason);
+      formData.append("Participants", payload.participant);
       const response = await axios.post(
         `${BASE_URL}/newreservation`,
         formData,

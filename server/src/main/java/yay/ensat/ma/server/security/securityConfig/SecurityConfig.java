@@ -74,7 +74,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf-> csrf.disable())
-                .authorizeHttpRequests(auth->auth.requestMatchers("/login/**","/allclubs/**").permitAll())
+                .authorizeHttpRequests(auth->auth.requestMatchers("/login/**","/allclubs/**",
+                        "/clubactivities/**",
+                        "/clubpresident/**",
+                        "/newdemand/**").permitAll())
                 .authorizeHttpRequests(auth->auth.anyRequest().authenticated())
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oa->oa.jwt(Customizer.withDefaults()))

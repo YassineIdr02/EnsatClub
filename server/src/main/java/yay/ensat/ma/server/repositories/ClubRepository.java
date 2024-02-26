@@ -9,11 +9,6 @@ import java.util.List;
 public interface ClubRepository extends JpaRepository<Club,Long> {
   Club findByName (String clubName);
 
-  @Query(value = "SELECT c.id, c.name, c.description, COUNT(a.id) AS cmpt" +
-          "FROM Club c" +
-          " JOIN activities a ON c.id = a.club_id" +
-          "GROUP BY c.id, c.name, c.description" +
-          "ORDER BY cmpt DESC",nativeQuery = true)
+  @Query(value = "SELECT c.id, c.name, c.description, c.president_id,c.created_at FROM Club c LEFT JOIN activity a ON c.id = a.club_id GROUP BY c.id, c.name, c.description ORDER BY COUNT(a.id) DESC",nativeQuery = true)
   List<Club> all();
-
 }

@@ -8,7 +8,7 @@ import Loading from '../Loading';
 import Cookies from 'js-cookie';
 import sampleImage from '../../assets/c.jpg';
 
-const ClubCard = () => {
+const GuestClubCards = () => {
     const dispatch = useDispatch()
     const clubs = useSelector(getAllClubs);
     const clubStatus = useSelector(getClubStatus)
@@ -20,23 +20,15 @@ const ClubCard = () => {
 
     let content = null;
 
-    const filteredClubs = clubs?.filter(
-        (club) => club.president_id != null
-    );
-
-    const condClubs = token  ? clubs : filteredClubs;
-
-    const renderedClubs = condClubs?.map(club => (
+    const renderedClubs = clubs?.map(club => (
         <div className="card w-[83%] bg-base-100 shadow-xl mx-auto my-4" key={club.id}>
             <figure><img src={sampleImage} /></figure>
             <div className="card-body">
                 <h2 className="card-title">
                     {club.name}
-
                     {(club.president_id == null) && (
                         <div className="badge badge-warning">No president</div>
                     )}
-
                 </h2>
                 <p>{club.description}</p>
                 <div className="card-actions justify-end">
@@ -63,7 +55,8 @@ const ClubCard = () => {
             </div>
             break;
 
-        case "idle":    
+        case "idle":
+            
             break;
 
         default:
@@ -79,4 +72,4 @@ const ClubCard = () => {
 
 
 
-export default ClubCard;
+export default GuestClubCards;

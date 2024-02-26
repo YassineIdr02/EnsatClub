@@ -17,7 +17,7 @@ const NavBar = () => {
     const navigate = useNavigate()
     const handleLogout = () => {
         dispatch(logout())
-        navigate('/')
+        navigate('/login')
     }
 
     const token = Cookies.get("token")

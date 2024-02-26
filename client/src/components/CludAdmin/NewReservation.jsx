@@ -42,6 +42,7 @@ const NewReservation = ({ onClose }) => {
         clubId,
         salle: '',
         reason: '',
+        participant:'',
         date: '',
     });
 
@@ -51,6 +52,7 @@ const NewReservation = ({ onClose }) => {
             ...prevState,
             [name]: value,
         }));
+        console.log(value);
     };
 
     const handleSubmit = (e) => {
@@ -63,8 +65,8 @@ const NewReservation = ({ onClose }) => {
 
     return (
         <>
-            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm z-50   ">
-                <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[52%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between">
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur-sm z-20">
+                <div ref={modalRef} className="p-4 border border-gray-300 shadow-md rounded-2xl h-[52%] bg-[#DEF2F1] w-3/6 flex flex-col justify-between z-50">
                     <div className='w-fit h-fit item-center flex flex-col mx-auto'>
                         <h1 className="text-5xl text-center font-bold mt-5">New reservation</h1>
                         <div className=" items-center mt-10 justify-center">
@@ -74,23 +76,45 @@ const NewReservation = ({ onClose }) => {
                             </div>
 
                             <form className='mx-auto w-full items-center' onSubmit={handleSubmit}>
-                                <div className='relative z-0 w-full mb-10 group'>
-                                    <select
-                                        id="clubId"
-                                        name="clubId"
-                                        value={reservation.salle}
-                                        onChange={handleChange}
-                                        className="block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                        required
-                                    >
-                                        <option value="" disabled>Choisissez une salle*</option>
-                                        {salles.map((salle) => (
-                                            <option key={salle} value={salle}>
-                                                {salle}
-                                            </option>
-                                        ))}
-                                    </select>
+                                <div className="grid md:grid-cols-2 md:gap-6">
+                                    <div className='relative z-0 w-full mb-10 group'>
+                                        <select
+                                            id="salle"
+                                            name="salle"
+                                            value={reservation.salle}
+                                            onChange={handleChange}
+                                            className="block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                            required
+                                        >
+                                            <option value="" disabled>Choisissez une salle*</option>
+                                            {salles.map((salle) => (
+                                                <option key={salle} value={salle}>
+                                                    {salle}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className='relative z-0 w-full mb-10 group'>
+                                        <input
+                                            type="number"
+                                            name='participant'
+                                            value={reservation.participant}
+                                            onChange={handleChange}
+                                            id='date'
+                                            className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                                            placeholder=' '
+                                            required
+                                        />
+                                        <label
+                                            htmlFor='participant'
+                                            className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+                                        >
+                                            Nombre de participants*
+                                        </label>
+                                    </div>
                                 </div>
+
+
                                 <div className='relative z-0 w-full mb-10 group'>
                                     <input
                                         type="date"
@@ -124,7 +148,7 @@ const NewReservation = ({ onClose }) => {
                                         htmlFor='reason'
                                         className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
                                     >
-                                        Reason*
+                                        Motivation*
                                     </label>
                                 </div>
                             </form>
