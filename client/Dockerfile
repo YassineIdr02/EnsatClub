@@ -13,4 +13,4 @@ RUN npm install
 COPY . .
 
 # Commande pour démarrer l'application React
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

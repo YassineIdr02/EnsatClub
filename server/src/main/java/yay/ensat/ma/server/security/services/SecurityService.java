@@ -7,6 +7,9 @@ import yay.ensat.ma.server.security.models.AppUser;
 
 public interface SecurityService {
     AppUser saveNewUser(Member member);
+
+    AppUser saveAdmin(Member member);
+
     AppUser loadUserByUserName (String username);
 
 

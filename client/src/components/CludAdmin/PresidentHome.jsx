@@ -24,7 +24,7 @@ const PresidentHome = () => {
   return (
     <div className="grid grid-cols-6 flex-1 w-full h-screen">
 
-      <div className="col-span-1 z-0 sticky h-screen top-0">
+      <div className="col-span-1 sticky h-screen top-0">
         <SideBar toggleDemandeList={toggleDemandeList} toggleMembreList={toggleMembreList} />
       </div>
 
@@ -36,12 +36,13 @@ const PresidentHome = () => {
           <AddPost />
         </div>
         <hr className="w-full" />
+
         <div className="overflow-y-auto"> {/* Use flex-1 to occupy remaining space */}
           <Posts />
         </div>
       </div>
 
-      <div className="col-span-2 h-screen top-0  overflow-y-auto ">
+      <div className="col-span-2 h-screen -z-0 overflow-y-auto ">
       <TransitionGroup>
           {showMembreList && (
             <CSSTransition timeout={300} classNames="slide">

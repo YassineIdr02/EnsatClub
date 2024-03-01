@@ -27,7 +27,7 @@ const NoPresident = () => {
                             {
                                 token ?
                                     <p className="text-lg font-semibold md:text-lg">To preform any further action a president must be associated</p>
-                                    : <p className="text-lg font-semibold md:text-lg">Np fruther actions can be preformed</p>
+                                    : <p className="text-lg font-semibold md:text-lg">No fruther actions can be preformed</p>
                             }
                             <div className='flex flex-row gap-4'>
                                 {token &&

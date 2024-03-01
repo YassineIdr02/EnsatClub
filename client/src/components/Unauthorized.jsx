@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Unauthorized = () => {
     const navigate = useNavigate()
-    const goBack = () => navigate(-1);
+    const goBack = () => {
+        window.history.go(-1);
+    };
 
     useEffect(() => {
       document.title = 'Unauthorized'

@@ -1,15 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { addClub } from "../../features/Clubs/ClubSlice";
+
 const AddClub = ({ onClose }) => {
     const modalRef = useRef(null);
     const dispatch = useDispatch()
     const [Club, setClub] = useState({
         clubName: '',
         clubDescription: '',
-
     });
 
     const handleClickOutside = (event) => {
@@ -40,6 +42,7 @@ const AddClub = ({ onClose }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addClub(Club));
+        toast.success('Club created successfully');
         setClub({ clubName: "", description: "" })
         onClose();
     }
@@ -89,6 +92,7 @@ const AddClub = ({ onClose }) => {
                         </div>
                     </div>
             </div>
+            <ToastContainer theme='colored' />
         </>
     )
 }

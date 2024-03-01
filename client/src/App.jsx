@@ -16,13 +16,22 @@ import ClubCard from "./components/Admin/ClubCards"
 import ClubPage from "./components/Admin/ClubPage"
 import Members from "./components/Admin/Members"
 import SinglePostPage from "./components/Admin/SinglePostPage"
+import GuestHome from "./components/Guest/GuestHome"
+import Dashboard from "./components/Admin/Dashboard"
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route path="login" element={<LoginForm />} />
+      <Route path="/login" element={<LoginForm />} />
 
+      <Route path="/" element={<GuestHome />}>
+        <Route index element={<ClubCard />} />
+        <Route path="/clubs/:clubId" element={<ClubPage />} />
+        <Route path="/clubs/:clubId/members" element={<Members />} />
+        <Route path="/clubs/:clubId/:postId" element={<SinglePostPage />} />
+      </Route>
+      
       <Route element={<RequireAuth allowedRoles={["ADMINCLUB"]} />} >
         <Route path="president/:clubId" element={<PresLayout />}>
           <Route index element={<PresidentHome />} />
@@ -32,7 +41,8 @@ const router = createBrowserRouter(
       {/* This route should be protected */}
       <Route element={<RequireAuth allowedRoles={["ADMIN"]} />} >
         <Route path="admin" element={<AdminLayout />}>
-          <Route index  element={<ClubCard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route index element={<ClubCard />} />
           <Route path="clubs/:clubId" element={<ClubPage />} />
           <Route path="clubs/:clubId/members" element={<Members />} />
           <Route path="clubs/:clubId/:postId" element={<SinglePostPage />} />

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysql-container:
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: Kiliminawa123
+      MYSQL_DATABASE: ensatclubyay
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/ensatclubyay
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Kiliminawa123
+    depends_on:
+      - mysql-container
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+
