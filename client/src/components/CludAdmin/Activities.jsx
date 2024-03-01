@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisVertical, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActivities, getAllActivities } from '../../features/Activities/activitySlice';
 import TimeAgo from './TimeAgo';
@@ -13,7 +13,7 @@ const Activities = () => {
     const clubId = useParams()
 
     useEffect(() => {
-        dispatch(getActivities( clubId ));
+        dispatch(getActivities(clubId));
     }, [dispatch]);
 
     const sortedActivities = activities.slice().sort((a, b) => {
@@ -24,7 +24,12 @@ const Activities = () => {
         <>
             {
                 sortedActivities.length == 0 ? (
-                    <h1 className='text-5xl text-gray-600 text-center my-[30%] opacity-50'>No posts available</h1>
+                    <div className='flex flex-col gap-10 my-[30%] opacity-30 z-0'>
+                        <FontAwesomeIcon icon={faTriangleExclamation} className="text-9xl " />
+                        <h1 className="text-4xl text-gray-600 text-center">
+                            Aucune activité pour le moment !
+                        </h1>
+                    </div>
                 ) : (
                     sortedActivities.map((activity) => (
                         <div key={activity.id}>
@@ -62,7 +67,7 @@ const Activities = () => {
 
                                 <div className='flex flex-col border-s-gray-400'>
                                     <p>{activity.content}</p>
-                                    {activity.photo && <img src={`${activity.photo}`} className="h-96 w-full object-contain  " /> }
+                                    {activity.photo && <img src={`${activity.photo}`} className="h-96 w-full object-contain  " />}
                                 </div>
                             </div>
 

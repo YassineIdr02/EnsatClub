@@ -10,6 +10,9 @@ const GuestHome = () => {
     const dispatch = useDispatch()
     
     const [login, { isLoading }] = useLoginMutation()
+    useEffect(() => {
+        document.title = 'Guest | Home'
+      }, [])
     
     return (
         <div className="bg-[#dfe8e8] min-h-screen">

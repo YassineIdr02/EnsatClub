@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faXmark, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faXmark, faEye, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import Popup from './Popup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,13 +16,13 @@ import { useParams } from 'react-router-dom';
 
 const ListeDemande = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const  clubId  = useParams();
+  const clubId = useParams();
   const dispatch = useDispatch();
   const demandes = useSelector(getAllDemandes);
 
   useEffect(() => {
     if (!demandes.length) {
-      dispatch(getDemandes( clubId ));
+      dispatch(getDemandes(clubId));
     }
   }, [dispatch, clubId]);
 
@@ -35,12 +35,12 @@ const ListeDemande = () => {
   };
 
   const handleAccept = (demand_id) => {
-    dispatch(acceptDemand({demand_id}));
+    dispatch(acceptDemand({ demand_id }));
     toast.success('Demand accepted successfully');
   };
 
   const handleReject = (demand_id) => {
-    dispatch(declineDemand({demand_id}));
+    dispatch(declineDemand({ demand_id }));
     toast.error('Demand rejected');
   };
 
@@ -94,14 +94,17 @@ const ListeDemande = () => {
         <h1 className="text-3xl font-medium text-center">Liste de demande</h1>
       </div>
       {demandes.length === 0 ? (
-        <h1 className="text-4xl text-gray-600 text-center my-[70%]">
-          No demands available
-        </h1>
+        <div className='flex flex-col gap-10 my-[55%] opacity-30 w-44 mx-auto    '>
+          <FontAwesomeIcon icon={faTriangleExclamation} className="text-9xl " />
+          <h1 className="text-4xl text-gray-600 text-center">
+            Aucune demande pour le moment !
+          </h1>
+        </div>
       ) : (
         <div className="flex flex-col gap-5">{renderedDemandes}</div>
       )}
 
-      
+
       <ToastContainer theme="colored" />
     </div>
   );

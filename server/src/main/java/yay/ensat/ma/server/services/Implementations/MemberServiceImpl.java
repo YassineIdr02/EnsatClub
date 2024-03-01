@@ -63,11 +63,14 @@ public class MemberServiceImpl implements MemberService {
 
  @Override
     public String clubId(String username){
+     String clubid = null;
      AppUser appUser = securityService.loadUserByUserName(username);
      Member member = memberRepository.findById(appUser.getMember().getId()).orElse(null);
-     String clubid = String.valueOf(member.getClub().getId());
-     return clubid;
-
+     if(member.getClub() != null) {
+         clubid = String.valueOf(member.getClub().getId());
+        return clubid;
+     }
+     return null;
  }
 
 

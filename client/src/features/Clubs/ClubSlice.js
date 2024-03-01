@@ -53,6 +53,7 @@ export const assocPresident = createAsyncThunk(
       const formData = new FormData();
       formData.append("role", "President");
       formData.append("name", payload.firstName + " " + payload.lastName);
+      formData.append("email", payload.email);
       const response = await axios.post(
         `${BASE_URL}/associatepres/${clubId}/yay`,
         formData,
@@ -73,6 +74,7 @@ export const newMember = createAsyncThunk(
       const formData = new FormData();
       formData.append("club_id", clubId);
       formData.append("role", "member");
+      formData.append("email", payload.email);
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
         `${BASE_URL}/newmember`,

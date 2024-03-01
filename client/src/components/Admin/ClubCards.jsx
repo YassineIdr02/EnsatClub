@@ -24,7 +24,7 @@ const ClubCard = () => {
         (club) => club.president_id != null
     );
 
-    const condClubs = token  ? clubs : filteredClubs;
+    const condClubs = token ? clubs : filteredClubs;
 
     const renderedClubs = condClubs?.map(club => (
         <div className="card w-[83%] bg-base-100 shadow-xl mx-auto my-4" key={club.id}>
@@ -40,8 +40,11 @@ const ClubCard = () => {
                 </h2>
                 <p>{club.description}</p>
                 <div className="card-actions justify-end">
-                    <div className="badge badge-outline hover:cursor-pointer">Activités</div>
-                    <Link to={`clubs/${club.id}/members`} className="flex items-center"><div className="badge badge-outline hover:cursor-pointer">Bureau</div></Link>
+                    {(club.president_id != null) && (
+
+                        <Link to={`clubs/${club.id}/members`} className="flex items-center"><div className="badge badge-outline hover:cursor-pointer">Bureau</div></Link>
+                    )}
+
                     <Link to={"clubs/" + club.id.toString()} key={club.id} className="flex items-center"><div className="badge badge-outline hover:cursor-pointer">More details</div></Link>
                 </div>
             </div>
@@ -51,7 +54,7 @@ const ClubCard = () => {
 
     switch (clubStatus) {
         case "loading":
-            content = 
+            content =
                 <Loading />
             break;
 
@@ -63,7 +66,7 @@ const ClubCard = () => {
             </div>
             break;
 
-        case "idle":    
+        case "idle":
             break;
 
         default:

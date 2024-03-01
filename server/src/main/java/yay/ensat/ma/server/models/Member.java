@@ -17,6 +17,7 @@ public class Member {
     private Long id;
     private String name;
     private String role;// role inside the club
+    private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Club club;

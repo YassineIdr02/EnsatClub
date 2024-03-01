@@ -39,7 +39,24 @@ public class SecurityServiceImpl implements SecurityService {
         appUser.setAuthority(authority);
         appUser.setPassword(passwordEncoder.encode(password));
         AppUser savedAppuser = appUserRepository.save(appUser);
-       emailSenderService.sendEmail("yassine.idrissi1@etu.uae.ac.ma","Bienvenue au club ORACLE",
+       emailSenderService.sendEmail(member.getEmail(),"Bienvenue à ENSAT CLUB",
+                "Your Credentials are :\n"+"username: "+username+"\n"+"password: "+password);
+        return savedAppuser;
+    }
+
+    @Override
+    public AppUser saveAdmin(Member member) {
+        String fullUUID = UUID.randomUUID().toString();
+        String username = member.getName()+fullUUID.substring(0, 3);
+        String password =fullUUID.substring(0, 9);
+        AppUser appUser= new AppUser();
+        appUser.setUsername(username);
+        appUser.setMember(member);
+        String authority = member.getRole();
+        appUser.setAuthority(authority);
+        appUser.setPassword(passwordEncoder.encode(password));
+        AppUser savedAppuser = appUserRepository.save(appUser);
+        emailSenderService.sendEmail(member.getEmail(),"Bienvenue à ENSAT CLUB",
                 "Your Credentials are :\n"+"username: "+username+"\n"+"password: "+password);
         return savedAppuser;
     }

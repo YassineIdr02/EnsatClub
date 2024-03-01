@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import yay.ensat.ma.server.dtos.MemberDTO;
+import yay.ensat.ma.server.models.Member;
+import yay.ensat.ma.server.repositories.MemberRepository;
 import yay.ensat.ma.server.security.securityConfig.RsaKeysConfig;
 import yay.ensat.ma.server.security.services.SecurityService;
 import yay.ensat.ma.server.services.Interfaces.MemberService;
@@ -25,13 +27,15 @@ public class ServerApplication {
         SpringApplication.run(ServerApplication.class, args);
     }
 
-    //@Bean
-    CommandLineRunner commandLineRunner(){
+    @Bean
+    CommandLineRunner commandLineRunner(SecurityService securityService, MemberRepository memberRepository){
         return args -> {
-            MemberDTO memberDTO = new MemberDTO();
-            memberDTO.setName("Yassine");
-            memberDTO.setRole("President");
-            memberService.saveMember(memberDTO,1L);
+            Member member = new Member();
+            member.setName("ENSATADMIN");
+            member.setRole("ADMIN");
+            member.setEmail("aymane.benamri@etu.uae.ac.ma");
+            Member savedMember = memberRepository.save(member);
+            securityService.saveAdmin(savedMember);
         };
     }
 
