@@ -33,7 +33,7 @@ public class ServerApplication {
             Member member = new Member();
             member.setName("ENSATADMIN");
             member.setRole("ADMIN");
-            member.setEmail("aymane.benamri@etu.uae.ac.ma");
+            member.setEmail("badir.hassan@uae.ac.ma");
             Member savedMember = memberRepository.save(member);
             securityService.saveAdmin(savedMember);
         };
