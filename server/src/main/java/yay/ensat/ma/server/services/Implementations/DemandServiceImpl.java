@@ -35,6 +35,7 @@ public class DemandServiceImpl implements DemandService {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setName(demand.getName());
         memberDTO.setRole(demand.getRole());
+        memberDTO.setEmail(demand.getEmail());
         memberService.saveMember(memberDTO,demand.getClubId());
     }
 

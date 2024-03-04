@@ -127,6 +127,7 @@ export const sendDemande = createAsyncThunk(
       const formData = new FormData();
       formData.append("clubId", payload.clubId);
       formData.append("role", "member");
+      formData.append("email", payload.email);
       formData.append("name", payload.firstName + " " + payload.lastName);
       const response = await axios.post(
         `${BASE_URL}/newdemand`,
