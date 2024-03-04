@@ -46,7 +46,7 @@ This Spring project aims to provide a comprehensive solution for managing school
 2. Navigate to the project directory:
 
    ```bash
-   cd school-club-management
+   cd EnsatClub
    ```
 
 3. Configure the database settings in `src/main/resources/application.properties`.
