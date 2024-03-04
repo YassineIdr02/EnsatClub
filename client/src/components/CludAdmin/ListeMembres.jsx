@@ -63,7 +63,7 @@ const ListeMembres = () => {
         <div>
             <div className="flex flex-col gap-5">
                 <hr className="w-1/2 mx-auto" />
-                <div className="flex justify-center py-5 sticky z-10  top-0 bg-[#DEF2F1] w-full shadow-sm">
+                <div className="flex justify-center py-5 sticky  top-0 bg-[#DEF2F1] w-full z-0 shadow-sm">
                     <h1 className="text-3xl font-medium text-center">Liste des membres</h1>
                 </div>
 
