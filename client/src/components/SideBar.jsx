@@ -41,7 +41,7 @@ const SideBar = ({ toggleDemandeList, toggleMembreList }) => {
   }, [params])
 
   return (
-    <div className="flex justify-left min-h-screen px-5">
+    <div className="flex justify-left min-h-screen px-5 z-0">
       <div className="flex flex-col gap-16  items-center">
         <div className="mt-5">
           <a className="text-3xl font-bold">ENSAT Club</a>

@@ -24,7 +24,7 @@ const PresidentHome = () => {
   return (
     <div className="grid grid-cols-6 flex-1 w-full h-screen">
 
-      <div className="col-span-1 sticky h-screen top-0">
+      <div className="col-span-1 sticky z-10 h-screen top-0">
         <SideBar toggleDemandeList={toggleDemandeList} toggleMembreList={toggleMembreList} />
       </div>
 
