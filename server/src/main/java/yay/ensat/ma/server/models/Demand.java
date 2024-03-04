@@ -18,5 +18,6 @@ public class Demand {
     private String role;// role in the club
     private Long clubId;
     private String status = "Waiting";
+    private String email;
 
 }
