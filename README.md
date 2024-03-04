@@ -39,7 +39,8 @@ This Spring project aims to provide a comprehensive solution for managing school
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/ensat-club-management.git
+   git clone https://github.com/EnsatClub/EnsatClub.git
+   
    ```
 
 2. Navigate to the project directory:
